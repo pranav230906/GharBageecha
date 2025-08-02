@@ -120,7 +120,7 @@ const samplePosts = [
         time: '2 days ago',
         category: 'tips',
         content: '💡 Pro tip: Used tea leaves make excellent compost! I\'ve been adding them to my soil for months and the plants love it. Just make sure to let them dry first to avoid mold. My roses have never been happier! ☕🌹 #SustainableGardening',
-        images: ['https://media02.stockfood.com/largepreviews/MzQ4NDQ3ODQz/11240253-Fresh-tea-leaves-in-the-hands-of-a-tea-picker-Sri-Lanka.jpg'],
+        images: ['https://media.istockphoto.com/id/1330987502/photo/tea-tree-leaves-for-background.jpg?s=612x612&w=0&k=20&c=1EsKVOpYie8Xc7lAeyF_Y4U0IIulRkZVeaOzgWQc_Rw='],
         likes: 42,
         comments: [
             {
@@ -139,7 +139,7 @@ const samplePosts = [
         time: '3 days ago',
         category: 'problems',
         content: 'Help needed! My chili plants are getting yellow leaves. I water them regularly and they get good sunlight. Could it be over-watering? The fruits are still developing well but I\'m worried about the yellowing. Any suggestions would be appreciated! 🌶😟',
-        images: ['https://peppergeek.com/wp-content/uploads/2021/06/Yellow-pepper-leaves-2.jpg'],
+        images: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtdSBaHeU6WCPHPfbqjOYhBYOw2mWK4qHFHkOqCfdAGJq3dWb6UcR6-RnSJ2GAQIdDung&usqp=CAU'],
         likes: 16,
         comments: [
             {
@@ -183,7 +183,7 @@ const samplePosts = [
         time: '5 days ago',
         category: 'vegetables',
         content: 'My bottle gourd plant is producing huge gourds! 🥒 This one weighs almost 2kg. Indian vegetables grow so well in our climate. Planning to make lauki sabzi tonight! The vines are so healthy this year. 🌿👨‍🌾',
-        images: ['https://m.media-amazon.com/images/I/611DOcqXgfL.UF1000,1000_QL80.jpg'],
+        images: ['https://beejwala.com/cdn/shop/products/bottle-gourd-seeds-3_compressed.jpg?v=1653740226'],
         likes: 29,
         comments: [
             {
@@ -331,9 +331,7 @@ function toggleLanguage() {
             el.textContent = el.dataset.en;
         }
     });
-    // This is a placeholder. A full implementation would involve
-    // storing translated strings in an object and swapping them.
-    // We'll just change the button text for this example.
+
     langToggle.innerHTML = isHindi 
         ? `<i class="fas fa-globe"></i> EN/हिं`
         : `<i class="fas fa-globe"></i> हिं/EN`;
@@ -344,11 +342,11 @@ function handleImageUpload(event) {
     const files = event.target.files;
     if (files.length === 0) return;
 
-    // Clear previous previews and images
+    
     imagePreview.innerHTML = '';
     selectedImages = [];
 
-    // Process each file
+   
     Array.from(files).forEach(file => {
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -398,7 +396,7 @@ function handlePostSubmission() {
 
     const newPost = {
         id: posts.length + 1,
-        author: 'Current User', // Placeholder for current user
+        author: 'Current User', 
         avatar: 'https://t4.ftcdn.net/jpg/09/17/26/25/360_F_917262500_vkLHa3NChVnaXgoKThxDyYsF0Pa45dwy.jpg',
         time: 'Just now',
         category: postCategory.value,
@@ -409,22 +407,22 @@ function handlePostSubmission() {
         shares: 0
     };
 
-    posts.unshift(newPost); // Add new post to the beginning of the array
+    posts.unshift(newPost); 
     renderPosts();
 
-    // Reset the form
+    
     postContent.value = '';
     postCategory.value = '';
-    imageUpload.value = ''; // Clear file input
+    imageUpload.value = ''; 
     selectedImages = [];
     imagePreview.innerHTML = '';
     validatePostForm();
     
-    // Show success modal
+    
     successModal.classList.add('show');
 }
 
-// Validate post form to enable/disable post button
+
 function validatePostForm() {
     if (postContent.value.trim() !== '' && postCategory.value !== '') {
         postBtn.disabled = false;
@@ -433,12 +431,12 @@ function validatePostForm() {
     }
 }
 
-// Show the success modal
+
 function closeSuccessModal() {
     successModal.classList.remove('show');
 }
 
-// Post filtering logic
+
 function handleFilterChange(filter) {
     currentFilter = filter;
     filterTabs.forEach(tab => {
@@ -450,7 +448,7 @@ function handleFilterChange(filter) {
     renderPosts();
 }
 
-// Load more posts (for demonstration, just re-renders with a higher limit)
+
 function loadMorePosts() {
     const postsToLoad = 3;
     const allFilteredPosts = filterPosts();
@@ -742,8 +740,16 @@ async function handleGetAiIdeas() {
             result.candidates[0].content.parts.length > 0) {
             
             const jsonString = result.candidates[0].content.parts[0].text;
-            const ideas = JSON.parse(jsonString);
-            if (ideas && ideas.length > 0) {
+            let ideas = null;
+            try {
+              ideas = JSON.parse(jsonString);
+            } catch (e) {
+              console.error("JSON parsing failed:", e, "Original response:", jsonString);
+              showAiError("Could not retrieve AI ideas due to a format error. Please try again.");
+              return;
+            }
+
+            if (Array.isArray(ideas) && ideas.length > 0) {
                 displayAiSuggestions(ideas);
             } else {
                 showAiError("No ideas were generated. Please try again or select a different category.");

@@ -56,10 +56,12 @@
         .logo {
             display: flex;
             align-items: center;
+            justify-content: start;
         }
 
+        
         .logo-house {
-            margin-right: 15px;
+            margin-right: 0px;
         }
 
         .logo-text {
@@ -379,6 +381,12 @@
                 flex-direction: column;
             }
         }
+
+        .arrow
+        {
+            margin-left: 4px;
+            margin-top: 23px;
+        }
     </style>
 </head>
 <body>
@@ -436,37 +444,37 @@
                     <i class="fas fa-drafting-compass"></i>
                     <h3>Garden Planner</h3>
                     <p>Design your perfect garden layout with our intuitive planning tools and plant placement suggestions.</p>
-                    <a href="#">Plan Your Garden <i class="fas fa-arrow-right"></i></a>
+                    <a href="#">Plan Your Garden <i class="fas fa-arrow-right arrow"></i></a>
                 </div>
                 <div class="feature-card" id="plants">
                     <i class="fas fa-seedling"></i>
                     <h3>Plants Database</h3>
                     <p>Explore our extensive collection of plants with detailed care instructions and growing tips.</p>
-                    <a href="plants.html">Browse Plants <i class="fas fa-arrow-right"></i></a>
+                    <a href="plants.html">Browse Plants <i class="fas fa-arrow-right arrow"></i></a>
                 </div>
                 <div class="feature-card" id="pests">
                     <i class="fas fa-bug"></i>
                     <h3>Pest Control</h3>
                     <p>Identify and manage common garden pests with our comprehensive pest control solutions.</p>
-                    <a href="pest.html">Learn About Pests <i class="fas fa-arrow-right"></i></a>
+                    <a href="pest.html">Learn About Pests <i class="fas fa-arrow-right arrow"></i></a>
                 </div>
                 <div class="feature-card" id="journal">
                     <i class="fas fa-book"></i>
                     <h3>Garden Journal</h3>
                     <p>Track your garden's progress, note observations, and plan seasonal activities in your personal journal.</p>
-                    <a href="#">Start Journaling <i class="fas fa-arrow-right"></i></a>
+                    <a href="#">Start Journaling <i class="fas fa-arrow-right arrow"></i></a>
                 </div>
                 <div class="feature-card" id="contact">
                     <i class="fas fa-comments"></i>
                     <h3>Community Support</h3>
                     <p>Connect with fellow gardeners, ask questions, and share your gardening experiences.</p>
-                    <a href="#">Join Community <i class="fas fa-arrow-right"></i></a>
+                    <a href="#">Join Community <i class="fas fa-arrow-right arrow"></i></a>
                 </div>
                 <div class="feature-card" id="login">
                     <i class="fas fa-user-circle"></i>
                     <h3>Personal Account</h3>
                     <p>Create your personalized account to save your garden plans and track your gardening journey.</p>
-                    <a href="signup.html">Sign Up Now <i class="fas fa-arrow-right"></i></a>
+                    <a href="signup.html">Sign Up Now <i class="fas fa-arrow-right arrow"></i></a>
                 </div>
             </div>
         </div>
@@ -481,7 +489,7 @@
             </div>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1595231776515-dd0e4942e852?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Gardening">
+                    <img src="https://construction.deejos.co.in/uploads/admin//f39ba70f7d8dca6f4bca96b2abdfd204.jpeg" alt="Gardening">
                 </div>
                 <div class="about-text">
                     <h3>Your Gardening Journey Starts Here</h3>
@@ -498,18 +506,18 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <div class="logo" style="margin-bottom: 20px;">
+                    <div class="logo" style="margin-bottom: 20px; margin-right: 10px;">
                         <!-- House with Leaf Logo -->
-                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-house">
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="white" xmlns="http://www.w3.org/2000/svg" class="logo-house">
                             <!-- House (Lucide-style) -->
-                            <path d="M16 32L32 18L48 32V50C48 51.1 47.1 52 46 52H18C16.9 52 16 51.1 16 50V32Z" stroke="#4CAF50" stroke-width="3" fill="none"/>
+                            <path d="M16 32L32 18L48 32V50C48 51.1 47.1 52 46 52H18C16.9 52 16 51.1 16 50V32Z" stroke="#4CAF50" stroke-width="3" fill="white"/>
                             <path d="M28 52V38H36V52" stroke="#4CAF50" stroke-width="3"/>
                             <!-- Leaf on the Roof (Lucide-style) -->
-                            <path d="M40 12C40 8 44 6 48 6V12C48 16 44 18 40 18H34C34 14 36 12 40 12Z" stroke="#4CAF50" stroke-width="2" fill="none"/>
+                            <path d="M40 12C40 8 44 6 48 6V12C48 16 44 18 40 18H34C34 14 36 12 40 12Z" stroke="#4CAF50" stroke-width="2" fill="white"/>
                         </svg>
                         <!-- Name of Website -->
                         <div class="logo-text">
-                            <h1 style="color: white; font-size: 24px;">Ghar <span style="color: #C5E1A5;">Bageecha</span></h1>
+                            <h1 style="color: #a4e45b; font-size: 24px;">Ghar <span style="color: #a4e45b;">Bageecha</span></h1>
                             <div class="logo-tagline" style="color: rgba(255, 255, 255, 0.8);">Your Home Garden Companion</div>
                         </div>
                     </div>
