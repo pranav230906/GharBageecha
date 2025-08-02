@@ -7,57 +7,82 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .plant-card {
-            transition: all 0.3s ease;
-        }
-        
-        .plant-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .star-rating {
-            color: #fbbf24;
-        }
-        
-        .badge {
-            transition: all 0.2s ease;
-        }
-        
-        .badge:hover {
-            transform: scale(1.05);
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #10b981;
-            border-radius: 4px;
-        }
+       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Styled card with first theme's shadow and white bg */
+.plant-card {
+    transition: all 0.3s ease;
+    background-color: #FFFFFF; /* changed from default to white */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08); /* from first CSS */
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.plant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12); /* same hover shadow as first CSS */
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.star-rating {
+    color: #FFB800; /* kept yellow star for contrast */
+}
+
+/* Updated badge color scheme */
+.badge {
+    transition: all 0.2s ease;
+    background-color: #E8F5E9; /* pale green from first CSS */
+    color: #4CAF50; /* primary green */
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.badge:hover {
+    transform: scale(1.05);
+    background-color: #81C784; /* light green hover */
+    color: white; /* added white text for contrast on hover */
+}
+
+/* Changed gradient from teal to green gradient */
+.hero-gradient {
+    background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%); /* green gradient */
+    color: #FFFFFF;
+    padding: 40px 20px;
+    border-radius: 16px;
+}
+
+/* Scrollbar updated to match green tones */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #F5F5F5; /* light gray track from first CSS */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #4CAF50; /* green thumb */
+    border-radius: 4px;
+}
 
     </style>
 </head>
