@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GharBageecha - Community</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="community.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-leaf"></i>
+                GharBageecha
+            </div>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link active">Community</a>
+                <a href="#" class="nav-link">Garden</a>
+                <a href="#" class="nav-link">Tips</a>
+                <button class="lang-toggle" id="langToggle">
+                    <i class="fas fa-globe"></i> हिं/EN
+                </button>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="page-header">
+                <h1>
+                    <i class="fas fa-users"></i>
+                    Community Garden
+                </h1>
+                <p>Share your gardening journey, connect with fellow gardeners, and grow together!</p>
+            </section>
+
+            <section class="community-stats">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-info">
+                            <h3 class="stat-number" data-target="2847">0</h3>
+                            <p>Active Gardeners</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-comment-alt"></i>
+                        <div class="stat-info">
+                            <h3 class="stat-number" data-target="15439">0</h3>
+                            <p>Posts Shared</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-heart"></i>
+                        <div class="stat-info">
+                            <h3 class="stat-number" data-target="89205">0</h3>
+                            <p>Likes Given</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-seedling"></i>
+                        <div class="stat-info">
+                            <h3 class="stat-number" data-target="3642">0</h3>
+                            <p>Plants Grown</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="create-post-section">
+                <div class="create-post-card">
+                    <div class="user-avatar">
+                        <img src="https://t4.ftcdn.net/jpg/09/17/26/25/360_F_917262500_vkLHa3NChVnaXgoKThxDyYsF0Pa45dwy.jpg" alt="User Avatar">
+                    </div>
+                    <div class="post-form">
+                        <textarea id="postContent" placeholder="Share your gardening story..."></textarea>
+                        <div class="image-preview" id="imagePreview"></div>
+                        <div class="post-actions">
+                            <div class="post-options">
+                                <label class="upload-btn">
+                                    <i class="fas fa-camera"></i> <span class="btn-text">Add Photo</span>
+                                    <input type="file" id="imageUpload" accept="image/*" multiple hidden>
+                                </label>
+                                <button class="emoji-btn" id="emojiBtn">
+                                    <i class="fas fa-smile"></i>
+                                </button>
+                                <button class="ai-ideas-btn" id="aiIdeasBtn">
+                                  <i class="fas fa-magic"></i>
+                                  <span class="btn-text">✨ Get Post Ideas</span>
+                                </button>
+                                <select id="postCategory">
+                                    <option value="" disabled selected>Select Category</option>
+                                    <option value="vegetables">Vegetables</option>
+                                    <option value="flowers">Flowers</option>
+                                    <option value="herbs">Herbs</option>
+                                    <option value="tips">Tips & Tricks</option>
+                                    <option value="problems">Plant Problems</option>
+                                    <option value="success">Success Stories</option>
+                                </select>
+                            </div>
+                            <button class="post-btn" id="postBtn" disabled>
+                                <i class="fas fa-paper-plane"></i> <span class="btn-text">Share</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="filter-section">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all">All Posts</button>
+                    <button class="filter-tab" data-filter="vegetables">Vegetables</button>
+                    <button class="filter-tab" data-filter="flowers">Flowers</button>
+                    <button class="filter-tab" data-filter="herbs">Herbs</button>
+                    <button class="filter-tab" data-filter="tips">Tips</button>
+                    <button class="filter-tab" data-filter="problems">Problems</button>
+                    <button class="filter-tab" data-filter="success">Success Stories</button>
+                </div>
+            </section>
+
+            <section class="posts-feed" id="postsFeed">
+                <!-- Posts will be loaded by JavaScript -->
+            </section>
+
+            <section class="load-more-section">
+                <button class="load-more-btn" id="loadMoreBtn">
+                    <i class="fas fa-plus-circle"></i> <span class="btn-text">Load More Stories</span>
+                </button>
+            </section>
+        </div>
+    </main>
+
+    <!-- Emoji Modal -->
+    <div class="modal emoji-modal" id="emojiModal">
+        <div class="emoji-modal-content">
+            <div class="emoji-header">
+                <h4>Choose an Emoji</h4>
+                <button class="close-emoji" id="closeEmoji">&times;</button>
+            </div>
+            <div class="emoji-grid" id="emojiGrid"></div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="modal image-modal" id="imageModal">
+        <span class="close-image-modal" id="closeImageModal">&times;</span>
+        <img src="" alt="Full image" id="modalImage">
+        <div class="image-modal-nav">
+            <button id="prevImage"><i class="fas fa-chevron-left"></i></button>
+            <button id="nextImage"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- AI Suggestions Modal -->
+    <div class="modal ai-modal" id="aiModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>✨ AI Post Ideas</h3>
+          <button class="close-emoji" id="closeAiModal">&times;</button>
+        </div>
+        <div class="ai-suggestions-list" id="aiSuggestionsList">
+            <!-- AI suggestions will be inserted here -->
+            <div id="aiLoader" class="loader"></div>
+            <p id="aiError" class="error-message" style="display: none;"></p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-check-circle"></i>
+                <h3>Post Shared Successfully!</h3>
+            </div>
+            <p>Your gardening story has been shared with the community. Keep growing and sharing!</p>
+            <button class="modal-btn" id="closeModal">Continue</button>
+        </div>
+    </div>
+
+    <script src="community.js"></script>
+</body>
+</html>
