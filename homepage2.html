@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GharBageecha - Rooftop Farming Planner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel = 'stylesheet' href="homepage2.css">
+    <script src = "homepage2.js"></script>
+</head>
+<body class="text-gray-900">
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Main Navigation -->
+    <nav class="glass fixed top-0 w-full z-50 p-4 transition-all duration-300" id="navbar">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" id="nav-home" class="flex items-center space-x-2 hover-lift">
+                <div class="relative">
+                    <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-green-500 green-icon-pulse">
+                        <path d="M16 32L32 18L48 32V50C48 51.1 47.1 52 46 52H18C16.9 52 16 51.1 16 50V32Z" stroke="currentColor" stroke-width="3" fill="none"/>
+                        <path d="M28 52V38H36V52" stroke="currentColor" stroke-width="3"/>
+                        <path d="M40 12C40 8 44 6 48 6V12C48 16 44 18 40 18H34C34 14 36 12 40 12Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                <span class="text-xl font-bold text-gray-900">Ghar<span class="text-lime-500">Bageecha</span></span>
+            </a>
+            <div class="flex space-x-6">
+                <a href="#" id="nav-home-2" class="nav-link text-gray-600 hover:text-green-500 font-medium">Home</a>
+                <a href="#" id="nav-planner" class="nav-link text-gray-600 hover:text-green-500 font-medium">Planner</a>
+                <a href="#" id="nav-community" class="nav-link text-gray-600 hover:text-green-500 font-medium">Community</a>
+                <a href="#" id="nav-resources" class="nav-link text-gray-600 hover:text-green-500 font-medium">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="pt-20 p-6">
+        <!-- Home Page -->
+        <div id="home" class="page-content container mx-auto">
+            <!-- Hero Section -->
+            <section class="text-center py-20 glass-white rounded-3xl shadow-2xl mb-12 relative overflow-hidden">
+                <div class="absolute inset-0 animate-gradient opacity-10"></div>
+                <div class="relative z-10">
+                    <h1 class="text-6xl font-extrabold text-gray-900 mb-6 animate-fadeInUp typing-animation">
+                        Cultivate Your Concrete Jungle.
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 max-w-3xl mx-auto animate-fadeInUp" style="animation-delay: 0.2s;">
+                        Turn your unused rooftop into a thriving garden. Get personalized plans, connect with a community, and grow fresh food right in the city.
+                    </p>
+                    <button id="start-planner-btn" class="btn-primary text-white font-bold py-4 px-10 rounded-full shadow-2xl hover-glow animate-bounce-custom text-lg">
+                        <i class="fas fa-rocket mr-2"></i>Start Your Rooftop Garden
+                    </button>
+                </div>
+            </section>
+
+            <!-- Benefits Section -->
+            <section class="py-16 glass-white rounded-3xl shadow-2xl mb-12 scroll-reveal">
+                <h2 class="text-4xl font-bold text-center text-gray-900 mb-12 animate-fadeInUp">Why Rooftop Farming?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-8">
+                    <div class="card-hover glass p-8 rounded-2xl text-center hover-lift">
+                        <div class="text-6xl text-green-500 mb-6 green-icon-bounce">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Fresh, Local Food</h3>
+                        <p class="text-gray-600 leading-relaxed">Harvest organic produce just steps from your kitchen, reducing food miles and waste.</p>
+                    </div>
+                    <div class="card-hover glass p-8 rounded-2xl text-center hover-lift" style="animation-delay: 0.2s;">
+                        <div class="text-6xl text-green-500 mb-6 green-icon-bounce" style="animation-delay: 0.5s;">
+                            <i class="fa-solid fa-city"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Urban Resilience</h3>
+                        <p class="text-gray-600 leading-relaxed">Contribute to local food security and reduce the urban heat island effect.</p>
+                    </div>
+                    <div class="card-hover glass p-8 rounded-2xl text-center hover-lift" style="animation-delay: 0.4s;">
+                        <div class="text-6xl text-green-500 mb-6 green-icon-bounce" style="animation-delay: 1s;">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Save Money</h3>
+                        <p class="text-gray-600 leading-relaxed">Grow your own food and significantly cut down on your grocery bills over time.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section class="py-16 animate-gradient text-white rounded-3xl shadow-2xl mb-12 scroll-reveal">
+                <h2 class="text-4xl font-bold text-center mb-10">Did You Know?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 text-center">
+                    <div class="glass p-8 rounded-2xl hover-lift">
+                        <div class="text-5xl mb-6 green-icon-pulse">
+                            <i class="fa-solid fa-cloud-sun-rain"></i>
+                        </div>
+                        <p class="text-lg leading-relaxed">Rooftop gardens can reduce a building's cooling costs by up to 25%.</p>
+                    </div>
+                    <div class="glass p-8 rounded-2xl hover-lift" style="animation-delay: 0.2s;">
+                        <div class="text-5xl mb-6 green-icon-pulse" style="animation-delay: 0.5s;">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <p class="text-lg leading-relaxed">A typical 1000 sq ft rooftop farm can produce over 2000 lbs of vegetables annually.</p>
+                    </div>
+                    <div class="glass p-8 rounded-2xl hover-lift" style="animation-delay: 0.4s;">
+                        <div class="text-5xl mb-6 green-icon-pulse" style="animation-delay: 1s;">
+                            <i class="fa-solid fa-water"></i>
+                        </div>
+                        <p class="text-lg leading-relaxed">Rooftop gardens absorb rainwater, reducing urban runoff and stress on drainage systems.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section class="py-16 glass-white rounded-3xl shadow-2xl mb-12 scroll-reveal">
+                <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">What Our Users Say</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-8">
+                    <div class="glass p-8 rounded-2xl border-l-4 border-green-500 hover-lift">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                                R
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Rohan P.</p>
+                                <p class="text-sm text-gray-600">Mumbai</p>
+                            </div>
+                        </div>
+                        <p class="italic text-gray-600 leading-relaxed">"GharBageecha made planning my rooftop garden so easy! The personalized plan helped me choose the right crops and get started without any hassle."</p>
+                    </div>
+                    <div class="glass p-8 rounded-2xl border-l-4 border-green-500 hover-lift" style="animation-delay: 0.2s;">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-lime-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                                A
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Ananya S.</p>
+                                <p class="text-sm text-gray-600">Delhi</p>
+                            </div>
+                        </div>
+                        <p class="italic text-gray-600 leading-relaxed">"I love the community dashboard! I've connected with other gardeners in my city and we now share tips and even seeds. It's a great platform."</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Planner Page -->
+        <div id="planner" class="page-content container mx-auto hidden">
+            <h1 class="text-5xl font-bold text-center text-gray-900 mb-12 animate-fadeInUp">Rooftop Farming Planner</h1>
+            
+            <!-- Progress Bar -->
+            <div class="glass-white p-4 rounded-2xl mb-8">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm font-medium text-gray-600">Progress</span>
+                    <span class="text-sm font-medium text-gray-600" id="progress-text">Step 1 of 3</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="progress-bar w-1/3" id="progress-bar"></div>
+                </div>
+            </div>
+            
+            <div id="planner-form-container" class="glass-white p-10 rounded-3xl shadow-2xl mb-12">
+                <form id="rooftop-form" class="space-y-8">
+                    <!-- Step 1: Basic Info -->
+                    <div id="step-1" class="form-step animate-fadeInUp">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">
+                            <i class="fas fa-home text-green-500 mr-3"></i>Rooftop Details
+                        </h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="animate-fadeInLeft">
+                                <label for="rooftop-width" class="block text-sm font-semibold text-gray-600 mb-2">
+                                    <i class="fas fa-ruler-horizontal text-green-500 mr-2"></i>Rooftop Width (meters)
+                                </label>
+                                <input type="number" id="rooftop-width" name="rooftop-width" placeholder="e.g., 10" 
+                                       class="form-input mt-2 p-4 block w-full rounded-xl shadow-lg">
+                            </div>
+                            <div class="animate-fadeInRight">
+                                <label for="rooftop-length" class="block text-sm font-semibold text-gray-600 mb-2">
+                                    <i class="fas fa-ruler-vertical text-green-500 mr-2"></i>Rooftop Length (meters)
+                                </label>
+                                <input type="number" id="rooftop-length" name="rooftop-length" placeholder="e.g., 20" 
+                                       class="form-input mt-2 p-4 block w-full rounded-xl shadow-lg">
+                            </div>
+                            <div class="animate-fadeInLeft" style="animation-delay: 0.2s;">
+                                <label for="sunlight-hours" class="block text-sm font-semibold text-gray-600 mb-2">
+                                    <i class="fas fa-sun text-green-500 mr-2"></i>Daily Sunlight Hours
+                                </label>
+                                <input type="number" id="sunlight-hours" name="sunlight-hours" placeholder="e.g., 6" 
+                                       class="form-input mt-2 p-4 block w-full rounded-xl shadow-lg">
+                            </div>
+                            <div class="animate-fadeInRight" style="animation-delay: 0.2s;">
+                                <label for="load-capacity" class="block text-sm font-semibold text-gray-600 mb-2">
+                                    <i class="fas fa-weight-hanging text-green-500 mr-2"></i>Load Capacity (kg/m²)
+                                </label>
+                                <input type="number" id="load-capacity" name="load-capacity" placeholder="e.g., 150" 
+                                       class="form-input mt-2 p-4 block w-full rounded-xl shadow-lg">
+                            </div>
+                        </div>
+                        <div class="mt-10 flex justify-end">
+                            <button type="button" id="next-step-1" class="btn-primary text-white font-bold py-4 px-10 rounded-full shadow-2xl hover-glow">
+                                Next <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Location -->
+                    <div id="step-2" class="form-step hidden">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center animate-fadeInUp">
+                            <i class="fas fa-map-marker-alt text-green-500 mr-3"></i>Location Details
+                        </h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="animate-fadeInLeft">
+                                <label for="city" class="block text-sm font-semibold text-gray-600 mb-2">
+                                    <i class="fas fa-city text-green-500 mr-2"></i>City
+                                </label>
+                                <input type="text" id="city" name="city" placeholder="e.g., Mumbai" 
+                                       class="form-input mt-2 p-4 block w-full rounded-xl shadow-lg">
+                            </div>
+                            <div class="animate-fadeInRight">
+                                <label for="country" class="block text-sm font-semibold text-gray-600 mb-2">
+                                    <i class="fas fa-flag text-green-500 mr-2"></i>Country
+                                </label>
+                                <input type="text" id="country" name="country" placeholder="e.g., India" 
+                                       class="form-input mt-2 p-4 block w-full rounded-xl shadow-lg">
+                            </div>
+                        </div>
+                        <div class="flex justify-between mt-10">
+                            <button type="button" id="prev-step-2" class="bg-gray-500 text-white font-bold py-4 px-10 rounded-full shadow-2xl hover:bg-gray-600 transition-all hover-lift">
+                                <i class="fas fa-arrow-left mr-2"></i>Previous
+                            </button>
+                            <button type="button" id="next-step-2" class="btn-primary text-white font-bold py-4 px-10 rounded-full shadow-2xl hover-glow">
+                                Next <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Usage and Submit -->
+                    <div id="step-3" class="form-step hidden">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center animate-fadeInUp">
+                            <i class="fas fa-cogs text-green-500 mr-3"></i>Current Usage
+                        </h2>
+                        <div class="animate-fadeInUp">
+                            <label for="current-usage" class="block text-sm font-semibold text-gray-600 mb-2">
+                                <i class="fas fa-list text-green-500 mr-2"></i>Current Rooftop Usage
+                            </label>
+                            <select id="current-usage" name="current-usage" 
+                                    class="form-input mt-2 p-4 block w-full rounded-xl shadow-lg">
+                                <option value="empty">Empty space</option>
+                                <option value="leisure">Leisure area (e.g., seating)</option>
+                                <option value="solar">Solar panels</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="flex justify-between mt-10">
+                            <button type="button" id="prev-step-3" class="bg-gray-500 text-white font-bold py-4 px-10 rounded-full shadow-2xl hover:bg-gray-600 transition-all hover-lift">
+                                <i class="fas fa-arrow-left mr-2"></i>Previous
+                            </button>
+                            <button type="button" id="generate-gemini-plan-btn" class="btn-primary text-white font-bold py-4 px-10 rounded-full shadow-2xl hover-glow animate-pulse-custom">
+                                <i class="fas fa-magic mr-2"></i>Generate Plan with ✨Gemini
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Results Section -->
+            <div id="planner-results" class="glass-white p-10 rounded-3xl shadow-2xl hidden">
+                <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center animate-fadeInUp">
+                    <i class="fas fa-clipboard-list text-green-500 mr-3"></i>Your Rooftop Farming Plan
+                </h2>
+                <div class="space-y-8">
+                    <div class="glass p-6 rounded-2xl hover-lift animate-fadeInLeft">
+                        <h3 class="text-2xl font-bold text-green-500 mb-4">
+                            <i class="fas fa-tools mr-2"></i>Recommended Farming Method
+                        </h3>
+                        <div id="method-recommendation" class="text-gray-600 leading-relaxed">
+                            <div class="loading-dots">Loading</div>
+                        </div>
+                    </div>
+                    <div class="glass p-6 rounded-2xl hover-lift animate-fadeInRight">
+                        <h3 class="text-2xl font-bold text-green-500 mb-4">
+                            <i class="fas fa-carrot mr-2"></i>Suggested Crops
+                        </h3>
+                        <ul id="crop-suggestions" class="list-disc list-inside text-gray-600 leading-relaxed">
+                            <div class="loading-dots">Loading</div>
+                        </ul>
+                    </div>
+                    <div class="glass p-6 rounded-2xl hover-lift animate-fadeInLeft">
+                        <h3 class="text-2xl font-bold text-green-500 mb-4">
+                            <i class="fas fa-chart-line mr-2"></i>Estimated ROI & Impact
+                        </h3>
+                        <div id="roi-estimate" class="text-gray-600 mb-4 leading-relaxed">
+                            <div class="loading-dots">Loading</div>
+                        </div>
+                        <div id="impact-estimate" class="text-gray-600 leading-relaxed">
+                            <div class="loading-dots">Loading</div>
+                        </div>
+                    </div>
+                    <div class="glass p-6 rounded-2xl hover-lift animate-fadeInRight">
+                        <h3 class="text-2xl font-bold text-green-500 mb-4">
+                            <i class="fas fa-drafting-compass mr-2"></i>Layout & Setup
+                        </h3>
+                        <div id="layout-plan" class="text-gray-600 mb-4 leading-relaxed">
+                            <div class="loading-dots">Loading</div>
+                        </div>
+                        <div id="vendor-suggestions" class="text-gray-600 leading-relaxed">
+                            <div class="loading-dots">Loading</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Community Page -->
+        <div id="community" class="page-content container mx-auto hidden">
+            <h1 class="text-5xl font-bold text-center text-gray-900 mb-12 animate-fadeInUp">Community Dashboard</h1>
+            <div id="auth-status" class="text-center text-sm glass-white p-3 rounded-xl mb-6 animate-fadeInUp"></div>
+
+            <!-- Sample Users Section -->
+            <section class="glass-white p-8 rounded-3xl shadow-2xl mb-12 max-w-4xl mx-auto animate-fadeInUp">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">
+                    <i class="fas fa-users text-green-500 mr-3"></i>Rooftop Farmers in Your Locality
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <div class="flex items-center p-6 glass rounded-2xl hover-lift card-hover">
+                        <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-lime-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                            J
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-900 text-lg">Jane Doe</p>
+                            <p class="text-sm text-gray-600">Hydroponics Enthusiast</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-6 glass rounded-2xl hover-lift card-hover" style="animation-delay: 0.1s;">
+                        <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                            J
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-900 text-lg">John Smith</p>
+                            <p class="text-sm text-gray-600">Container Gardener</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-6 glass rounded-2xl hover-lift card-hover" style="animation-delay: 0.2s;">
+                        <div class="w-16 h-16 bg-gradient-to-r from-lime-500 to-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                            P
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-900 text-lg">Priya Sharma</p>
+                            <p class="text-sm text-gray-600">Expert on Indian crops</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- Live Community Chat -->
+                <div class="glass-white p-8 rounded-3xl shadow-2xl flex flex-col h-[70vh] animate-fadeInLeft">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">
+                        <i class="fas fa-comments text-green-500 mr-3"></i>Live Community Chat
+                    </h2>
+                    <div id="community-messages" class="flex-grow overflow-y-auto mb-6 p-6 space-y-4 rounded-2xl glass shadow-inner">
+                        <p class="text-center text-gray-600">
+                            <div class="loading-dots">Loading messages</div>
+                        </p>
+                    </div>
+                    <form id="message-form" class="flex space-x-3">
+                        <input type="text" id="message-input" placeholder="Type your message..." 
+                               class="form-input flex-grow rounded-xl shadow-lg p-3">
+                        <button type="submit" class="btn-primary text-white font-bold py-3 px-6 rounded-xl shadow-lg hover-glow">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- AI Assistant -->
+                <div class="glass-white p-8 rounded-3xl shadow-2xl flex flex-col h-[70vh] animate-fadeInRight">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">
+                        <i class="fas fa-robot text-green-500 mr-3"></i>Ask our AI Assistant
+                    </h2>
+                    <div id="ai-chat-container" class="flex-grow overflow-y-auto mb-6 p-6 space-y-4 rounded-2xl glass shadow-inner">
+                        <div class="text-sm glass p-4 rounded-2xl shadow-sm self-start max-w-xs md:max-w-md animate-fadeInUp">
+                            <p class="font-bold text-gray-900 flex items-center">
+                                <i class="fas fa-robot text-green-500 mr-2"></i>AI Assistant
+                            </p>
+                            <p class="text-gray-600 mt-2">Hello! I'm here to help you with your rooftop gardening questions. Ask me anything!</p>
+                        </div>
+                    </div>
+                    <form id="ai-form" class="flex space-x-3">
+                        <input type="text" id="ai-question-input" placeholder="Ask a question..." 
+                               class="form-input flex-grow rounded-xl shadow-lg p-3">
+                        <button type="submit" id="ask-ai-btn" class="btn-primary text-white font-bold py-3 px-6 rounded-xl shadow-lg hover-glow">
+                            <i class="fas fa-magic mr-1"></i>✨
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resources Page -->
+        <div id="resources" class="page-content container mx-auto hidden">
+            <h1 class="text-5xl font-bold text-center text-gray-900 mb-12 animate-fadeInUp">Resources & Blog</h1>
+            <div class="space-y-8 max-w-4xl mx-auto">
+                <article class="glass-white p-8 rounded-3xl shadow-2xl hover-lift animate-fadeInLeft">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-lime-500 rounded-2xl flex items-center justify-center text-white text-2xl mr-4">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-bold text-green-500">Hydroponics 101: Your Guide to Soilless Farming</h2>
+                            <p class="text-sm text-gray-600 mt-1">Published 2 days ago</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-lg">Hydroponics is a method of growing plants using mineral nutrient solutions in water, without soil. It's perfect for urban spaces with limited area and load capacity. This guide covers the basics of setting up your first hydroponic system...</p>
+                    <a href="#" class="btn-primary text-white px-6 py-3 rounded-xl font-medium hover-glow inline-flex items-center">
+                        Read More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </article>
+                
+                <article class="glass-white p-8 rounded-3xl shadow-2xl hover-lift animate-fadeInRight">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 bg-gradient-to-r from-lime-500 to-green-600 rounded-2xl flex items-center justify-center text-white text-2xl mr-4">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-bold text-green-500">Finding Government Subsidies for Urban Gardens</h2>
+                            <p class="text-sm text-gray-600 mt-1">Published 1 week ago</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-lg">Many local and national governments offer incentives and subsidies to encourage urban farming. This article provides a list of common programs, how to apply, and success stories from around the world...</p>
+                    <a href="#" class="btn-primary text-white px-6 py-3 rounded-xl font-medium hover-glow inline-flex items-center">
+                        Read More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass text-gray-900 py-12 mt-16">
+        <div class="container mx-auto text-center">
+            <div class="mb-6">
+                <div class="flex items-center justify-center space-x-2 mb-4">
+                    <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-green-500">
+                        <path d="M16 32L32 18L48 32V50C48 51.1 47.1 52 46 52H18C16.9 52 16 51.1 16 50V32Z" stroke="currentColor" stroke-width="3" fill="none"/>
+                        <path d="M28 52V38H36V52" stroke="currentColor" stroke-width="3"/>
+                        <path d="M40 12C40 8 44 6 48 6V12C48 16 44 18 40 18H34C34 14 36 12 40 12Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                    <span class="text-2xl font-bold">Ghar<span class="text-lime-500">Bageecha</span></span>
+                </div>
+                <p class="text-lg">&copy; 2024 GharBageecha. All rights reserved.</p>
+            </div>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="text-2xl hover:text-green-500 transition-colors hover-lift">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-2xl hover:text-green-500 transition-colors hover-lift">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="text-2xl hover:text-green-500 transition-colors hover-lift">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-2xl hover:text-green-500 transition-colors hover-lift">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+  
+</body>
+</html>
