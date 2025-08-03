@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <title>HealthConnect Pro - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>HealthConnect Pro - Login</title>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <title>GharBageecha - Login</title>
@@ -12,27 +13,21 @@
 <body>
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
-            <button class="close-button" onclick="closeButton_login()">
-                <i class="fa-solid fa-xmark" style="color: 63E6BE;"></i>
+            <button class="close-button" onclick="closeButton()">
+                <i class="fa-solid fa-xmark"></i>
             </button>
             <div class="modal-header">
                 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="margins-house">
-                <!-- House (Lucide-style) -->
                 <path d="M16 32L32 18L48 32V50C48 51.1 47.1 52 46 52H18C16.9 52 16 51.1 16 50V32Z" stroke="#4CAF50" stroke-width="3" fill="none"/>
                 <path d="M28 52V38H36V52" stroke="#4CAF50" stroke-width="3"/>
-
-                <!-- Leaf on the Roof (Lucide-style) -->
                 <path d="M40 12C40 8 44 6 48 6V12C48 16 44 18 40 18H34C34 14 36 12 40 12Z" stroke="#4CAF50" stroke-width="2" fill="none"/>
                 </svg>
-
-                <!-- Name of Website -->
                 <svg width="320" height="80" xmlns="http://www.w3.org/2000/svg">
                 <text x="0" y="50" font-family="Verdana, sans-serif" font-size="36" fill="#4CAF50">
                     Ghar
                     <tspan fill="#8BC34A">Bageecha</tspan>
                 </text>
                 </svg>
-
             </div>
             <form class="modal-form" id="loginForm">
                 <div class="form-group">
@@ -59,5 +54,6 @@
             <p id="errorMessage" style="color: red; display: none; text-align: center; margin-top: 10px;">Invalid email or password. Please try again.</p>
         </div>
     </div>
+    <script src="login.js"></script>
 </body>
 </html>

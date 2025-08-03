@@ -103,7 +103,7 @@ function closeLoginModal() {
     modalOverlay.style.animation = 'fadeOut 0.3s ease forwards';
     setTimeout(() => {
         modalOverlay.style.display = 'none';
-        window.location.href = 'https://chatgpt.com/c/688d0a74-b600-8004-841a-55c8000d7717';                                  // change required
+        window.location.href = 'homepage1.html';
     }, 300);
 }
 
@@ -113,7 +113,7 @@ function closeSignupModal() {
     modalOverlay.style.animation = 'fadeOut 0.3s ease forwards';
     setTimeout(() => {
         modalOverlay.style.display = 'none';
-        window.location.href = 'login.html';                                                                 
+        window.location.href = 'homepage1.html';
     }, 300);
 }
 
@@ -123,7 +123,7 @@ function closeButton() {
     modalOverlay.style.animation = 'fadeOut 0.3s ease forwards';
     setTimeout(() => {
         modalOverlay.style.display = 'none';
-        window.location.href = 'https://chatgpt.com/c/688d0a74-b600-8004-841a-55c8000d7717';                   // change required
+        window.location.href = 'homepage1.html';
     }, 300);
 }
 
