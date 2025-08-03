@@ -5,404 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ghar Bageecha - Your Home Garden Companion</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-green: #4CAF50;
-            --light-green: #81C784;
-            --pale-green: #E8F5E9;
-            --accent-green: #8BC34A;
-            --white: #FFFFFF;
-            --light-gray: #F5F5F5;
-            --dark-gray: #424242;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--light-gray);
-            color: var(--dark-gray);
-            line-height: 1.6;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header Styles */
-        header {
-            background-color: var(--white);
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: start;
-        }
-
-        
-        .logo-house {
-            margin-right: 0px;
-        }
-
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1;
-        }
-
-        .logo-text h1 {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--primary-green);
-            margin: 0;
-        }
-
-        .logo-text h1 span {
-            color: var(--accent-green);
-        }
-
-        .logo-tagline {
-            font-size: 12px;
-            color: var(--dark-gray);
-            margin-top: 2px;
-            font-weight: 500;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 25px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: var(--dark-gray);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: var(--primary-green);
-        }
-
-        .login-btn {
-            background-color: var(--primary-green);
-            color: var(--white);
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-
-        .login-btn:hover {
-            background-color: #388E3C;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(76, 175, 80, 0.8), rgba(129, 199, 132, 0.8)), url('https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
-            color: var(--white);
-            padding: 100px 0;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--white);
-            color: var(--primary-green);
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 80px 0;
-            background-color: var(--white);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary-green);
-            margin-bottom: 15px;
-        }
-
-        .section-title p {
-            max-width: 700px;
-            margin: 0 auto;
-            color: var(--dark-gray);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background-color: var(--pale-green);
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-card i {
-            font-size: 3rem;
-            color: var(--primary-green);
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--primary-green);
-        }
-
-        .feature-card p {
-            margin-bottom: 20px;
-        }
-
-        .feature-card a {
-            color: var(--primary-green);
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            transition: color 0.3s;
-        }
-
-        .feature-card a:hover {
-            color: #388E3C;
-        }
-
-        .feature-card a i {
-            font-size: 1rem;
-            margin-left: 5px;
-        }
-
-        /* About Section */
-        .about {
-            padding: 80px 0;
-            background-color: var(--pale-green);
-        }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-
-        .about-image {
-            flex: 1;
-        }
-
-        .about-image img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        .about-text h3 {
-            font-size: 2rem;
-            color: var(--primary-green);
-            margin-bottom: 20px;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--primary-green);
-            color: var(--white);
-            padding: 60px 0 20px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--light-green);
-        }
-
-        .footer-column p, .footer-column li {
-            margin-bottom: 10px;
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li a {
-            color: var(--white);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-column ul li a:hover {
-            color: var(--light-green);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            transition: background-color 0.3s;
-        }
-
-        .social-links a:hover {
-            background-color: var(--light-green);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .logo {
-                margin-bottom: 10px;
-            }
-
-            .logo-text h1 {
-                font-size: 24px;
-            }
-
-            .logo-tagline {
-                font-size: 10px;
-            }
-
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            nav ul li {
-                margin: 5px 10px;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .about-content {
-                flex-direction: column;
-            }
-        }
-
-        .arrow
-        {
-            margin-left: 4px;
-            margin-top: 23px;
-        }
-    </style>
+    <link rel = "stylesheet" href="homepage1.css">
+    <style src = "homepage1.js"></style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="logo">
-                <!-- House with Leaf Logo -->
                 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-house">
-                    <!-- House (Lucide-style) -->
                     <path d="M16 32L32 18L48 32V50C48 51.1 47.1 52 46 52H18C16.9 52 16 51.1 16 50V32Z" stroke="#4CAF50" stroke-width="3" fill="none"/>
                     <path d="M28 52V38H36V52" stroke="#4CAF50" stroke-width="3"/>
-                    <!-- Leaf on the Roof (Lucide-style) -->
                     <path d="M40 12C40 8 44 6 48 6V12C48 16 44 18 40 18H34C34 14 36 12 40 12Z" stroke="#4CAF50" stroke-width="2" fill="none"/>
                 </svg>
-                <!-- Name of Website -->
                 <div class="logo-text">
                     <h1>Ghar <span>Bageecha</span></h1>
                     <div class="logo-tagline">Your Home Garden Companion</div>
@@ -410,30 +24,30 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#garden-planner">Garden Planner</a></li>
-                    <li><a href="#plants">Plants</a></li>
-                    <li><a href="#pests">Pests</a></li>
-                    <li><a href="#journal">Journal</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="login.html" class="login-btn">Login</a></li>
-                    <li><a href="signup.html" class="login-btn">Sign up</a></li>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="login.html">Garden Planner</a></li>
+                    <li><a href="login.html">Plants</a></li>
+                    <li><a href="login.html">Pests</a></li>
+                    <li><a href="login.html">Journal</a></li>
+                    <li><a href="login.html">About</a></li>
+                    <li><a href="login.html">Contact</a></li>
                 </ul>
             </nav>
+            <div class="auth-buttons">
+                <a href="login.html" class="auth-btn login-btn">Login</a>
+                <a href="signup.html" class="auth-btn signup-btn">Sign up</a>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
             <h1>Welcome to Ghar Bageecha</h1>
             <p>Your personal garden companion to plan, grow, and nurture your dream home garden</p>
-            <a href="#garden-planner" class="cta-button">Start Planning</a>
+            <a href="login.html" class="cta-button">Start Planning</a>
         </div>
     </section>
 
-    <!-- Features Section -->
     <section class="features" id="features">
         <div class="container">
             <div class="section-title">
@@ -481,7 +95,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
             <div class="section-title">
@@ -502,24 +115,21 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
+    <footer id="contact">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-column">
-                    <div class="logo" style="margin-bottom: 20px; margin-right: 10px;">
-                        <!-- House with Leaf Logo -->
-                        <svg width="64" height="64" viewBox="0 0 64 64" fill="white" xmlns="http://www.w3.org/2000/svg" class="logo-house">
-                            <!-- House (Lucide-style) -->
+                <div class="footer-column footer-logo-column">
+                    <div class="logo">
+                        <div class="logo-img-footer">
+                            <svg width="64" height="64" viewBox="0 0 64 64" fill="white" xmlns="http://www.w3.org/2000/svg" class="logo-house">
                             <path d="M16 32L32 18L48 32V50C48 51.1 47.1 52 46 52H18C16.9 52 16 51.1 16 50V32Z" stroke="#4CAF50" stroke-width="3" fill="white"/>
                             <path d="M28 52V38H36V52" stroke="#4CAF50" stroke-width="3"/>
-                            <!-- Leaf on the Roof (Lucide-style) -->
                             <path d="M40 12C40 8 44 6 48 6V12C48 16 44 18 40 18H34C34 14 36 12 40 12Z" stroke="#4CAF50" stroke-width="2" fill="white"/>
-                        </svg>
-                        <!-- Name of Website -->
+                            </svg>
+                        </div>
                         <div class="logo-text">
-                            <h1 style="color: #a4e45b; font-size: 24px;">Ghar <span style="color: #a4e45b;">Bageecha</span></h1>
-                            <div class="logo-tagline" style="color: rgba(255, 255, 255, 0.8);">Your Home Garden Companion</div>
+                            <h1>Ghar <span>Bageecha</span></h1>
+                            <div class="logo-tagline">Your Home Garden Companion</div>
                         </div>
                     </div>
                     <p>Your personal garden companion to plan, grow, and nurture your dream home garden.</p>
@@ -563,24 +173,5 @@
         </div>
     </footer>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 </html>
