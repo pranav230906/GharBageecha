@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Dashboard</title>
+    <link rel="stylesheet" href="profilepage.css" />
+    <script src="profilepage.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        
+
+        <div class="main-content">
+            <div class="header">
+                <a href="homepage2.html" class="back-btn" >Back to Home Page</a>
+                <div class="user-profile">
+                </div>
+            </div>
+
+            <div class="appointment-card">
+                <div class="patient-section">
+                    <div class="patient-avatar" id="patientAvatar" onclick="uploadProfileImage()">
+                        
+                        <div class="avatar-upload"></div>
+                        <input type="file" id="avatarInput" class="avatar-input" accept="image/*" onchange="handleImageUpload(event)">
+                    </div>
+                    <div class="patient-info">
+                        <h3 id="patientName">Pruthvi Avhad</h3>
+                        <div class="patient-age">Age: <span id="patientAge">19</span></div>
+                        <button class="update-btn" onclick="showUpdateModal()">Update</button>
+                    </div>
+                </div>
+
+              <!--- <div class="vital-signs">
+                    <div class="vital-card heart-rate" onclick="showVitalDetails('heart-rate')">
+                        <div class="vital-icon"></div>
+                        <div class="vital-label">Heart Rate</div>
+                        <div class="vital-value" id="heartRate">80<span class="vital-unit">bpm</span></div>
+                    </div>
+                    <div class="vital-card temperature" onclick="showVitalDetails('temperature')">
+                        <div class="vital-icon"></div>
+                        <div class="vital-label">Body Temperature</div>
+                        <div class="vital-value" id="temperature">36.5<span class="vital-unit">°C</span></div>
+                    </div>
+                    <div class="vital-card glucose" onclick="showVitalDetails('glucose')">
+                        <div class="vital-icon"></div>
+                        <div class="vital-label">Glucose</div>
+                        <div class="vital-value" id="glucose">100<span class="vital-unit">mg/dl</span></div>
+                    </div>
+                </div>-->
+
+                <div class="section-title">Test Reports</div>
+                <div class="test-reports">
+                    <div class="test-item" onclick="openTestReport('ct-scan')">
+                        <div class="test-icon"></div>
+                        <div class="test-name">CT Scan - Full Body</div>
+                        <div class="test-date">12th February 2020</div>
+                    </div>
+                    <div class="test-item" onclick="openTestReport('creatine')">
+                        <div class="test-icon"></div>
+                        <div class="test-name">Creatine Kinase T</div>
+                        <div class="test-date">19th February 2020</div>
+                    </div>
+                    <div class="test-item" onclick="openTestReport('eye-test')">
+                        <div class="test-icon"></div>
+                        <div class="test-name">Eye Fluorescein Test</div>
+                        <div class="test-date">12th February 2020</div>
+                    </div>
+                </div>
+
+                <div class="main-layout">
+                    <div class="left-column">
+                        <div class="section-title">Information:</div>
+                        <div class="info-list">
+                            <div class="info-item">
+                                <span class="info-label">Gender:</span>
+                                <span class="info-value" id="gender">Male</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Blood Type:</span>
+                                <span class="info-value" id="bloodType">O+ (Positive)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Allergies:</span>
+                                <span class="info-value" id="allergies">Milk, Penicillin</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Diseases:</span>
+                                <span class="info-value" id="diseases">Diabetes, Blood Disorders</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Height:</span>
+                                <span class="info-value" id="height">1.78m</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Weight:</span>
+                                <span class="info-value" id="weight">65 kg</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Patient ID:</span>
+                                <span class="info-value" id="patientId">208898796</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Last Visit:</span>
+                                <span class="info-value" id="lastVisit">25th October 2019</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="right-column">
+                        <div class="section-title">Prescriptions</div>
+                        <div class="prescriptions-section">
+                            <a href="#" class="add-prescription" onclick="addPrescription()">Add a prescription</a>
+                            
+                            <div class="prescription-table">
+                                <div class="prescription-header">
+                                    <div>Prescriptions</div>
+                                    <div>Date</div>
+                                    <div>Duration</div>
+                                </div>
+                                <div class="prescription-row">
+                                    <div class="prescription-name">
+                                        <div class="prescription-icon"></div>
+                                        <span class="prescription-text">Heart Diseases</span>
+                                    </div>
+                                    <div class="prescription-date">25th October 2019</div>
+                                    <div class="prescription-duration">3 months</div>
+                                </div>
+                                <div class="prescription-row">
+                                    <div class="prescription-name">
+                                        <div class="prescription-icon"></div>
+                                        <span class="prescription-text">Skin Care</span>
+                                    </div>
+                                    <div class="prescription-date">8th August 2019</div>
+                                    <div class="prescription-duration">2 months</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class = "logout">
+                    <button class="logout-button"  onclick="LogoutPage()" >log Out</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+   
+</body>
+</html>
