@@ -3,150 +3,1520 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Healthcare Dashboard</title>
-    <link rel="stylesheet" href="profilepage.css" />
-    <script src="profilepage.js"></script>
+    <title>Profile | Ghar Bageecha</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #4CAF50;
+            --light-green: #81C784;
+            --pale-green: #E8F5E9;
+            --accent-green: #8BC34A;
+            --dark-green: #2E7D32;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --dark-gray: #424242;
+            --text-dark: #333333;
+            --text-light: #757575;
+            --border-color: #E0E0E0;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --danger: #f44336;
+            --warning: #ff9800;
+            --info: #2196f3;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        /* Header Styles */
+        header {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 1rem 5%;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-svg {
+            display: flex;
+            align-items: center;
+        }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .logo-text h1 span {
+            color: var(--accent-green);
+        }
+        .logo-tagline {
+            font-size: 0.9rem;
+            color: var(--light-green);
+            margin-top: -5px;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: var(--light-green);
+        }
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 5%;
+        }
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-green);
+        }
+        /* Profile Dashboard */
+        .profile-dashboard {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 2rem;
+        }
+        /* Profile Card */
+        .profile-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        .profile-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            border: 4px solid var(--pale-green);
+        }
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .profile-name {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+        .profile-details {
+            margin: 1.5rem 0;
+        }
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+        .detail-item i {
+            width: 20px;
+            margin-right: 10px;
+            color: var(--primary-green);
+        }
+        .garden-type {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: var(--pale-green);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .garden-type h4 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+        .profile-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-primary {
+            background-color: var(--primary-green);
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: var(--dark-green);
+        }
+        .btn-secondary {
+            background-color: #f1f1f1;
+            color: var(--text-dark);
+        }
+        .btn-secondary:hover {
+            background-color: #e1e1e1;
+        }
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+        .btn-danger:hover {
+            background-color: #d32f2f;
+        }
+        /* Profile Content */
+        .profile-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        /* Dashboard Section */
+        .dashboard-section {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .section-title {
+            font-size: 1.2rem;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        /* Garden Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .stat-card {
+            background-color: var(--pale-green);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        .stat-icon {
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--dark-green);
+            margin-bottom: 0.3rem;
+        }
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        /* Reports and Logs */
+        .reports-list, .logs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .report-item, .log-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .report-item:hover, .log-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        .item-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .item-title {
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+        }
+        .item-date {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        .item-status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .status-healthy {
+            background-color: #E8F5E9;
+            color: var(--primary-green);
+        }
+        .status-warning {
+            background-color: #FFF8E1;
+            color: var(--warning);
+        }
+        .status-critical {
+            background-color: #FFEBEE;
+            color: var(--danger);
+        }
+        .item-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .icon-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .icon-btn:hover {
+            color: var(--primary-green);
+            background-color: var(--pale-green);
+        }
+        .icon-btn.delete:hover {
+            color: var(--danger);
+            background-color: #FFEBEE;
+        }
+        /* Tasks Section */
+        .tasks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .task-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .task-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        .task-checkbox {
+            margin-right: 1rem;
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary-green);
+        }
+        .task-content {
+            flex-grow: 1;
+        }
+        .task-title {
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+        }
+        .task-date {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        .task-priority {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 1rem;
+        }
+        .priority-high {
+            background-color: #FFEBEE;
+            color: var(--danger);
+        }
+        .priority-medium {
+            background-color: #FFF8E1;
+            color: var(--warning);
+        }
+        .priority-low {
+            background-color: #E8F5E9;
+            color: var(--primary-green);
+        }
+        /* Notifications */
+        .notifications {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .notification-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            flex: 1;
+            min-width: 250px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .notification-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        .notification-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            text-align: center;
+        }
+        .notification-icon.tip {
+            color: var(--primary-green);
+        }
+        .notification-icon.reminder {
+            color: var(--warning);
+        }
+        .notification-icon.weather {
+            color: var(--info);
+        }
+        .notification-content {
+            flex-grow: 1;
+        }
+        .notification-title {
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 0.2rem;
+        }
+        .notification-text {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        .notification-badge {
+            background-color: var(--danger);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        /* Add Buttons */
+        .add-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+            color: var(--primary-green);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .add-btn:hover {
+            border-color: var(--primary-green);
+            background-color: var(--pale-green);
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+        }
+        .modal-content {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            margin: 2rem auto;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .modal-title {
+            color: var(--primary-green);
+            font-size: 1.5rem;
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-primary {
+            background-color: var(--primary-green);
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: var(--dark-green);
+        }
+        .btn-secondary {
+            background-color: #f1f1f1;
+            color: var(--text-dark);
+        }
+        .btn-secondary:hover {
+            background-color: #e1e1e1;
+        }
+        /* Notification Toast */
+        .notification-toast {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            color: white;
+            font-weight: 500;
+            box-shadow: var(--shadow);
+            z-index: 1001;
+            transform: translateX(150%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .notification-toast.show {
+            transform: translateX(0);
+        }
+        .notification-toast.success {
+            background-color: var(--primary-green);
+        }
+        .notification-toast.error {
+            background-color: var(--danger);
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-card {
+                position: static;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .notifications {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="dashboard-container">
-        
-
-        <div class="main-content">
-            <div class="header">
-                <a href="homepage2.html" class="back-btn" >Back to Home Page</a>
-                <div class="user-profile">
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <!-- House with Leaf Logo -->
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-house">
+                    <!-- House (Lucide-style) -->
+                    <path d="M16 32L32 18L48 32V50C48 51.1 47.1 52 46 52H18C16.9 52 16 51.1 16 50V32Z" stroke="#4CAF50" stroke-width="3" fill="none"/>
+                    <path d="M28 52V38H36V52" stroke="#4CAF50" stroke-width="3"/>
+                    <!-- Leaf on the Roof (Lucide-style) -->
+                    <path d="M40 12C40 8 44 6 48 6V12C48 16 44 18 40 18H34C34 14 36 12 40 12Z" stroke="#4CAF50" stroke-width="2" fill="none"/>
+                </svg>
+                <!-- Name of Website -->
+                <div class="logo-text">
+                    <h1>Ghar <span>Bageecha</span></h1>
+                    <div class="logo-tagline">Your Home Garden Companion</div>
                 </div>
             </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#garden-planner">Garden Planner</a></li>
+                    <li><a href="#plants">Plants</a></li>
+                    <li><a href="#pests">Pests</a></li>
+                    <li><a href="#garden-journal">Garden Journal</a></li>
+                    <li><a href="#profile" class="active">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-            <div class="appointment-card">
-                <div class="patient-section">
-                    <div class="patient-avatar" id="patientAvatar" onclick="uploadProfileImage()">
-                        
-                        <div class="avatar-upload"></div>
-                        <input type="file" id="avatarInput" class="avatar-input" accept="image/*" onchange="handleImageUpload(event)">
+    <!-- Main Content -->
+    <div class="container">
+        <h2 class="page-title">My Garden Profile</h2>
+        
+        <div class="profile-dashboard">
+            <!-- Profile Card -->
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile Picture">
                     </div>
-                    <div class="patient-info">
-                        <h3 id="patientName">Pruthvi Avhad</h3>
-                        <div class="patient-age">Age: <span id="patientAge">19</span></div>
-                        <button class="update-btn" onclick="showUpdateModal()">Update</button>
+                    <div class="profile-name">Rajesh Kumar</div>
+                </div>
+                
+                <div class="profile-details">
+                    <div class="detail-item">
+                        <i class="fas fa-user"></i>
+                        <span>Age: 35 years</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Mumbai, India</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>rajesh@example.com</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 98765 43210</span>
                     </div>
                 </div>
-
-              <!--- <div class="vital-signs">
-                    <div class="vital-card heart-rate" onclick="showVitalDetails('heart-rate')">
-                        <div class="vital-icon"></div>
-                        <div class="vital-label">Heart Rate</div>
-                        <div class="vital-value" id="heartRate">80<span class="vital-unit">bpm</span></div>
-                    </div>
-                    <div class="vital-card temperature" onclick="showVitalDetails('temperature')">
-                        <div class="vital-icon"></div>
-                        <div class="vital-label">Body Temperature</div>
-                        <div class="vital-value" id="temperature">36.5<span class="vital-unit">°C</span></div>
-                    </div>
-                    <div class="vital-card glucose" onclick="showVitalDetails('glucose')">
-                        <div class="vital-icon"></div>
-                        <div class="vital-label">Glucose</div>
-                        <div class="vital-value" id="glucose">100<span class="vital-unit">mg/dl</span></div>
-                    </div>
-                </div>-->
-
-                <div class="section-title">Test Reports</div>
-                <div class="test-reports">
-                    <div class="test-item" onclick="openTestReport('ct-scan')">
-                        <div class="test-icon"></div>
-                        <div class="test-name">CT Scan - Full Body</div>
-                        <div class="test-date">12th February 2020</div>
-                    </div>
-                    <div class="test-item" onclick="openTestReport('creatine')">
-                        <div class="test-icon"></div>
-                        <div class="test-name">Creatine Kinase T</div>
-                        <div class="test-date">19th February 2020</div>
-                    </div>
-                    <div class="test-item" onclick="openTestReport('eye-test')">
-                        <div class="test-icon"></div>
-                        <div class="test-name">Eye Fluorescein Test</div>
-                        <div class="test-date">12th February 2020</div>
-                    </div>
+                
+                <div class="garden-type">
+                    <h4>Garden Type</h4>
+                    <p><i class="fas fa-building"></i> Balcony Garden</p>
                 </div>
-
-                <div class="main-layout">
-                    <div class="left-column">
-                        <div class="section-title">Information:</div>
-                        <div class="info-list">
-                            <div class="info-item">
-                                <span class="info-label">Gender:</span>
-                                <span class="info-value" id="gender">Male</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Blood Type:</span>
-                                <span class="info-value" id="bloodType">O+ (Positive)</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Allergies:</span>
-                                <span class="info-value" id="allergies">Milk, Penicillin</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Diseases:</span>
-                                <span class="info-value" id="diseases">Diabetes, Blood Disorders</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Height:</span>
-                                <span class="info-value" id="height">1.78m</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Weight:</span>
-                                <span class="info-value" id="weight">65 kg</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Patient ID:</span>
-                                <span class="info-value" id="patientId">208898796</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Last Visit:</span>
-                                <span class="info-value" id="lastVisit">25th October 2019</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="right-column">
-                        <div class="section-title">Prescriptions</div>
-                        <div class="prescriptions-section">
-                            <a href="#" class="add-prescription" onclick="addPrescription()">Add a prescription</a>
-                            
-                            <div class="prescription-table">
-                                <div class="prescription-header">
-                                    <div>Prescriptions</div>
-                                    <div>Date</div>
-                                    <div>Duration</div>
-                                </div>
-                                <div class="prescription-row">
-                                    <div class="prescription-name">
-                                        <div class="prescription-icon"></div>
-                                        <span class="prescription-text">Heart Diseases</span>
-                                    </div>
-                                    <div class="prescription-date">25th October 2019</div>
-                                    <div class="prescription-duration">3 months</div>
-                                </div>
-                                <div class="prescription-row">
-                                    <div class="prescription-name">
-                                        <div class="prescription-icon"></div>
-                                        <span class="prescription-text">Skin Care</span>
-                                    </div>
-                                    <div class="prescription-date">8th August 2019</div>
-                                    <div class="prescription-duration">2 months</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class = "logout">
-                    <button class="logout-button"  onclick="LogoutPage()" >log Out</button>
+                
+                <div class="profile-actions">
+                    <button class="action-btn btn-primary" id="editProfileBtn">
+                        <i class="fas fa-edit"></i> Edit Profile
+                    </button>
+                    <button class="action-btn btn-secondary" id="settingsBtn">
+                        <i class="fas fa-cog"></i> Settings
+                    </button>
+                    <button class="action-btn btn-danger" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Log Out
+                    </button>
                 </div>
             </div>
             
+            <!-- Profile Content -->
+            <div class="profile-content">
+                <!-- Garden Stats Section -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-chart-bar"></i> Garden Statistics
+                        </h3>
+                        <button class="icon-btn" id="refreshStatsBtn">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <div class="stat-value">24</div>
+                            <div class="stat-label">Plants Grown</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <div class="stat-value">92%</div>
+                            <div class="stat-label">Plant Health</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-shopping-basket"></i>
+                            </div>
+                            <div class="stat-value">18kg</div>
+                            <div class="stat-label">Total Harvest</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <div class="stat-value">65L</div>
+                            <div class="stat-label">Water Saved</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Garden Reports Section -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-file-medical-alt"></i> Garden Reports
+                        </h3>
+                        <button class="icon-btn" id="addReportBtn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="reports-list">
+                        <div class="report-item">
+                            <div class="item-info">
+                                <div class="item-title">Soil Analysis - Balcony Garden</div>
+                                <div class="item-date">May 15, 2023</div>
+                            </div>
+                            <div class="item-status status-healthy">Healthy</div>
+                            <div class="item-actions">
+                                <button class="icon-btn"><i class="fas fa-download"></i></button>
+                                <button class="icon-btn delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div class="report-item">
+                            <div class="item-info">
+                                <div class="item-title">Plant Health Check - Tomatoes</div>
+                                <div class="item-date">May 10, 2023</div>
+                            </div>
+                            <div class="item-status status-warning">Attention</div>
+                            <div class="item-actions">
+                                <button class="icon-btn"><i class="fas fa-download"></i></button>
+                                <button class="icon-btn delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div class="report-item">
+                            <div class="item-info">
+                                <div class="item-title">Pest Inspection Report</div>
+                                <div class="item-date">May 5, 2023</div>
+                            </div>
+                            <div class="item-status status-critical">Critical</div>
+                            <div class="item-actions">
+                                <button class="icon-btn"><i class="fas fa-download"></i></button>
+                                <button class="icon-btn delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pest Upload History Section -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-bug"></i> Pest Upload History & Diagnosis
+                        </h3>
+                        <button class="icon-btn" id="uploadPestBtn">
+                            <i class="fas fa-upload"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="reports-list">
+                        <div class="report-item">
+                            <div class="item-info">
+                                <div class="item-title">Aphids on Tomato Plants</div>
+                                <div class="item-date">May 12, 2023</div>
+                            </div>
+                            <div class="item-status status-warning">Treatment Required</div>
+                            <div class="item-actions">
+                                <button class="icon-btn"><i class="fas fa-eye"></i></button>
+                                <button class="icon-btn delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div class="report-item">
+                            <div class="item-info">
+                                <div class="item-title">Whiteflies on Basil</div>
+                                <div class="item-date">April 28, 2023</div>
+                            </div>
+                            <div class="item-status status-healthy">Resolved</div>
+                            <div class="item-actions">
+                                <button class="icon-btn"><i class="fas fa-eye"></i></button>
+                                <button class="icon-btn delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gardening Tasks Section -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-tasks"></i> Gardening Tasks
+                        </h3>
+                        <button class="icon-btn" id="addTaskBtn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="tasks-list">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" id="task1">
+                            <div class="task-content">
+                                <div class="task-title">Water tomato plants</div>
+                                <div class="task-date">Due today, 6:00 PM</div>
+                            </div>
+                            <div class="task-priority priority-high">High</div>
+                        </div>
+                        
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" id="task2">
+                            <div class="task-content">
+                                <div class="task-title">Apply organic fertilizer to herbs</div>
+                                <div class="task-date">Due tomorrow, 9:00 AM</div>
+                            </div>
+                            <div class="task-priority priority-medium">Medium</div>
+                        </div>
+                        
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" id="task3" checked>
+                            <div class="task-content">
+                                <div class="task-title">Prune basil plants</div>
+                                <div class="task-date">Completed on May 10, 2023</div>
+                            </div>
+                            <div class="task-priority priority-low">Low</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Plant Logs Section -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-book"></i> Plant Logs & Notes
+                        </h3>
+                        <button class="icon-btn" id="addLogBtn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="logs-list">
+                        <div class="log-item">
+                            <div class="item-info">
+                                <div class="item-title">Tomato Growth Progress</div>
+                                <div class="item-date">May 15, 2023</div>
+                            </div>
+                            <div class="item-actions">
+                                <button class="icon-btn"><i class="fas fa-eye"></i></button>
+                                <button class="icon-btn"><i class="fas fa-edit"></i></button>
+                                <button class="icon-btn delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div class="log-item">
+                            <div class="item-info">
+                                <div class="item-title">Herb Harvesting Notes</div>
+                                <div class="item-date">May 8, 2023</div>
+                            </div>
+                            <div class="item-actions">
+                                <button class="icon-btn"><i class="fas fa-eye"></i></button>
+                                <button class="icon-btn"><i class="fas fa-edit"></i></button>
+                                <button class="icon-btn delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div class="add-btn" id="addLogBtn2">
+                            <i class="fas fa-plus"></i> Add New Log Entry
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Notifications Section -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-bell"></i> Notifications
+                        </h3>
+                        <button class="icon-btn" id="markAllReadBtn">
+                            <i class="fas fa-check-double"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="notifications">
+                        <div class="notification-item">
+                            <div class="notification-icon tip">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="notification-content">
+                                <div class="notification-title">Gardening Tip</div>
+                                <div class="notification-text">Water your plants in the early morning to reduce evaporation</div>
+                            </div>
+                            <div class="notification-badge">2</div>
+                        </div>
+                        
+                        <div class="notification-item">
+                            <div class="notification-icon reminder">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="notification-content">
+                                <div class="notification-title">Reminder</div>
+                                <div class="notification-text">Time to fertilize your tomato plants</div>
+                            </div>
+                            <div class="notification-badge">1</div>
+                        </div>
+                        
+                        <div class="notification-item">
+                            <div class="notification-icon weather">
+                                <i class="fas fa-cloud-rain"></i>
+                            </div>
+                            <div class="notification-content">
+                                <div class="notification-title">Weather Alert</div>
+                                <div class="notification-text">Heavy rain expected tomorrow. Move sensitive plants indoors</div>
+                            </div>
+                            <div class="notification-badge">3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-   
+    <!-- Add Report Modal -->
+    <div class="modal" id="reportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Add Garden Report</h3>
+                <button class="close-btn" id="closeReportModal">&times;</button>
+            </div>
+            
+            <form id="reportForm">
+                <div class="form-group">
+                    <label for="reportTitle">Report Title</label>
+                    <input type="text" id="reportTitle" placeholder="Enter report title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reportType">Report Type</label>
+                    <select id="reportType" required>
+                        <option value="">Select report type</option>
+                        <option value="soil">Soil Analysis</option>
+                        <option value="health">Plant Health</option>
+                        <option value="pest">Pest Inspection</option>
+                        <option value="growth">Growth Progress</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reportDate">Date</label>
+                    <input type="date" id="reportDate" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reportStatus">Status</label>
+                    <select id="reportStatus" required>
+                        <option value="">Select status</option>
+                        <option value="healthy">Healthy</option>
+                        <option value="warning">Attention</option>
+                        <option value="critical">Critical</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reportDescription">Description</label>
+                    <textarea id="reportDescription" placeholder="Enter report description" rows="4"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelReportBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div class="modal" id="taskModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Add Gardening Task</h3>
+                <button class="close-btn" id="closeTaskModal">&times;</button>
+            </div>
+            
+            <form id="taskForm">
+                <div class="form-group">
+                    <label for="taskTitle">Task Title</label>
+                    <input type="text" id="taskTitle" placeholder="Enter task title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="taskDate">Due Date</label>
+                    <input type="datetime-local" id="taskDate" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="taskPriority">Priority</label>
+                    <select id="taskPriority" required>
+                        <option value="">Select priority</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="taskDescription">Description</label>
+                    <textarea id="taskDescription" placeholder="Enter task description" rows="4"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelTaskBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Log Modal -->
+    <div class="modal" id="logModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Add Plant Log Entry</h3>
+                <button class="close-btn" id="closeLogModal">&times;</button>
+            </div>
+            
+            <form id="logForm">
+                <div class="form-group">
+                    <label for="logTitle">Log Title</label>
+                    <input type="text" id="logTitle" placeholder="Enter log title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="logDate">Date</label>
+                    <input type="date" id="logDate" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="logPlant">Plant</label>
+                    <select id="logPlant" required>
+                        <option value="">Select plant</option>
+                        <option value="tomato">Tomato</option>
+                        <option value="basil">Basil</option>
+                        <option value="mint">Mint</option>
+                        <option value="chili">Chili</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="logContent">Log Content</label>
+                    <textarea id="logContent" placeholder="Enter your log notes here" rows="6" required></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelLogBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Log Entry</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="notification-toast" id="notificationToast"></div>
+
+    <script>
+        // DOM Elements
+        const notificationToast = document.getElementById('notificationToast');
+        
+        // Button Elements
+        const editProfileBtn = document.getElementById('editProfileBtn');
+        const settingsBtn = document.getElementById('settingsBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const refreshStatsBtn = document.getElementById('refreshStatsBtn');
+        const addReportBtn = document.getElementById('addReportBtn');
+        const uploadPestBtn = document.getElementById('uploadPestBtn');
+        const addTaskBtn = document.getElementById('addTaskBtn');
+        const addLogBtn = document.getElementById('addLogBtn');
+        const addLogBtn2 = document.getElementById('addLogBtn2');
+        const markAllReadBtn = document.getElementById('markAllReadBtn');
+        
+        // Modal Elements
+        const reportModal = document.getElementById('reportModal');
+        const taskModal = document.getElementById('taskModal');
+        const logModal = document.getElementById('logModal');
+        const closeReportModal = document.getElementById('closeReportModal');
+        const closeTaskModal = document.getElementById('closeTaskModal');
+        const closeLogModal = document.getElementById('closeLogModal');
+        const cancelReportBtn = document.getElementById('cancelReportBtn');
+        const cancelTaskBtn = document.getElementById('cancelTaskBtn');
+        const cancelLogBtn = document.getElementById('cancelLogBtn');
+        
+        // Form Elements
+        const reportForm = document.getElementById('reportForm');
+        const taskForm = document.getElementById('taskForm');
+        const logForm = document.getElementById('logForm');
+        const reportDate = document.getElementById('reportDate');
+        const taskDate = document.getElementById('taskDate');
+        const logDate = document.getElementById('logDate');
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set today's date as default
+            const today = new Date().toISOString().split('T')[0];
+            reportDate.value = today;
+            logDate.value = today;
+            
+            // Set default task date to tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const tomorrowString = tomorrow.toISOString().slice(0, 16);
+            taskDate.value = tomorrowString;
+            
+            // Set up event listeners
+            editProfileBtn.addEventListener('click', () => showNotification('Profile editing would open here', 'success'));
+            settingsBtn.addEventListener('click', () => showNotification('Settings panel would open here', 'success'));
+            logoutBtn.addEventListener('click', logout);
+            refreshStatsBtn.addEventListener('click', refreshStats);
+            addReportBtn.addEventListener('click', openReportModal);
+            uploadPestBtn.addEventListener('click', () => showNotification('Pest upload would open here', 'success'));
+            addTaskBtn.addEventListener('click', openTaskModal);
+            addLogBtn.addEventListener('click', openLogModal);
+            addLogBtn2.addEventListener('click', openLogModal);
+            markAllReadBtn.addEventListener('click', markAllAsRead);
+            
+            // Modal event listeners
+            closeReportModal.addEventListener('click', closeReportModalWindow);
+            closeTaskModal.addEventListener('click', closeTaskModalWindow);
+            closeLogModal.addEventListener('click', closeLogModalWindow);
+            cancelReportBtn.addEventListener('click', closeReportModalWindow);
+            cancelTaskBtn.addEventListener('click', closeTaskModalWindow);
+            cancelLogBtn.addEventListener('click', closeLogModalWindow);
+            
+            // Form submissions
+            reportForm.addEventListener('submit', addReport);
+            taskForm.addEventListener('submit', addTask);
+            logForm.addEventListener('submit', addLog);
+            
+            // Close modals when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === reportModal) closeReportModalWindow();
+                if (e.target === taskModal) closeTaskModalWindow();
+                if (e.target === logModal) closeLogModalWindow();
+            });
+            
+            // Set up delete buttons
+            setupDeleteButtons();
+            
+            // Set up task checkboxes
+            setupTaskCheckboxes();
+        });
+        
+        // Functions
+        function showNotification(message, type) {
+            notificationToast.textContent = message;
+            notificationToast.className = `notification-toast ${type}`;
+            notificationToast.classList.add('show');
+            
+            // Hide notification after 3 seconds
+            setTimeout(() => {
+                notificationToast.classList.remove('show');
+            }, 3000);
+        }
+        
+        function logout() {
+            if (confirm('Are you sure you want to log out?')) {
+                showNotification('Logged out successfully!', 'success');
+                
+                // Simulate redirect after logout
+                setTimeout(() => {
+                    alert('In a real application, you would be redirected to the login page.');
+                }, 1500);
+            }
+        }
+        
+        function refreshStats() {
+            // Simulate refreshing stats
+            const statValues = document.querySelectorAll('.stat-value');
+            statValues.forEach(stat => {
+                const originalValue = stat.textContent;
+                stat.textContent = '...';
+                
+                setTimeout(() => {
+                    // Generate random values for demo
+                    if (originalValue.includes('kg')) {
+                        stat.textContent = `${Math.floor(Math.random() * 30 + 10)}kg`;
+                    } else if (originalValue.includes('%')) {
+                        stat.textContent = `${Math.floor(Math.random() * 20 + 80)}%`;
+                    } else if (originalValue.includes('L')) {
+                        stat.textContent = `${Math.floor(Math.random() * 50 + 40)}L`;
+                    } else {
+                        stat.textContent = Math.floor(Math.random() * 30 + 15);
+                    }
+                }, 1000);
+            });
+            
+            showNotification('Statistics refreshed!', 'success');
+        }
+        
+        function openReportModal() {
+            reportModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeReportModalWindow() {
+            reportModal.style.display = 'none';
+            reportForm.reset();
+            reportDate.value = new Date().toISOString().split('T')[0];
+            document.body.style.overflow = '';
+        }
+        
+        function openTaskModal() {
+            taskModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeTaskModalWindow() {
+            taskModal.style.display = 'none';
+            taskForm.reset();
+            
+            // Reset default task date to tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const tomorrowString = tomorrow.toISOString().slice(0, 16);
+            taskDate.value = tomorrowString;
+            
+            document.body.style.overflow = '';
+        }
+        
+        function openLogModal() {
+            logModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLogModalWindow() {
+            logModal.style.display = 'none';
+            logForm.reset();
+            logDate.value = new Date().toISOString().split('T')[0];
+            document.body.style.overflow = '';
+        }
+        
+        function addReport(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('reportTitle').value;
+            const type = document.getElementById('reportType').value;
+            const date = document.getElementById('reportDate').value;
+            const status = document.getElementById('reportStatus').value;
+            const description = document.getElementById('reportDescription').value;
+            
+            // Format date
+            const dateObj = new Date(date);
+            const formattedDate = dateObj.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            // Create new report element
+            const reportElement = document.createElement('div');
+            reportElement.className = 'report-item';
+            
+            // Set status class
+            const statusClass = `status-${status}`;
+            
+            reportElement.innerHTML = `
+                <div class="item-info">
+                    <div class="item-title">${title}</div>
+                    <div class="item-date">${formattedDate}</div>
+                </div>
+                <div class="item-status ${statusClass}">${status.charAt(0).toUpperCase() + status.slice(1)}</div>
+                <div class="item-actions">
+                    <button class="icon-btn"><i class="fas fa-download"></i></button>
+                    <button class="icon-btn delete"><i class="fas fa-trash"></i></button>
+                </div>
+            `;
+            
+            // Add to reports list
+            const reportsList = document.querySelector('.reports-list');
+            reportsList.insertBefore(reportElement, reportsList.firstChild);
+            
+            // Set up delete button for the new report
+            const deleteBtn = reportElement.querySelector('.icon-btn.delete');
+            deleteBtn.addEventListener('click', function() {
+                if (confirm('Are you sure you want to delete this report?')) {
+                    reportElement.remove();
+                    showNotification('Report deleted successfully!', 'success');
+                }
+            });
+            
+            // Close modal and show notification
+            closeReportModalWindow();
+            showNotification('Report added successfully!', 'success');
+        }
+        
+        function addTask(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('taskTitle').value;
+            const date = document.getElementById('taskDate').value;
+            const priority = document.getElementById('taskPriority').value;
+            const description = document.getElementById('taskDescription').value;
+            
+            // Format date
+            const dateObj = new Date(date);
+            const formattedDate = dateObj.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            const formattedTime = dateObj.toLocaleTimeString('en-US', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+            
+            // Create new task element
+            const taskElement = document.createElement('div');
+            taskElement.className = 'task-item';
+            
+            // Set priority class
+            const priorityClass = `priority-${priority}`;
+            
+            taskElement.innerHTML = `
+                <input type="checkbox" class="task-checkbox">
+                <div class="task-content">
+                    <div class="task-title">${title}</div>
+                    <div class="task-date">Due ${formattedDate}, ${formattedTime}</div>
+                </div>
+                <div class="task-priority ${priorityClass}">${priority.charAt(0).toUpperCase() + priority.slice(1)}</div>
+            `;
+            
+            // Add to tasks list
+            const tasksList = document.querySelector('.tasks-list');
+            tasksList.insertBefore(taskElement, tasksList.firstChild);
+            
+            // Set up checkbox for the new task
+            const checkbox = taskElement.querySelector('.task-checkbox');
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    taskElement.style.opacity = '0.6';
+                    const taskDate = taskElement.querySelector('.task-date');
+                    taskDate.textContent = `Completed on ${formattedDate}`;
+                } else {
+                    taskElement.style.opacity = '1';
+                    taskDate.textContent = `Due ${formattedDate}, ${formattedTime}`;
+                }
+            });
+            
+            // Close modal and show notification
+            closeTaskModalWindow();
+            showNotification('Task added successfully!', 'success');
+        }
+        
+        function addLog(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('logTitle').value;
+            const date = document.getElementById('logDate').value;
+            const plant = document.getElementById('logPlant').value;
+            const content = document.getElementById('logContent').value;
+            
+            // Format date
+            const dateObj = new Date(date);
+            const formattedDate = dateObj.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            // Create new log element
+            const logElement = document.createElement('div');
+            logElement.className = 'log-item';
+            
+            logElement.innerHTML = `
+                <div class="item-info">
+                    <div class="item-title">${title}</div>
+                    <div class="item-date">${formattedDate}</div>
+                </div>
+                <div class="item-actions">
+                    <button class="icon-btn"><i class="fas fa-eye"></i></button>
+                    <button class="icon-btn"><i class="fas fa-edit"></i></button>
+                    <button class="icon-btn delete"><i class="fas fa-trash"></i></button>
+                </div>
+            `;
+            
+            // Add to logs list, before the "Add New Log Entry" button
+            const addButton = document.querySelector('.add-btn');
+            addButton.parentNode.insertBefore(logElement, addButton);
+            
+            // Set up delete button for the new log
+            const deleteBtn = logElement.querySelector('.icon-btn.delete');
+            deleteBtn.addEventListener('click', function() {
+                if (confirm('Are you sure you want to delete this log entry?')) {
+                    logElement.remove();
+                    showNotification('Log entry deleted successfully!', 'success');
+                }
+            });
+            
+            // Close modal and show notification
+            closeLogModalWindow();
+            showNotification('Log entry added successfully!', 'success');
+        }
+        
+        function setupDeleteButtons() {
+            // Set up delete buttons for reports
+            document.querySelectorAll('.report-item .icon-btn.delete').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (confirm('Are you sure you want to delete this report?')) {
+                        this.closest('.report-item').remove();
+                        showNotification('Report deleted successfully!', 'success');
+                    }
+                });
+            });
+            
+            // Set up delete buttons for pest uploads
+            document.querySelectorAll('#pestUploadHistory .icon-btn.delete').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (confirm('Are you sure you want to delete this pest report?')) {
+                        this.closest('.report-item').remove();
+                        showNotification('Pest report deleted successfully!', 'success');
+                    }
+                });
+            });
+            
+            // Set up delete buttons for logs
+            document.querySelectorAll('.log-item .icon-btn.delete').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (confirm('Are you sure you want to delete this log entry?')) {
+                        this.closest('.log-item').remove();
+                        showNotification('Log entry deleted successfully!', 'success');
+                    }
+                });
+            });
+        }
+        
+        function setupTaskCheckboxes() {
+            document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const taskItem = this.closest('.task-item');
+                    const taskDate = taskItem.querySelector('.task-date');
+                    
+                    if (this.checked) {
+                        taskItem.style.opacity = '0.6';
+                        const today = new Date();
+                        const formattedDate = today.toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                        });
+                        taskDate.textContent = `Completed on ${formattedDate}`;
+                    } else {
+                        taskItem.style.opacity = '1';
+                        // Restore original date text
+                        const originalDate = taskDate.getAttribute('data-original-date');
+                        if (originalDate) {
+                            taskDate.textContent = originalDate;
+                        }
+                    }
+                });
+                
+                // Store original date text
+                const taskDate = checkbox.closest('.task-item').querySelector('.task-date');
+                taskDate.setAttribute('data-original-date', taskDate.textContent);
+            });
+        }
+        
+        function markAllAsRead() {
+            // Remove notification badges
+            document.querySelectorAll('.notification-badge').forEach(badge => {
+                badge.style.display = 'none';
+            });
+            
+            showNotification('All notifications marked as read!', 'success');
+        }
+    </script>
 </body>
 </html>
