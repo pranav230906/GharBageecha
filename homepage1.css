@@ -30,88 +30,88 @@ body {
     padding: 0 20px;
 }
 
-/* Header Styles */
-.active
-{
-    background-color: rgb(176, 233, 174);
-    /* padding: 10px; */
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    /* border: 2px solid #388E3C; */
-    border-radius: 20px;
-}
-header {
-    background-color: var(--white);
-    box-shadow: var(--shadow);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
+    /* Header Styles */
+    .active
+    {
+        background-color: rgb(176, 233, 174);
+        /* padding: 10px; */
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        /* border: 2px solid #388E3C; */
+        border-radius: 20px;
+    }
+    header {
+        background-color: var(--white);
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
 
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-}
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+    }
 
-.logo {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-}
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+    }
 
 
-.logo-house {
-    margin-right: 0px;
-}
+    .logo-house {
+        margin-right: 0px;
+    }
 
-.logo-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1;
-}
+    .logo-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+    }
 
-.logo-text h1 {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--primary-green);
-    margin: 0;
-}
+    .logo-text h1 {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--primary-green);
+        margin: 0;
+    }
 
-.logo-text h1 span {
-    color: var(--accent-green);
-}
+    .logo-text h1 span {
+        color: var(--accent-green);
+    }
 
-.logo-tagline {
-    font-size: 12px;
-    color: var(--dark-gray);
-    margin-top: 2px;
-    font-weight: 500;
-}
+    .logo-tagline {
+        font-size: 12px;
+        color: var(--dark-gray);
+        margin-top: 2px;
+        font-weight: 500;
+    }
 
-nav ul {
-    display: flex;
-    list-style: none;
-}
+    nav ul {
+        display: flex;
+        list-style: none;
+    }
 
-nav ul li {
-    margin-left: 25px;
-    margin-right: 10px;
-}
+    nav ul li {
+        margin-left: 25px;
+        margin-right: 10px;
+    }
 
-nav ul li a {
-    text-decoration: none;
-    color: var(--dark-gray);
-    font-weight: 500;
-    transition: color 0.3s;
-}
+    nav ul li a {
+        text-decoration: none;
+        color: var(--dark-gray);
+        font-weight: 500;
+        transition: color 0.3s;
+    }
 
-nav ul li a:hover {
-    color: var(--primary-green);
-}
+    nav ul li a:hover {
+        color: var(--primary-green);
+    }
 
 /* Login/Signup Buttons */
 .auth-buttons {

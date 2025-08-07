@@ -3,1520 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile | Ghar Bageecha</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>My Garden Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide-react/0.380.0/lucide-react.min.js">
     <style>
-        :root {
-            --primary-green: #4CAF50;
-            --light-green: #81C784;
-            --pale-green: #E8F5E9;
-            --accent-green: #8BC34A;
-            --dark-green: #2E7D32;
-            --white: #FFFFFF;
-            --light-gray: #F5F5F5;
-            --dark-gray: #424242;
-            --text-dark: #333333;
-            --text-light: #757575;
-            --border-color: #E0E0E0;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --danger: #f44336;
-            --warning: #ff9800;
-            --info: #2196f3;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         body {
-            background-color: var(--light-gray);
-            color: var(--dark-gray);
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            background: #f7fee7; /* from-green-50 */
         }
-        /* Header Styles */
-        header {
-            background-color: var(--primary-green);
-            color: var(--white);
-            padding: 1rem 5%;
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .logo-svg {
-            display: flex;
-            align-items: center;
-        }
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-        .logo-text h1 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin: 0;
-        }
-        .logo-text h1 span {
-            color: var(--accent-green);
-        }
-        .logo-tagline {
-            font-size: 0.9rem;
-            color: var(--light-green);
-            margin-top: -5px;
-        }
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        nav a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        nav a:hover {
-            color: var(--light-green);
-        }
-        /* Main Content */
         .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 5%;
+            max-width: 1280px;
+            margin: auto;
+            padding: 2rem 1rem;
         }
-        .page-title {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: var(--primary-green);
+        .card {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid #dcfce7; /* green-100 */
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
-        /* Profile Dashboard */
-        .profile-dashboard {
-            display: grid;
-            grid-template-columns: 1fr 3fr;
-            gap: 2rem;
-        }
-        /* Profile Card */
-        .profile-card {
-            background: var(--white);
-            border-radius: 10px;
+        .gradient-card {
+            background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+            color: white;
             padding: 1.5rem;
-            box-shadow: var(--shadow);
-            height: fit-content;
-            position: sticky;
-            top: 100px;
-        }
-        .profile-header {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .profile-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            overflow: hidden;
-            border: 4px solid var(--pale-green);
-        }
-        .profile-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .profile-name {
-            font-size: 1.5rem;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-        .profile-details {
-            margin: 1.5rem 0;
-        }
-        .detail-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-        }
-        .detail-item i {
-            width: 20px;
-            margin-right: 10px;
-            color: var(--primary-green);
-        }
-        .garden-type {
-            margin: 1.5rem 0;
-            padding: 1rem;
-            background-color: var(--pale-green);
-            border-radius: 8px;
-            text-align: center;
-        }
-        .garden-type h4 {
-            color: var(--primary-green);
-            margin-bottom: 0.5rem;
-        }
-        .profile-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            margin-top: 1.5rem;
-        }
-        .action-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 0.8rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .btn-primary {
-            background-color: var(--primary-green);
-            color: white;
-        }
-        .btn-primary:hover {
-            background-color: var(--dark-green);
-        }
-        .btn-secondary {
-            background-color: #f1f1f1;
-            color: var(--text-dark);
-        }
-        .btn-secondary:hover {
-            background-color: #e1e1e1;
-        }
-        .btn-danger {
-            background-color: var(--danger);
-            color: white;
-        }
-        .btn-danger:hover {
-            background-color: #d32f2f;
-        }
-        /* Profile Content */
-        .profile-content {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-        /* Dashboard Section */
-        .dashboard-section {
-            background: var(--white);
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-        }
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .section-title {
-            font-size: 1.2rem;
-            color: var(--primary-green);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        /* Garden Stats */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-        .stat-card {
-            background-color: var(--pale-green);
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: transform 0.2s;
-        }
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-        .stat-icon {
-            font-size: 2rem;
-            color: var(--primary-green);
-            margin-bottom: 0.5rem;
-        }
-        .stat-value {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--dark-green);
-            margin-bottom: 0.3rem;
-        }
-        .stat-label {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        /* Reports and Logs */
-        .reports-list, .logs-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .report-item, .log-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .report-item:hover, .log-item:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-        }
-        .item-info {
-            display: flex;
-            flex-direction: column;
-        }
-        .item-title {
-            font-weight: 500;
-            color: var(--text-dark);
-            margin-bottom: 0.3rem;
-        }
-        .item-date {
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-        .item-status {
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        .status-healthy {
-            background-color: #E8F5E9;
-            color: var(--primary-green);
-        }
-        .status-warning {
-            background-color: #FFF8E1;
-            color: var(--warning);
-        }
-        .status-critical {
-            background-color: #FFEBEE;
-            color: var(--danger);
-        }
-        .item-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-        .icon-btn {
-            background: none;
-            border: none;
-            color: var(--text-light);
-            cursor: pointer;
-            font-size: 1rem;
-            padding: 0.5rem;
-            border-radius: 4px;
-            transition: all 0.2s;
-        }
-        .icon-btn:hover {
-            color: var(--primary-green);
-            background-color: var(--pale-green);
-        }
-        .icon-btn.delete:hover {
-            color: var(--danger);
-            background-color: #FFEBEE;
-        }
-        /* Tasks Section */
-        .tasks-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .task-item {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .task-item:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-        }
-        .task-checkbox {
-            margin-right: 1rem;
-            width: 20px;
-            height: 20px;
-            accent-color: var(--primary-green);
-        }
-        .task-content {
-            flex-grow: 1;
-        }
-        .task-title {
-            font-weight: 500;
-            color: var(--text-dark);
-            margin-bottom: 0.3rem;
-        }
-        .task-date {
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-        .task-priority {
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-left: 1rem;
-        }
-        .priority-high {
-            background-color: #FFEBEE;
-            color: var(--danger);
-        }
-        .priority-medium {
-            background-color: #FFF8E1;
-            color: var(--warning);
-        }
-        .priority-low {
-            background-color: #E8F5E9;
-            color: var(--primary-green);
-        }
-        /* Notifications */
-        .notifications {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        .notification-item {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 1rem;
-            border-radius: 8px;
-            background-color: var(--white);
-            border: 1px solid var(--border-color);
-            flex: 1;
-            min-width: 250px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .notification-item:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-        }
-        .notification-icon {
-            font-size: 1.5rem;
-            width: 40px;
-            text-align: center;
-        }
-        .notification-icon.tip {
-            color: var(--primary-green);
-        }
-        .notification-icon.reminder {
-            color: var(--warning);
-        }
-        .notification-icon.weather {
-            color: var(--info);
-        }
-        .notification-content {
-            flex-grow: 1;
-        }
-        .notification-title {
-            font-weight: 500;
-            color: var(--text-dark);
-            margin-bottom: 0.2rem;
-        }
-        .notification-text {
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-        .notification-badge {
-            background-color: var(--danger);
-            color: white;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        /* Add Buttons */
-        .add-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 1rem;
-            border: 1px dashed var(--border-color);
-            border-radius: 8px;
-            color: var(--primary-green);
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .add-btn:hover {
-            border-color: var(--primary-green);
-            background-color: var(--pale-green);
-        }
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            overflow: auto;
-        }
-        .modal-content {
-            background-color: var(--white);
-            border-radius: 10px;
-            padding: 2rem;
-            width: 90%;
-            max-width: 600px;
-            max-height: 90vh;
-            margin: 2rem auto;
-            overflow-y: auto;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        .modal-title {
-            color: var(--primary-green);
-            font-size: 1.5rem;
-        }
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-light);
-        }
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-        .form-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        .btn {
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .btn-primary {
-            background-color: var(--primary-green);
-            color: white;
-        }
-        .btn-primary:hover {
-            background-color: var(--dark-green);
-        }
-        .btn-secondary {
-            background-color: #f1f1f1;
-            color: var(--text-dark);
-        }
-        .btn-secondary:hover {
-            background-color: #e1e1e1;
-        }
-        /* Notification Toast */
-        .notification-toast {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            padding: 1rem 1.5rem;
-            border-radius: 5px;
-            color: white;
-            font-weight: 500;
-            box-shadow: var(--shadow);
-            z-index: 1001;
-            transform: translateX(150%);
+            border-radius: 0.75rem;
             transition: transform 0.3s ease-in-out;
         }
-        .notification-toast.show {
-            transform: translateX(0);
+        .gradient-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
-        .notification-toast.success {
-            background-color: var(--primary-green);
-        }
-        .notification-toast.error {
-            background-color: var(--danger);
-        }
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .profile-dashboard {
-                grid-template-columns: 1fr;
-            }
-            
-            .profile-card {
-                position: static;
-            }
-            
-            .header-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            nav ul {
-                gap: 1rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .notifications {
-                flex-direction: column;
-            }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid transparent;
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <!-- House with Leaf Logo -->
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-house">
-                    <!-- House (Lucide-style) -->
-                    <path d="M16 32L32 18L48 32V50C48 51.1 47.1 52 46 52H18C16.9 52 16 51.1 16 50V32Z" stroke="#4CAF50" stroke-width="3" fill="none"/>
-                    <path d="M28 52V38H36V52" stroke="#4CAF50" stroke-width="3"/>
-                    <!-- Leaf on the Roof (Lucide-style) -->
-                    <path d="M40 12C40 8 44 6 48 6V12C48 16 44 18 40 18H34C34 14 36 12 40 12Z" stroke="#4CAF50" stroke-width="2" fill="none"/>
-                </svg>
-                <!-- Name of Website -->
-                <div class="logo-text">
-                    <h1>Ghar <span>Bageecha</span></h1>
-                    <div class="logo-tagline">Your Home Garden Companion</div>
-                </div>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#garden-planner">Garden Planner</a></li>
-                    <li><a href="#plants">Plants</a></li>
-                    <li><a href="#pests">Pests</a></li>
-                    <li><a href="#garden-journal">Garden Journal</a></li>
-                    <li><a href="#profile" class="active">Profile</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<body class="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-50">
 
-    <!-- Main Content -->
     <div class="container">
-        <h2 class="page-title">My Garden Profile</h2>
-        
-        <div class="profile-dashboard">
-            <!-- Profile Card -->
-            <div class="profile-card">
-                <div class="profile-header">
-                    <div class="profile-avatar">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile Picture">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-2">My Garden Profile</h2>
+        <p class="text-gray-600 text-center mb-8">Manage your garden journey and track your progress</p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div class="lg:col-span-1">
+                <div class="card p-6 sticky top-24">
+                    <div class="text-center mb-6">
+                        <img src="data:image/jpeg;base64,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" alt="Profile Picture" class="w-24 h-24 rounded-full border-4 border-green-200 mx-auto mb-4">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-1">Rajesh Kumar</h3>
+                        <p class="text-gray-500 text-sm">Garden Enthusiast</p>
                     </div>
-                    <div class="profile-name">Rajesh Kumar</div>
-                </div>
-                
-                <div class="profile-details">
-                    <div class="detail-item">
-                        <i class="fas fa-user"></i>
-                        <span>Age: 35 years</span>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-gray-600 text-sm">
+                            <span class="w-4 h-4 mr-3 text-green-600">👤</span><span>Age: 35 years</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 text-sm">
+                            <span class="w-4 h-4 mr-3 text-green-600">📍</span><span>Mumbai, India</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 text-sm">
+                            <span class="w-4 h-4 mr-3 text-green-600">✉️</span><span>rajesh@example.com</span>
+                        </div>
                     </div>
-                    <div class="detail-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Mumbai, India</span>
+                    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-4 mb-6">
+                        <h4 class="font-semibold text-green-800 mb-2 flex items-center">
+                            <span>🏢</span><span class="ml-2">Garden Type</span>
+                        </h4>
+                        <p class="text-green-700 text-sm">Balcony Garden</p>
                     </div>
-                    <div class="detail-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>rajesh@example.com</span>
+                    <div class="space-y-2">
+                        <button class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md">Edit Profile</button>
+                        <button class="w-full bg-white border border-gray-300 hover:bg-gray-100 text-gray-700 font-medium py-2 px-4 rounded-md">Settings</button>
+                        <button class="w-full bg-white border border-red-200 hover:bg-red-50 text-red-600 font-medium py-2 px-4 rounded-md">Log Out</button>
                     </div>
-                    <div class="detail-item">
-                        <i class="fas fa-phone"></i>
-                        <span>+91 98765 43210</span>
-                    </div>
-                </div>
-                
-                <div class="garden-type">
-                    <h4>Garden Type</h4>
-                    <p><i class="fas fa-building"></i> Balcony Garden</p>
-                </div>
-                
-                <div class="profile-actions">
-                    <button class="action-btn btn-primary" id="editProfileBtn">
-                        <i class="fas fa-edit"></i> Edit Profile
-                    </button>
-                    <button class="action-btn btn-secondary" id="settingsBtn">
-                        <i class="fas fa-cog"></i> Settings
-                    </button>
-                    <button class="action-btn btn-danger" id="logoutBtn">
-                        <i class="fas fa-sign-out-alt"></i> Log Out
-                    </button>
                 </div>
             </div>
-            
-            <!-- Profile Content -->
-            <div class="profile-content">
-                <!-- Garden Stats Section -->
-                <div class="dashboard-section">
-                    <div class="section-header">
-                        <h3 class="section-title">
-                            <i class="fas fa-chart-bar"></i> Garden Statistics
-                        </h3>
-                        <button class="icon-btn" id="refreshStatsBtn">
-                            <i class="fas fa-sync-alt"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-icon">
-                                <i class="fas fa-seedling"></i>
-                            </div>
-                            <div class="stat-value">24</div>
-                            <div class="stat-label">Plants Grown</div>
+
+            <div class="lg:col-span-3 space-y-8">
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 flex items-center mb-4">
+                        <span class="mr-2">📊</span>
+                        <span>Garden Statistics</span>
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                        <div class="gradient-card" style="--tw-gradient-stops: #4ade80, #16a34a;">
+                            <div class="text-white/80">🌱</div>
+                            <div class="text-2xl font-bold">24</div>
+                            <div class="text-white/80 text-sm">Plants Grown</div>
                         </div>
-                        
-                        <div class="stat-card">
-                            <div class="stat-icon">
-                                <i class="fas fa-heartbeat"></i>
-                            </div>
-                            <div class="stat-value">92%</div>
-                            <div class="stat-label">Plant Health</div>
+                        <div class="gradient-card" style="--tw-gradient-stops: #f472b6, #db2777;">
+                            <div class="text-white/80">❤️</div>
+                            <div class="text-2xl font-bold">92%</div>
+                            <div class="text-white/80 text-sm">Plant Health</div>
                         </div>
-                        
-                        <div class="stat-card">
-                            <div class="stat-icon">
-                                <i class="fas fa-shopping-basket"></i>
-                            </div>
-                            <div class="stat-value">18kg</div>
-                            <div class="stat-label">Total Harvest</div>
+                        <div class="gradient-card" style="--tw-gradient-stops: #fb923c, #c2410c;">
+                            <div class="text-white/80">🧺</div>
+                            <div class="text-2xl font-bold">18kg</div>
+                            <div class="text-white/80 text-sm">Total Harvest</div>
                         </div>
-                        
-                        <div class="stat-card">
-                            <div class="stat-icon">
-                                <i class="fas fa-tint"></i>
-                            </div>
-                            <div class="stat-value">65L</div>
-                            <div class="stat-label">Water Saved</div>
+                        <div class="gradient-card" style="--tw-gradient-stops: #60a5fa, #2563eb;">
+                            <div class="text-white/80">💧</div>
+                            <div class="text-2xl font-bold">65L</div>
+                            <div class="text-white/80 text-sm">Water Saved</div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Garden Reports Section -->
-                <div class="dashboard-section">
-                    <div class="section-header">
-                        <h3 class="section-title">
-                            <i class="fas fa-file-medical-alt"></i> Garden Reports
-                        </h3>
-                        <button class="icon-btn" id="addReportBtn">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="reports-list">
-                        <div class="report-item">
-                            <div class="item-info">
-                                <div class="item-title">Soil Analysis - Balcony Garden</div>
-                                <div class="item-date">May 15, 2023</div>
+
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 flex items-center mb-4">
+                        <span class="mr-2">📄</span>
+                        <span>Garden Reports</span>
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-900">Soil Analysis - Balcony Garden</h4>
+                                <p class="text-sm text-gray-500">May 15, 2023</p>
                             </div>
-                            <div class="item-status status-healthy">Healthy</div>
-                            <div class="item-actions">
-                                <button class="icon-btn"><i class="fas fa-download"></i></button>
-                                <button class="icon-btn delete"><i class="fas fa-trash"></i></button>
+                            <div class="flex items-center space-x-3">
+                                <span class="badge bg-green-100 text-green-800 border-green-200">Healthy</span>
                             </div>
                         </div>
-                        
-                        <div class="report-item">
-                            <div class="item-info">
-                                <div class="item-title">Plant Health Check - Tomatoes</div>
-                                <div class="item-date">May 10, 2023</div>
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-900">Plant Health Check - Tomatoes</h4>
+                                <p class="text-sm text-gray-500">May 10, 2023</p>
                             </div>
-                            <div class="item-status status-warning">Attention</div>
-                            <div class="item-actions">
-                                <button class="icon-btn"><i class="fas fa-download"></i></button>
-                                <button class="icon-btn delete"><i class="fas fa-trash"></i></button>
-                            </div>
-                        </div>
-                        
-                        <div class="report-item">
-                            <div class="item-info">
-                                <div class="item-title">Pest Inspection Report</div>
-                                <div class="item-date">May 5, 2023</div>
-                            </div>
-                            <div class="item-status status-critical">Critical</div>
-                            <div class="item-actions">
-                                <button class="icon-btn"><i class="fas fa-download"></i></button>
-                                <button class="icon-btn delete"><i class="fas fa-trash"></i></button>
+                            <div class="flex items-center space-x-3">
+                                <span class="badge bg-yellow-100 text-yellow-800 border-yellow-200">Warning</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Pest Upload History Section -->
-                <div class="dashboard-section">
-                    <div class="section-header">
-                        <h3 class="section-title">
-                            <i class="fas fa-bug"></i> Pest Upload History & Diagnosis
-                        </h3>
-                        <button class="icon-btn" id="uploadPestBtn">
-                            <i class="fas fa-upload"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="reports-list">
-                        <div class="report-item">
-                            <div class="item-info">
-                                <div class="item-title">Aphids on Tomato Plants</div>
-                                <div class="item-date">May 12, 2023</div>
+
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 flex items-center mb-4">
+                        <span class="mr-2">✅</span>
+                        <span>Gardening Tasks</span>
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+                            <input type="checkbox" class="w-5 h-5 rounded text-green-600 focus:ring-green-500">
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-900">Water tomato plants</h4>
+                                <p class="text-sm text-gray-500">Due today, 6:00 PM</p>
                             </div>
-                            <div class="item-status status-warning">Treatment Required</div>
-                            <div class="item-actions">
-                                <button class="icon-btn"><i class="fas fa-eye"></i></button>
-                                <button class="icon-btn delete"><i class="fas fa-trash"></i></button>
-                            </div>
+                            <span class="badge bg-red-100 text-red-800 border-red-200">High</span>
                         </div>
-                        
-                        <div class="report-item">
-                            <div class="item-info">
-                                <div class="item-title">Whiteflies on Basil</div>
-                                <div class="item-date">April 28, 2023</div>
+                        <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+                            <input type="checkbox" class="w-5 h-5 rounded text-green-600 focus:ring-green-500">
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-900">Apply organic fertilizer to herbs</h4>
+                                <p class="text-sm text-gray-500">Due tomorrow, 9:00 AM</p>
                             </div>
-                            <div class="item-status status-healthy">Resolved</div>
-                            <div class="item-actions">
-                                <button class="icon-btn"><i class="fas fa-eye"></i></button>
-                                <button class="icon-btn delete"><i class="fas fa-trash"></i></button>
+                            <span class="badge bg-yellow-100 text-yellow-800 border-yellow-200">Medium</span>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg opacity-60">
+                            <input type="checkbox" checked class="w-5 h-5 rounded text-green-600 focus:ring-green-500">
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-500 line-through">Prune basil plants</h4>
+                                <p class="text-sm text-gray-500">Completed on May 10, 2023</p>
                             </div>
+                            <span class="badge bg-green-100 text-green-800 border-green-200">Low</span>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Gardening Tasks Section -->
-                <div class="dashboard-section">
-                    <div class="section-header">
-                        <h3 class="section-title">
-                            <i class="fas fa-tasks"></i> Gardening Tasks
-                        </h3>
-                        <button class="icon-btn" id="addTaskBtn">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="tasks-list">
-                        <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" id="task1">
-                            <div class="task-content">
-                                <div class="task-title">Water tomato plants</div>
-                                <div class="task-date">Due today, 6:00 PM</div>
+
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 flex items-center mb-4">
+                        <span class="mr-2">🔔</span>
+                        <span>Notifications</span>
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                        <div class="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
+                            <div class="p-2 rounded-full bg-green-100 text-green-600">💡</div>
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-900 text-sm">Gardening Tip</h4>
+                                <p class="text-xs text-gray-500 mt-1">Water your plants in the early morning...</p>
                             </div>
-                            <div class="task-priority priority-high">High</div>
+                            <span class="badge bg-red-100 text-red-800">2</span>
                         </div>
-                        
-                        <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" id="task2">
-                            <div class="task-content">
-                                <div class="task-title">Apply organic fertilizer to herbs</div>
-                                <div class="task-date">Due tomorrow, 9:00 AM</div>
+                        <div class="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
+                            <div class="p-2 rounded-full bg-yellow-100 text-yellow-600">⏰</div>
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-900 text-sm">Reminder</h4>
+                                <p class="text-xs text-gray-500 mt-1">Time to fertilize your tomato plants</p>
                             </div>
-                            <div class="task-priority priority-medium">Medium</div>
+                            <span class="badge bg-red-100 text-red-800">1</span>
                         </div>
-                        
-                        <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" id="task3" checked>
-                            <div class="task-content">
-                                <div class="task-title">Prune basil plants</div>
-                                <div class="task-date">Completed on May 10, 2023</div>
+                        <div class="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
+                            <div class="p-2 rounded-full bg-blue-100 text-blue-600">🌧️</div>
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-900 text-sm">Weather Alert</h4>
+                                <p class="text-xs text-gray-500 mt-1">Heavy rain expected tomorrow...</p>
                             </div>
-                            <div class="task-priority priority-low">Low</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Plant Logs Section -->
-                <div class="dashboard-section">
-                    <div class="section-header">
-                        <h3 class="section-title">
-                            <i class="fas fa-book"></i> Plant Logs & Notes
-                        </h3>
-                        <button class="icon-btn" id="addLogBtn">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="logs-list">
-                        <div class="log-item">
-                            <div class="item-info">
-                                <div class="item-title">Tomato Growth Progress</div>
-                                <div class="item-date">May 15, 2023</div>
-                            </div>
-                            <div class="item-actions">
-                                <button class="icon-btn"><i class="fas fa-eye"></i></button>
-                                <button class="icon-btn"><i class="fas fa-edit"></i></button>
-                                <button class="icon-btn delete"><i class="fas fa-trash"></i></button>
-                            </div>
-                        </div>
-                        
-                        <div class="log-item">
-                            <div class="item-info">
-                                <div class="item-title">Herb Harvesting Notes</div>
-                                <div class="item-date">May 8, 2023</div>
-                            </div>
-                            <div class="item-actions">
-                                <button class="icon-btn"><i class="fas fa-eye"></i></button>
-                                <button class="icon-btn"><i class="fas fa-edit"></i></button>
-                                <button class="icon-btn delete"><i class="fas fa-trash"></i></button>
-                            </div>
-                        </div>
-                        
-                        <div class="add-btn" id="addLogBtn2">
-                            <i class="fas fa-plus"></i> Add New Log Entry
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Notifications Section -->
-                <div class="dashboard-section">
-                    <div class="section-header">
-                        <h3 class="section-title">
-                            <i class="fas fa-bell"></i> Notifications
-                        </h3>
-                        <button class="icon-btn" id="markAllReadBtn">
-                            <i class="fas fa-check-double"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="notifications">
-                        <div class="notification-item">
-                            <div class="notification-icon tip">
-                                <i class="fas fa-lightbulb"></i>
-                            </div>
-                            <div class="notification-content">
-                                <div class="notification-title">Gardening Tip</div>
-                                <div class="notification-text">Water your plants in the early morning to reduce evaporation</div>
-                            </div>
-                            <div class="notification-badge">2</div>
-                        </div>
-                        
-                        <div class="notification-item">
-                            <div class="notification-icon reminder">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="notification-content">
-                                <div class="notification-title">Reminder</div>
-                                <div class="notification-text">Time to fertilize your tomato plants</div>
-                            </div>
-                            <div class="notification-badge">1</div>
-                        </div>
-                        
-                        <div class="notification-item">
-                            <div class="notification-icon weather">
-                                <i class="fas fa-cloud-rain"></i>
-                            </div>
-                            <div class="notification-content">
-                                <div class="notification-title">Weather Alert</div>
-                                <div class="notification-text">Heavy rain expected tomorrow. Move sensitive plants indoors</div>
-                            </div>
-                            <div class="notification-badge">3</div>
+                            <span class="badge bg-red-100 text-red-800">3</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Add Report Modal -->
-    <div class="modal" id="reportModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Add Garden Report</h3>
-                <button class="close-btn" id="closeReportModal">&times;</button>
-            </div>
-            
-            <form id="reportForm">
-                <div class="form-group">
-                    <label for="reportTitle">Report Title</label>
-                    <input type="text" id="reportTitle" placeholder="Enter report title" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="reportType">Report Type</label>
-                    <select id="reportType" required>
-                        <option value="">Select report type</option>
-                        <option value="soil">Soil Analysis</option>
-                        <option value="health">Plant Health</option>
-                        <option value="pest">Pest Inspection</option>
-                        <option value="growth">Growth Progress</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="reportDate">Date</label>
-                    <input type="date" id="reportDate" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="reportStatus">Status</label>
-                    <select id="reportStatus" required>
-                        <option value="">Select status</option>
-                        <option value="healthy">Healthy</option>
-                        <option value="warning">Attention</option>
-                        <option value="critical">Critical</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="reportDescription">Description</label>
-                    <textarea id="reportDescription" placeholder="Enter report description" rows="4"></textarea>
-                </div>
-                
-                <div class="form-actions">
-                    <button type="button" class="btn btn-secondary" id="cancelReportBtn">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Add Report</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Add Task Modal -->
-    <div class="modal" id="taskModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Add Gardening Task</h3>
-                <button class="close-btn" id="closeTaskModal">&times;</button>
-            </div>
-            
-            <form id="taskForm">
-                <div class="form-group">
-                    <label for="taskTitle">Task Title</label>
-                    <input type="text" id="taskTitle" placeholder="Enter task title" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="taskDate">Due Date</label>
-                    <input type="datetime-local" id="taskDate" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="taskPriority">Priority</label>
-                    <select id="taskPriority" required>
-                        <option value="">Select priority</option>
-                        <option value="high">High</option>
-                        <option value="medium">Medium</option>
-                        <option value="low">Low</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="taskDescription">Description</label>
-                    <textarea id="taskDescription" placeholder="Enter task description" rows="4"></textarea>
-                </div>
-                
-                <div class="form-actions">
-                    <button type="button" class="btn btn-secondary" id="cancelTaskBtn">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Add Task</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Add Log Modal -->
-    <div class="modal" id="logModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Add Plant Log Entry</h3>
-                <button class="close-btn" id="closeLogModal">&times;</button>
-            </div>
-            
-            <form id="logForm">
-                <div class="form-group">
-                    <label for="logTitle">Log Title</label>
-                    <input type="text" id="logTitle" placeholder="Enter log title" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="logDate">Date</label>
-                    <input type="date" id="logDate" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="logPlant">Plant</label>
-                    <select id="logPlant" required>
-                        <option value="">Select plant</option>
-                        <option value="tomato">Tomato</option>
-                        <option value="basil">Basil</option>
-                        <option value="mint">Mint</option>
-                        <option value="chili">Chili</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="logContent">Log Content</label>
-                    <textarea id="logContent" placeholder="Enter your log notes here" rows="6" required></textarea>
-                </div>
-                
-                <div class="form-actions">
-                    <button type="button" class="btn btn-secondary" id="cancelLogBtn">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Add Log Entry</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Notification Toast -->
-    <div class="notification-toast" id="notificationToast"></div>
-
-    <script>
-        // DOM Elements
-        const notificationToast = document.getElementById('notificationToast');
-        
-        // Button Elements
-        const editProfileBtn = document.getElementById('editProfileBtn');
-        const settingsBtn = document.getElementById('settingsBtn');
-        const logoutBtn = document.getElementById('logoutBtn');
-        const refreshStatsBtn = document.getElementById('refreshStatsBtn');
-        const addReportBtn = document.getElementById('addReportBtn');
-        const uploadPestBtn = document.getElementById('uploadPestBtn');
-        const addTaskBtn = document.getElementById('addTaskBtn');
-        const addLogBtn = document.getElementById('addLogBtn');
-        const addLogBtn2 = document.getElementById('addLogBtn2');
-        const markAllReadBtn = document.getElementById('markAllReadBtn');
-        
-        // Modal Elements
-        const reportModal = document.getElementById('reportModal');
-        const taskModal = document.getElementById('taskModal');
-        const logModal = document.getElementById('logModal');
-        const closeReportModal = document.getElementById('closeReportModal');
-        const closeTaskModal = document.getElementById('closeTaskModal');
-        const closeLogModal = document.getElementById('closeLogModal');
-        const cancelReportBtn = document.getElementById('cancelReportBtn');
-        const cancelTaskBtn = document.getElementById('cancelTaskBtn');
-        const cancelLogBtn = document.getElementById('cancelLogBtn');
-        
-        // Form Elements
-        const reportForm = document.getElementById('reportForm');
-        const taskForm = document.getElementById('taskForm');
-        const logForm = document.getElementById('logForm');
-        const reportDate = document.getElementById('reportDate');
-        const taskDate = document.getElementById('taskDate');
-        const logDate = document.getElementById('logDate');
-        
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set today's date as default
-            const today = new Date().toISOString().split('T')[0];
-            reportDate.value = today;
-            logDate.value = today;
-            
-            // Set default task date to tomorrow
-            const tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            const tomorrowString = tomorrow.toISOString().slice(0, 16);
-            taskDate.value = tomorrowString;
-            
-            // Set up event listeners
-            editProfileBtn.addEventListener('click', () => showNotification('Profile editing would open here', 'success'));
-            settingsBtn.addEventListener('click', () => showNotification('Settings panel would open here', 'success'));
-            logoutBtn.addEventListener('click', logout);
-            refreshStatsBtn.addEventListener('click', refreshStats);
-            addReportBtn.addEventListener('click', openReportModal);
-            uploadPestBtn.addEventListener('click', () => showNotification('Pest upload would open here', 'success'));
-            addTaskBtn.addEventListener('click', openTaskModal);
-            addLogBtn.addEventListener('click', openLogModal);
-            addLogBtn2.addEventListener('click', openLogModal);
-            markAllReadBtn.addEventListener('click', markAllAsRead);
-            
-            // Modal event listeners
-            closeReportModal.addEventListener('click', closeReportModalWindow);
-            closeTaskModal.addEventListener('click', closeTaskModalWindow);
-            closeLogModal.addEventListener('click', closeLogModalWindow);
-            cancelReportBtn.addEventListener('click', closeReportModalWindow);
-            cancelTaskBtn.addEventListener('click', closeTaskModalWindow);
-            cancelLogBtn.addEventListener('click', closeLogModalWindow);
-            
-            // Form submissions
-            reportForm.addEventListener('submit', addReport);
-            taskForm.addEventListener('submit', addTask);
-            logForm.addEventListener('submit', addLog);
-            
-            // Close modals when clicking outside
-            window.addEventListener('click', (e) => {
-                if (e.target === reportModal) closeReportModalWindow();
-                if (e.target === taskModal) closeTaskModalWindow();
-                if (e.target === logModal) closeLogModalWindow();
-            });
-            
-            // Set up delete buttons
-            setupDeleteButtons();
-            
-            // Set up task checkboxes
-            setupTaskCheckboxes();
-        });
-        
-        // Functions
-        function showNotification(message, type) {
-            notificationToast.textContent = message;
-            notificationToast.className = `notification-toast ${type}`;
-            notificationToast.classList.add('show');
-            
-            // Hide notification after 3 seconds
-            setTimeout(() => {
-                notificationToast.classList.remove('show');
-            }, 3000);
-        }
-        
-        function logout() {
-            if (confirm('Are you sure you want to log out?')) {
-                showNotification('Logged out successfully!', 'success');
-                
-                // Simulate redirect after logout
-                setTimeout(() => {
-                    alert('In a real application, you would be redirected to the login page.');
-                }, 1500);
-            }
-        }
-        
-        function refreshStats() {
-            // Simulate refreshing stats
-            const statValues = document.querySelectorAll('.stat-value');
-            statValues.forEach(stat => {
-                const originalValue = stat.textContent;
-                stat.textContent = '...';
-                
-                setTimeout(() => {
-                    // Generate random values for demo
-                    if (originalValue.includes('kg')) {
-                        stat.textContent = `${Math.floor(Math.random() * 30 + 10)}kg`;
-                    } else if (originalValue.includes('%')) {
-                        stat.textContent = `${Math.floor(Math.random() * 20 + 80)}%`;
-                    } else if (originalValue.includes('L')) {
-                        stat.textContent = `${Math.floor(Math.random() * 50 + 40)}L`;
-                    } else {
-                        stat.textContent = Math.floor(Math.random() * 30 + 15);
-                    }
-                }, 1000);
-            });
-            
-            showNotification('Statistics refreshed!', 'success');
-        }
-        
-        function openReportModal() {
-            reportModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeReportModalWindow() {
-            reportModal.style.display = 'none';
-            reportForm.reset();
-            reportDate.value = new Date().toISOString().split('T')[0];
-            document.body.style.overflow = '';
-        }
-        
-        function openTaskModal() {
-            taskModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeTaskModalWindow() {
-            taskModal.style.display = 'none';
-            taskForm.reset();
-            
-            // Reset default task date to tomorrow
-            const tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            const tomorrowString = tomorrow.toISOString().slice(0, 16);
-            taskDate.value = tomorrowString;
-            
-            document.body.style.overflow = '';
-        }
-        
-        function openLogModal() {
-            logModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeLogModalWindow() {
-            logModal.style.display = 'none';
-            logForm.reset();
-            logDate.value = new Date().toISOString().split('T')[0];
-            document.body.style.overflow = '';
-        }
-        
-        function addReport(e) {
-            e.preventDefault();
-            
-            const title = document.getElementById('reportTitle').value;
-            const type = document.getElementById('reportType').value;
-            const date = document.getElementById('reportDate').value;
-            const status = document.getElementById('reportStatus').value;
-            const description = document.getElementById('reportDescription').value;
-            
-            // Format date
-            const dateObj = new Date(date);
-            const formattedDate = dateObj.toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            });
-            
-            // Create new report element
-            const reportElement = document.createElement('div');
-            reportElement.className = 'report-item';
-            
-            // Set status class
-            const statusClass = `status-${status}`;
-            
-            reportElement.innerHTML = `
-                <div class="item-info">
-                    <div class="item-title">${title}</div>
-                    <div class="item-date">${formattedDate}</div>
-                </div>
-                <div class="item-status ${statusClass}">${status.charAt(0).toUpperCase() + status.slice(1)}</div>
-                <div class="item-actions">
-                    <button class="icon-btn"><i class="fas fa-download"></i></button>
-                    <button class="icon-btn delete"><i class="fas fa-trash"></i></button>
-                </div>
-            `;
-            
-            // Add to reports list
-            const reportsList = document.querySelector('.reports-list');
-            reportsList.insertBefore(reportElement, reportsList.firstChild);
-            
-            // Set up delete button for the new report
-            const deleteBtn = reportElement.querySelector('.icon-btn.delete');
-            deleteBtn.addEventListener('click', function() {
-                if (confirm('Are you sure you want to delete this report?')) {
-                    reportElement.remove();
-                    showNotification('Report deleted successfully!', 'success');
-                }
-            });
-            
-            // Close modal and show notification
-            closeReportModalWindow();
-            showNotification('Report added successfully!', 'success');
-        }
-        
-        function addTask(e) {
-            e.preventDefault();
-            
-            const title = document.getElementById('taskTitle').value;
-            const date = document.getElementById('taskDate').value;
-            const priority = document.getElementById('taskPriority').value;
-            const description = document.getElementById('taskDescription').value;
-            
-            // Format date
-            const dateObj = new Date(date);
-            const formattedDate = dateObj.toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            });
-            
-            const formattedTime = dateObj.toLocaleTimeString('en-US', { 
-                hour: '2-digit', 
-                minute: '2-digit' 
-            });
-            
-            // Create new task element
-            const taskElement = document.createElement('div');
-            taskElement.className = 'task-item';
-            
-            // Set priority class
-            const priorityClass = `priority-${priority}`;
-            
-            taskElement.innerHTML = `
-                <input type="checkbox" class="task-checkbox">
-                <div class="task-content">
-                    <div class="task-title">${title}</div>
-                    <div class="task-date">Due ${formattedDate}, ${formattedTime}</div>
-                </div>
-                <div class="task-priority ${priorityClass}">${priority.charAt(0).toUpperCase() + priority.slice(1)}</div>
-            `;
-            
-            // Add to tasks list
-            const tasksList = document.querySelector('.tasks-list');
-            tasksList.insertBefore(taskElement, tasksList.firstChild);
-            
-            // Set up checkbox for the new task
-            const checkbox = taskElement.querySelector('.task-checkbox');
-            checkbox.addEventListener('change', function() {
-                if (this.checked) {
-                    taskElement.style.opacity = '0.6';
-                    const taskDate = taskElement.querySelector('.task-date');
-                    taskDate.textContent = `Completed on ${formattedDate}`;
-                } else {
-                    taskElement.style.opacity = '1';
-                    taskDate.textContent = `Due ${formattedDate}, ${formattedTime}`;
-                }
-            });
-            
-            // Close modal and show notification
-            closeTaskModalWindow();
-            showNotification('Task added successfully!', 'success');
-        }
-        
-        function addLog(e) {
-            e.preventDefault();
-            
-            const title = document.getElementById('logTitle').value;
-            const date = document.getElementById('logDate').value;
-            const plant = document.getElementById('logPlant').value;
-            const content = document.getElementById('logContent').value;
-            
-            // Format date
-            const dateObj = new Date(date);
-            const formattedDate = dateObj.toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            });
-            
-            // Create new log element
-            const logElement = document.createElement('div');
-            logElement.className = 'log-item';
-            
-            logElement.innerHTML = `
-                <div class="item-info">
-                    <div class="item-title">${title}</div>
-                    <div class="item-date">${formattedDate}</div>
-                </div>
-                <div class="item-actions">
-                    <button class="icon-btn"><i class="fas fa-eye"></i></button>
-                    <button class="icon-btn"><i class="fas fa-edit"></i></button>
-                    <button class="icon-btn delete"><i class="fas fa-trash"></i></button>
-                </div>
-            `;
-            
-            // Add to logs list, before the "Add New Log Entry" button
-            const addButton = document.querySelector('.add-btn');
-            addButton.parentNode.insertBefore(logElement, addButton);
-            
-            // Set up delete button for the new log
-            const deleteBtn = logElement.querySelector('.icon-btn.delete');
-            deleteBtn.addEventListener('click', function() {
-                if (confirm('Are you sure you want to delete this log entry?')) {
-                    logElement.remove();
-                    showNotification('Log entry deleted successfully!', 'success');
-                }
-            });
-            
-            // Close modal and show notification
-            closeLogModalWindow();
-            showNotification('Log entry added successfully!', 'success');
-        }
-        
-        function setupDeleteButtons() {
-            // Set up delete buttons for reports
-            document.querySelectorAll('.report-item .icon-btn.delete').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    if (confirm('Are you sure you want to delete this report?')) {
-                        this.closest('.report-item').remove();
-                        showNotification('Report deleted successfully!', 'success');
-                    }
-                });
-            });
-            
-            // Set up delete buttons for pest uploads
-            document.querySelectorAll('#pestUploadHistory .icon-btn.delete').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    if (confirm('Are you sure you want to delete this pest report?')) {
-                        this.closest('.report-item').remove();
-                        showNotification('Pest report deleted successfully!', 'success');
-                    }
-                });
-            });
-            
-            // Set up delete buttons for logs
-            document.querySelectorAll('.log-item .icon-btn.delete').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    if (confirm('Are you sure you want to delete this log entry?')) {
-                        this.closest('.log-item').remove();
-                        showNotification('Log entry deleted successfully!', 'success');
-                    }
-                });
-            });
-        }
-        
-        function setupTaskCheckboxes() {
-            document.querySelectorAll('.task-checkbox').forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
-                    const taskItem = this.closest('.task-item');
-                    const taskDate = taskItem.querySelector('.task-date');
-                    
-                    if (this.checked) {
-                        taskItem.style.opacity = '0.6';
-                        const today = new Date();
-                        const formattedDate = today.toLocaleDateString('en-US', { 
-                            year: 'numeric', 
-                            month: 'long', 
-                            day: 'numeric' 
-                        });
-                        taskDate.textContent = `Completed on ${formattedDate}`;
-                    } else {
-                        taskItem.style.opacity = '1';
-                        // Restore original date text
-                        const originalDate = taskDate.getAttribute('data-original-date');
-                        if (originalDate) {
-                            taskDate.textContent = originalDate;
-                        }
-                    }
-                });
-                
-                // Store original date text
-                const taskDate = checkbox.closest('.task-item').querySelector('.task-date');
-                taskDate.setAttribute('data-original-date', taskDate.textContent);
-            });
-        }
-        
-        function markAllAsRead() {
-            // Remove notification badges
-            document.querySelectorAll('.notification-badge').forEach(badge => {
-                badge.style.display = 'none';
-            });
-            
-            showNotification('All notifications marked as read!', 'success');
-        }
-    </script>
 </body>
 </html>

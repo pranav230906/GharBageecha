@@ -9,28 +9,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="nav-brand">
-                <i class="fas fa-leaf"></i>
-                GharBageecha
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-house">
+                    <path d="M16 32L32 18L48 32V50C48 51.1 47.1 52 46 52H18C16.9 52 16 51.1 16 50V32Z" stroke="#4CAF50" stroke-width="3" fill="none"/>
+                    <path d="M28 52V38H36V52" stroke="#4CAF50" stroke-width="3"/>
+                    <path d="M40 12C40 8 44 6 48 6V12C48 16 44 18 40 18H34C34 14 36 12 40 12Z" stroke="#4CAF50" stroke-width="2" fill="none"/>
+                </svg>
+                <div class="logo-text">
+                    <h1>Ghar <span>Bageecha</span></h1>
+                    <div class="logo-tagline">Your Home Garden Companion</div>
+                </div>
             </div>
-            <nav class="nav-menu" id="navMenu">
-                <a href="#" class="nav-link">Home</a>
-                <a href="#" class="nav-link active">Community</a>
-                <a href="#" class="nav-link">Garden</a>
-                <a href="#" class="nav-link">Tips</a>
-                <button class="lang-toggle" id="langToggle">
-                    <i class="fas fa-globe"></i> हिं/EN
-                </button>
+            <nav>
+                <ul>
+                    <li><a href="homepage2.html" >Home</a></li>
+                    <li><a href="homepage2.html">Garden Planner</a></li>
+                    <li><a href="plants.html" >Plants</a></li>
+                    <li><a href="pest.html">Pests</a></li>
+                    <li><a href="journal.html">Journal</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="community.html" class="active" >Community</a></li>
+                </ul>
             </nav>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <div class="flex items-center profile-btn">
+                    
+                        <a href="profilepage.html" class="h-10 w-10 rounded-full cursor-pointer border-img"  alt="User Profile"></a>
+
+                </div>
         </div>
     </header>
+
 
     <main class="main-content">
         <div class="container">
