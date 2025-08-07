@@ -3,734 +3,757 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pest Management Guide – Indian Urban Gardening</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>GharBageecha - Pest Management Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        :root {
-            --primary-green: #4CAF50;
-            --light-green: #81C784;
-            --pale-green: #E8F5E9;
-            --accent-green: #8BC34A;
-            --white: #FFFFFF;
-            --light-gray: #F5F5F5;
-            --dark-gray: #424242;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --card-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-        }
-
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
-            background-color: var(--light-gray);
-            color: var(--dark-gray);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background-color: #e5e7eb;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header Styles */
-        header {
-            background-color: var(--white);
-            box-shadow: var(--shadow);
-            position: sticky;
+        
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
             top: 0;
-            z-index: 100;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-house {
-            margin-right: 15px;
-        }
-
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1;
-        }
-
-        .logo-text h1 {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--primary-green);
-            margin: 0;
-        }
-
-        .logo-text h1 span {
-            color: var(--accent-green);
-        }
-
-        .logo-tagline {
-            font-size: 12px;
-            color: var(--dark-gray);
-            margin-top: 2px;
-            font-weight: 500;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 25px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: var(--dark-gray);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: var(--primary-green);
-        }
-
-        nav ul li a.active {
-            color: var(--primary-green);
-            font-weight: 600;
-        }
-
-        /* Main Content */
-        .page-header {
-            background-color: var(--primary-green);
-            color: var(--white);
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .page-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .page-header p {
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-        }
-
-        /* Search Section */
-        .search-section {
-            background-color: var(--white);
-            padding: 30px 0;
-            box-shadow: var(--shadow);
-            margin-bottom: 30px;
-        }
-
-        .search-container {
-            display: flex;
-            align-items: center;
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .search-container input {
-            width: 100%;
-            padding: 15px 50px 15px 20px;
-            border: 2px solid var(--pale-green);
-            border-radius: 30px;
-            font-size: 16px;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .search-container input:focus {
-            border-color: var(--primary-green);
-        }
-
-        .search-container button {
-            position: absolute;
-            right: 5px;
-            background-color: var(--primary-green);
-            color: var(--white);
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .search-container button:hover {
-            background-color: #388E3C;
-        }
-
-        /* Pest Cards Grid */
-        .pests-section {
-            padding: 30px 0;
-        }
-
-        .pests-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .pest-card {
-            background-color: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .pest-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
-        }
-
-        .pest-image {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .pest-image img {
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
+            z-index: -1;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
         }
-
-        .pest-card:hover .pest-image img {
-            transform: scale(1.05);
-        }
-
-        .pest-info {
-            padding: 20px;
-        }
-
-        .pest-name {
-            font-size: 1.5rem;
-            color: var(--primary-green);
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .pest-name i {
-            font-size: 1.2rem;
-            color: var(--accent-green);
-        }
-
-        .local-names {
-            font-size: 0.9rem;
-            color: var(--dark-gray);
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-
-        .pest-section {
-            margin-bottom: 15px;
-        }
-
-        .pest-section h4 {
-            font-size: 1rem;
-            color: var(--dark-gray);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-        }
-
-        .pest-section h4 i {
-            margin-right: 8px;
-            color: var(--primary-green);
-        }
-
-        .crops-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 5px;
-        }
-
-        .crop-tag {
-            background-color: var(--pale-green);
-            color: var(--primary-green);
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .pest-section p {
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 40px 0;
-            color: var(--dark-gray);
-        }
-
-        .no-results i {
-            font-size: 3rem;
-            color: var(--light-green);
-            margin-bottom: 15px;
-        }
-
-        .no-results h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--primary-green);
-            color: var(--white);
-            padding: 60px 0 20px;
-            margin-top: 50px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
+        
+        .animated-bg::before {
             content: '';
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
-            width: 50px;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234CAF50' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Glassmorphism Effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(76, 175, 80, 0.1);
+        }
+        
+        .glass-white {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(76, 175, 80, 0.15);
+        }
+        
+        /* Custom Colors */
+        .text-green-500 { color: #4CAF50; }
+        .bg-green-500 { background-color: #4CAF50; }
+        .bg-green-600 { background-color: #388E3C; }
+        .text-lime-500 { color: #8BC34A; }
+        .bg-lime-500 { background-color: #8BC34A; }
+        .text-gray-600 { color: #6b7280; }
+        .text-gray-900 { color: #1f2937; }
+        .bg-gray-100 { background-color: #f3f4f6; }
+        .bg-gray-200 { background-color: #e5e7eb; }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% { transform: translateY(0); }
+            40%, 43% { transform: translateY(-30px); }
+            70% { transform: translateY(-15px); }
+            90% { transform: translateY(-4px); }
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-3deg); }
+            75% { transform: rotate(3deg); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.8); }
+        }
+        
+        /* Utility Classes */
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-fadeInLeft {
+            animation: fadeInLeft 0.8s ease-out forwards;
+        }
+        
+        .animate-fadeInRight {
+            animation: fadeInRight 0.8s ease-out forwards;
+        }
+        
+        .animate-pulse-custom {
+            animation: pulse 2s 2;
+            animation-fill-mode: forwards;
+        }
+        
+        .animate-bounce-custom {
+            animation: bounce 2s 2;
+            animation-fill-mode: forwards;
+        }
+        
+        .animate-wiggle {
+            animation: wiggle 1s ease-in-out infinite;
+        }
+        
+        .animate-glow {
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        .animate-gradient {
+            background: linear-gradient(-45deg, #4CAF50, #388E3C, #8BC34A, #4CAF50);
+            background-size: 400% 400%;
+            animation: gradient 3s ease infinite;
+        }
+        
+        /* Hover Effects */
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(76, 175, 80, 0.2);
+        }
+        
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+        }
+        
+        /* Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #4CAF50, #388E3C);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
+        }
+        
+        /* Navigation Enhancement */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
             height: 2px;
-            background-color: var(--light-green);
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+            transition: width 0.3s ease;
         }
-
-        .footer-column p, .footer-column li {
-            margin-bottom: 10px;
+        
+        .nav-link:hover::after {
+            width: 100%;
         }
-
-        .footer-column ul {
-            list-style: none;
+        
+        /* Enhanced Pest Card Styles */
+        .pest-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(76, 175, 80, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
         }
-
-        .footer-column ul li a {
-            color: var(--white);
-            text-decoration: none;
-            transition: color 0.3s;
+        
+        .pest-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(76, 175, 80, 0.3);
         }
-
-        .footer-column ul li a:hover {
-            color: var(--light-green);
+        
+        .pest-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff);
+            background-size: 300% 100%;
+            animation: gradient 3s ease infinite;
         }
-
-        .social-links {
+        
+        .threat-level {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .threat-high {
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
+        }
+        
+        .threat-medium {
+            background: rgba(245, 158, 11, 0.9);
+            color: white;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+        }
+        
+        .threat-low {
+            background: rgba(34, 197, 94, 0.9);
+            color: white;
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+        }
+        
+        .pest-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 10px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            background: rgba(76, 175, 80, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #4CAF50;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .info-tabs {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            margin: 20px 0 15px 0;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 12px;
+            padding: 4px;
         }
-
-        .social-links a {
-            display: inline-flex;
+        
+        .tab-button {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
+            gap: 5px;
+        }
+        
+        .tab-button.active {
+            background: #4CAF50;
+            color: white;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(76, 175, 80, 0.1);
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeInUp 0.3s ease-out;
+        }
+        
+        .crop-tag {
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin: 3px;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+        }
+        
+        .crop-tag:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.5);
+        }
+        
+        .severity-meter {
+            width: 100%;
+            height: 8px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .severity-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1s ease-out;
+            background: linear-gradient(90deg, #22c55e, #eab308, #ef4444);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #4CAF50, #388E3C);
+            color: #FFFFFF;
+            padding: 60px 20px;
+            border-radius: 24px;
+            margin: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .search-input {
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        
+        .search-input:focus {
+            border-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(76, 175, 80, 0.3);
             border-radius: 50%;
-            color: var(--white);
-            transition: background-color 0.3s;
+            animation: particleFloat 3s infinite linear;
         }
-
-        .social-links a:hover {
-            background-color: var(--light-green);
+        
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
-
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
+        
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
         }
-
-        /* Responsive Styles */
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #F5F5F5;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #4CAF50;
+            border-radius: 4px;
+        }
+        
+        /* Responsive Enhancements */
         @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                gap: 15px;
+            .animate-fadeInLeft,
+            .animate-fadeInRight {
+                animation: fadeInUp 0.8s ease-out forwards;
             }
-
-            .logo {
-                margin-bottom: 10px;
+            
+            .pest-stats {
+                grid-template-columns: repeat(2, 1fr);
             }
-
-            .logo-text h1 {
-                font-size: 24px;
-            }
-
-            .logo-tagline {
-                font-size: 10px;
-            }
-
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            nav ul li {
-                margin: 5px 10px;
-            }
-
-            .page-header h2 {
-                font-size: 2rem;
-            }
-
-            .pests-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
+        }
+        
+        /* Scroll Reveal */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            cursor: help;
+        }
+        
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+        
+        .tooltip:hover::after {
+            opacity: 1;
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <!-- House with Leaf Logo -->
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-house">
-                    <!-- House (Lucide-style) -->
-                    <path d="M16 32L32 18L48 32V50C48 51.1 47.1 52 46 52H18C16.9 52 16 51.1 16 50V32Z" stroke="#4CAF50" stroke-width="3" fill="none"/>
-                    <path d="M28 52V38H36V52" stroke="#4CAF50" stroke-width="3"/>
-                    <!-- Leaf on the Roof (Lucide-style) -->
-                    <path d="M40 12C40 8 44 6 48 6V12C48 16 44 18 40 18H34C34 14 36 12 40 12Z" stroke="#4CAF50" stroke-width="2" fill="none"/>
-                </svg>
-                <!-- Name of Website -->
-                <div class="logo-text">
-                    <h1>Ghar <span>Bageecha</span></h1>
-                    <div class="logo-tagline">Your Home Garden Companion</div>
+<body class="text-gray-900">
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Main Navigation -->
+    <nav class="glass fixed top-0 w-full z-50 p-4 transition-all duration-300" id="navbar">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2 hover-lift">
+                <div class="relative">
+                    <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-green-500 animate-pulse-custom">
+                        <path d="M16 32L32 18L48 32V50C48 51.1 47.1 52 46 52H18C16.9 52 16 51.1 16 50V32Z" stroke="currentColor" stroke-width="3" fill="none"/>
+                        <path d="M28 52V38H36V52" stroke="currentColor" stroke-width="3"/>
+                        <path d="M40 12C40 8 44 6 48 6V12C48 16 44 18 40 18H34C34 14 36 12 40 12Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
                 </div>
+                <span class="text-xl font-bold text-gray-900">Ghar<span class="text-lime-500">Bageecha</span></span>
+            </a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="nav-link text-gray-600 hover:text-green-500 font-medium">Home</a>
+                <a href="#journal" class="nav-link text-gray-600 hover:text-green-500 font-medium">Journal</a>
+                <a href="plants.html" class="nav-link text-gray-600 hover:text-green-500 font-medium">Plants</a>
+                <a href="pest.html" class="nav-link text-green-500 font-medium">Pest Guide</a>
+                <a href="#garden-planner" class="nav-link text-gray-600 hover:text-green-500 font-medium">Garden Planner</a>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#journal">Journal</a></li>
-		            <li><a href="plants.html">Plants</a></li>
-                    <li><a href="pest.html" class="active">Pest Guide</a></li>
-                    <li><a href="#garden-planner">Garden Planner</a></li>
-                </ul>
-            </nav>
+            <button class="md:hidden hover-lift" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-gray-600 text-xl"></i>
+            </button>
         </div>
-    </header>
-
-    <!-- Page Header -->
-    <div class="page-header">
-        <div class="container">
-            <h2>Pest Management Guide</h2>
-            <p>Identify, prevent, and naturally control common pests in Indian urban gardens</p>
-        </div>
-    </div>
-
-    <!-- Search Section -->
-    <div class="search-section">
-        <div class="container">
-            <div class="search-container">
-                <input type="text" id="search-bar" placeholder="Search by pest name or plant name...">
-                <button type="button" id="search-button">
-                    <i class="fas fa-search"></i>
-                </button>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-white mt-4 rounded-2xl p-4">
+            <div class="space-y-3">
+                <a href="index.html" class="block w-full text-left text-gray-600 hover:text-green-500 font-medium p-2 rounded-lg hover:bg-green-50 transition">Home</a>
+                <a href="#journal" class="block w-full text-left text-gray-600 hover:text-green-500 font-medium p-2 rounded-lg hover:bg-green-50 transition">Journal</a>
+                <a href="plants.html" class="block w-full text-left text-gray-600 hover:text-green-500 font-medium p-2 rounded-lg hover:bg-green-50 transition">Plants</a>
+                <a href="pest.html" class="block w-full text-left text-green-500 font-medium p-2 rounded-lg hover:bg-green-50 transition">Pest Guide</a>
+                <a href="#garden-planner" class="block w-full text-left text-gray-600 hover:text-green-500 font-medium p-2 rounded-lg hover:bg-green-50 transition">Garden Planner</a>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <!-- Pests Section -->
-    <section class="pests-section">
-        <div class="container">
-            <div id="pests-grid" class="pests-grid">
-                <!-- Pest cards will be dynamically inserted here -->
-            </div>
-            <div id="no-results" class="no-results" style="display: none;">
-                <i class="fas fa-search"></i>
-                <h3>No pests found</h3>
-                <p>Try different search terms</p>
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white mt-20 relative">
+        <div class="relative z-10">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 animate-fadeInUp text-white">
+                    <i class="fas fa-bug mr-4 animate-wiggle"></i>
+                    Pest Detective Hub
+                </h2>
+                <p class="text-xl md:text-2xl mb-10 opacity-90 animate-fadeInUp text-white" style="animation-delay: 0.2s;">
+                    🔍 Identify • 🛡️ Prevent • 🌿 Treat Naturally
+                </p>
+                <div class="max-w-2xl mx-auto animate-fadeInUp" style="animation-delay: 0.4s;">
+                    <div class="relative">
+                        <input type="text" id="search-bar" placeholder="🔍 Search by pest name or plant name..." 
+                               class="search-input w-full px-8 py-6 rounded-full text-gray-800 shadow-2xl focus:outline-none text-lg">
+                        <button type="button" id="search-button" class="absolute right-3 top-1/2 transform -translate-y-1/2 btn-primary text-white px-6 py-3 rounded-full hover-glow">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Pests Grid -->
+        <div id="pests-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Pest cards will be dynamically inserted here -->
+        </div>
+        
+        <!-- No Results -->
+        <div id="no-results" class="hidden text-center py-16 glass-white rounded-3xl shadow-2xl">
+            <i class="fas fa-search text-8xl text-green-300 mb-6 animate-bounce-custom"></i>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">No pests found</h3>
+            <p class="text-xl text-gray-500">Try different search terms or browse all pests</p>
+        </div>
+    </main>
+
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <div class="logo" style="margin-bottom: 20px;">
-                        <!-- House with Leaf Logo -->
-                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-house">
-                            <!-- House (Lucide-style) -->
-                            <path d="M16 32L32 18L48 32V50C48 51.1 47.1 52 46 52H18C16.9 52 16 51.1 16 50V32Z" stroke="#4CAF50" stroke-width="3" fill="none"/>
-                            <path d="M28 52V38H36V52" stroke="#4CAF50" stroke-width="3"/>
-                            <!-- Leaf on the Roof (Lucide-style) -->
-                            <path d="M40 12C40 8 44 6 48 6V12C48 16 44 18 40 18H34C34 14 36 12 40 12Z" stroke="#4CAF50" stroke-width="2" fill="none"/>
-                        </svg>
-                        <!-- Name of Website -->
-                        <div class="logo-text">
-                            <h1 style="color: white; font-size: 24px;">Ghar <span style="color: #C5E1A5;">Bageecha</span></h1>
-                            <div class="logo-tagline" style="color: rgba(255, 255, 255, 0.8);">Your Home Garden Companion</div>
-                        </div>
-                    </div>
-                    <p>Your personal garden companion to plan, grow, and nurture your dream home garden.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
+    <footer class="glass text-gray-900 py-16 mt-20">
+        <div class="container mx-auto text-center">
+            <div class="mb-8">
+                <div class="flex items-center justify-center space-x-2 mb-6">
+                    <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-green-500">
+                        <path d="M16 32L32 18L48 32V50C48 51.1 47.1 52 46 52H18C16.9 52 16 51.1 16 50V32Z" stroke="currentColor" stroke-width="3" fill="none"/>
+                        <path d="M28 52V38H36V52" stroke="currentColor" stroke-width="3"/>
+                        <path d="M40 12C40 8 44 6 48 6V12C48 16 44 18 40 18H34C34 14 36 12 40 12Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                    <span class="text-2xl font-bold">Ghar<span class="text-lime-500">Bageecha</span></span>
                 </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#journal">Garden Journal</a></li>
-                        <li><a href="#pest-guide">Pest Guide</a></li>
-                        <li><a href="#garden-planner">Garden Planner</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="#">Plant Database</a></li>
-                        <li><a href="#">Growing Tips</a></li>
-                        <li><a href="#">Seasonal Calendar</a></li>
-                        <li><a href="#">Community Forum</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Garden Street, Green City, India</p>
-                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
-                    <p><i class="fas fa-envelope"></i> info@gharbageecha.com</p>
-                </div>
+                <p class="text-lg">&copy; 2024 GharBageecha. All rights reserved.</p>
             </div>
-            <div class="copyright">
-                <p>&copy; 2023 Ghar Bageecha. All rights reserved.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="text-2xl hover:text-green-500 transition-colors hover-lift">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-2xl hover:text-green-500 transition-colors hover-lift">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="text-2xl hover:text-green-500 transition-colors hover-lift">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-2xl hover:text-green-500 transition-colors hover-lift">
+                    <i class="fab fa-linkedin"></i>
+                </a>
             </div>
         </div>
     </footer>
 
     <script>
-        // Pest data with Hindi and Marathi names
+        // Enhanced pest data with threat levels and additional stats
         const pests = [
             {
                 name: "Whitefly",
                 hindiName: "सफेद मक्खी",
                 marathiName: "पांढरी माशी",
                 image: "https://upload.wikimedia.org/wikipedia/commons/5/5b/Weisse-Fliege.jpg",
-                crops: ["Tomato", "Brinjal", "Chilli", "Cabbage", "Okra"],
-                prevention: "Use yellow sticky traps to monitor and control whitefly populations. Plant companion plants like marigold or basil which repel whiteflies. Ensure good air circulation around plants.",
-                remedies: "Spray neem oil solution (5ml neem oil in 1L water with few drops of soap). Release natural predators like ladybugs and lacewings. Use garlic-chili spray as a repellent."
+                crops: ["🍅 Tomato", "🍆 Brinjal", "🌶️ Chilli", "🥬 Cabbage", "🌿 Okra"],
+                threatLevel: "high",
+                severity: 85,
+                commonality: 90,
+                difficulty: 70,
+                prevention: "🟡 Use yellow sticky traps to monitor and control whitefly populations. 🌼 Plant companion plants like marigold or basil which repel whiteflies. 💨 Ensure good air circulation around plants to make environment less favorable for whiteflies.",
+                remedies: "🌿 Spray neem oil solution (5ml neem oil in 1L water with few drops of soap). 🐞 Release natural predators like ladybugs and lacewings. 🧄 Use garlic-chili spray as a natural repellent.",
+                symptoms: "🍃 Yellowing leaves, 🍯 sticky honeydew on leaves, 🦟 small white flying insects when plant is disturbed",
+                lifecycle: "🥚 Egg → 🐛 4 nymph stages → 🦟 Adult (21-36 days total)"
             },
             {
-                name: "Aphids (Mustard Aphid)",
+                name: "Aphids",
                 hindiName: "एफिड (सरसों एफिड)",
                 marathiName: "अफिड (मोहरी अफिड)",
                 image: "https://www.ugaoo.com/cdn/shop/articles/shutterstock_772518421.jpg?v=1661881854",
-                crops: ["Mustard", "Cabbage", "Cauliflower", "Tomato", "Chilli"],
-                prevention: "Plant strong-scented herbs like garlic, onion, and chives around susceptible plants. Avoid over-fertilizing with nitrogen which attracts aphids. Use reflective mulches to deter aphids.",
-                remedies: "Spray with a solution of soapy water (2 tablespoons of mild liquid soap in 1L water). Apply neem oil spray. Introduce natural predators like ladybugs and lacewings."
+                crops: ["🌱 Mustard", "🥬 Cabbage", "🥦 Cauliflower", "🍅 Tomato", "🌶️ Chilli"],
+                threatLevel: "medium",
+                severity: 65,
+                commonality: 95,
+                difficulty: 50,
+                prevention: "🧄 Plant strong-scented herbs like garlic, onion, and chives around susceptible plants. 🚫 Avoid over-fertilizing with nitrogen which attracts aphids. ✨ Use reflective mulches to deter aphids from landing.",
+                remedies: "🧼 Spray with soapy water solution (2 tablespoons mild liquid soap in 1L water). 🌿 Apply neem oil spray regularly. 🐞 Introduce natural predators like ladybugs and lacewings.",
+                symptoms: "🍃 Curled or distorted leaves, 🍯 sticky honeydew, 🐜 presence of ants farming aphids",
+                lifecycle: "🥚 Egg → 🐛 4-5 nymph stages → 🦗 Adult (7-10 days in warm weather)"
             },
             {
                 name: "Thrips",
                 hindiName: "थ्रिप्स",
                 marathiName: "थ्रिप्स",
                 image: "https://images.ctfassets.net/y9no91j9bwnp/7jaoUPX2NemWPk2rQHgj52/66c3831883157f1b3fa01c8ed8602a74/case-study-empowering-growers-to-manage-thrips-in-strawberries.jpg?w=2200&h=1200&q=80",
-                crops: ["Chilli", "Tomato", "Onion", "Mango", "Citrus"],
-                prevention: "Use blue sticky traps to monitor thrip populations. Maintain proper humidity levels as thrips thrive in dry conditions. Remove weeds around the garden that may host thrips.",
-                remedies: "Spray neem oil or insecticidal soap solution. Apply garlic and chili pepper spray. Release predatory mites like Neoseiulus cucumeris for biological control."
-            },
-            {
-                name: "Mealybugs",
-                hindiName: "मीलीबग",
-                marathiName: "मीलीबग",
-                image: "https://www.saferbrand.com/media/wysiwyg/sb/cms/learning-center/sb-lc-insect-header-mealybug.jpg",
-                crops: ["Mango", "Citrus", "Pomegranate", "Guava", "Chilli"],
-                prevention: "Inspect new plants before introducing them to your garden. Avoid over-fertilizing and over-watering. Prune affected parts and destroy them. Use ant control methods as ants protect mealybugs.",
-                remedies: "Dab mealybugs with cotton swab dipped in rubbing alcohol. Spray with neem oil solution. Use a mixture of 1 cup rubbing alcohol, 1 teaspoon mild liquid soap, and 1 quart water."
-            },
-            {
-                name: "Fruit Borer (Helicoverpa armigera)",
-                hindiName: "फल बोरर (हेलिकोवरपा आर्मिगेरा)",
-                marathiName: "फळ बोरर (हेलिकोवरपा आर्मिगेरा)",
-                image: "https://www.desikheti.com/cdn/shop/files/Tomato_Fruit_borer_1.png?v=1738748146&width=3840",
-                crops: ["Tomato", "Brinjal", "Okra", "Cotton", "Chickpea"],
-                prevention: "Install pheromone traps to monitor and trap male moths. Practice crop rotation. Use light traps at night. Remove and destroy affected fruits to prevent breeding.",
-                remedies: "Spray with neem oil or Bacillus thuringiensis (Bt) solution. Apply a mixture of garlic extract and neem oil. Use nuclear polyhedrosis virus (NPV) for biological control."
+                crops: ["🌶️ Chilli", "🍅 Tomato", "🧅 Onion", "🥭 Mango", "🍊 Citrus"],
+                threatLevel: "medium",
+                severity: 70,
+                commonality: 75,
+                difficulty: 65,
+                prevention: "🔵 Use blue sticky traps to monitor thrip populations. 💧 Maintain proper humidity levels as thrips thrive in dry conditions. 🌿 Remove weeds around the garden that may host thrips.",
+                remedies: "🌿 Spray neem oil or insecticidal soap solution. 🧄 Apply garlic and chili pepper spray. 🕷️ Release predatory mites like Neoseiulus cucumeris for biological control.",
+                symptoms: "🍃 Silver or bronze streaks on leaves, 🔴 tiny black specks (thrip excrement), 🌸 damaged flowers",
+                lifecycle: "🥚 Egg → 🐛 2 larval stages → 🛡️ 2 pupal stages → 🦗 Adult (15-30 days)"
             },
             {
                 name: "Spider Mites",
                 hindiName: "स्पाइडर माइट्स",
                 marathiName: "स्पायडर माइट्स",
                 image: "https://cdn11.bigcommerce.com/s-driaa0yuaa/images/stencil/original/image-manager/by-pest-spider-mites.jpg",
-                crops: ["Tomato", "Brinjal", "Okra", "Beans", "Rosemary"],
-                prevention: "Maintain high humidity around plants as spider mites thrive in dry conditions. Spray plants with water to dislodge mites. Avoid excessive nitrogen fertilization.",
-                remedies: "Spray with a solution of neem oil and water. Use insecticidal soap spray. Release predatory mites like Phytoseiulus persimilis. Apply a mixture of 1 part rubbing alcohol to 1 part water."
+                crops: ["🍅 Tomato", "🍆 Brinjal", "🌿 Okra", "🫘 Beans", "🌿 Rosemary"],
+                threatLevel: "high",
+                severity: 80,
+                commonality: 85,
+                difficulty: 75,
+                prevention: "💧 Maintain high humidity around plants as spider mites thrive in dry conditions. 🚿 Spray plants with water to dislodge mites. 🚫 Avoid excessive nitrogen fertilization.",
+                remedies: "🌿 Spray with neem oil and water solution. 🧼 Use insecticidal soap spray. 🕷️ Release predatory mites like Phytoseiulus persimilis. 🍷 Apply mixture of 1 part rubbing alcohol to 1 part water.",
+                symptoms: "🕸️ Fine webbing on leaves, 🟡 stippled or yellowing leaves, 🍃 leaves may drop prematurely",
+                lifecycle: "🥚 Egg → 🐛 Larva → 🛡️ 2 nymph stages → 🕷️ Adult (5-20 days depending on temperature)"
             },
             {
-                name: "Leaf Miner",
-                hindiName: "लीफ माइनर",
-                marathiName: "पान माइनर",
-                image: "https://bonide.com/wp-content/uploads/2020/10/leafminer_large.jpg",
-                crops: ["Tomato", "Spinach", "Mint", "Coriander", "Okra"],
-                prevention: "Use floating row covers to protect plants from egg-laying adults. Remove and destroy affected leaves. Practice crop rotation. Encourage natural predators like parasitic wasps.",
-                remedies: "Spray with neem oil solution. Apply a mixture of 2 teaspoons neem oil, 1 teaspoon mild liquid soap, and 1 gallon of water. Remove and destroy heavily infested leaves."
+                name: "Fruit Borer",
+                hindiName: "फल बोरर",
+                marathiName: "फळ बोरर",
+                image: "https://www.desikheti.com/cdn/shop/files/Tomato_Fruit_borer_1.png?v=1738748146&width=3840",
+                crops: ["🍅 Tomato", "🍆 Brinjal", "🌿 Okra", "🌾 Cotton", "🫛 Chickpea"],
+                threatLevel: "high",
+                severity: 90,
+                commonality: 70,
+                difficulty: 85,
+                prevention: "🪤 Install pheromone traps to monitor and trap male moths. 🔄 Practice crop rotation to break pest cycle. 💡 Use light traps at night to catch adult moths. 🗑️ Remove and destroy affected fruits immediately.",
+                remedies: "🌿 Spray with neem oil or Bacillus thuringiensis (Bt) solution. 🧄 Apply mixture of garlic extract and neem oil. 🦠 Use nuclear polyhedrosis virus (NPV) for biological control.",
+                symptoms: "🕳️ Entry holes in fruits, 🐛 caterpillars inside fruits, 🍅 premature fruit drop, 💩 frass near entry holes",
+                lifecycle: "🥚 Egg → 🐛 6 larval stages → 🛡️ Pupa → 🦋 Adult moth (30-45 days)"
             },
             {
-                name: "Spodoptera Caterpillars",
-                hindiName: "स्पोडोप्टेरा कैटरपिलर",
-                marathiName: "स्पोडोप्टेरा अळ्या",
-                image: "https://bioprotectionportal.com/wp-content/uploads/2024/11/5th-instar-spodoptera-litura.jpg",
-                crops: ["Cabbage", "Cauliflower", "Tomato", "Cotton", "Groundnut"],
-                prevention: "Install pheromone traps to monitor adult moths. Use light traps at night. Remove and destroy egg masses. Practice deep plowing to expose pupae to predators.",
-                remedies: "Spray with Bacillus thuringiensis (Bt) solution. Apply neem oil spray. Use nuclear polyhedrosis virus (NPV) for biological control. Handpick and destroy caterpillars."
-            },
-            {
-                name: "Shoot and Fruit Borer",
-                hindiName: "शूट और फल बोरर",
-                marathiName: "शूट आणि फळ बोरर",
-                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyFCGHOVg6JPVpWrZiK0kjORKFexeCZmED-Q&s",
-                crops: ["Brinjal", "Tomato", "Potato"],
-                prevention: "Install pheromone traps to monitor adult moths. Use nylon netting to cover plants. Remove and destroy affected shoots and fruits. Practice crop rotation with non-solanaceous crops.",
-                remedies: "Spray with neem oil solution. Apply Bacillus thuringiensis (Bt) spray. Use a mixture of garlic extract and neem oil. Release natural predators like Trichogramma wasps."
-            },
-            {
-                name: "Fruit Fly (Bactrocera)",
-                hindiName: "फल मक्खी (बैक्ट्रोसेरा)",
-                marathiName: "फळ माशी (बैक्ट्रोसेरा)",
-                image: "https://www.gardeners.com/globalassets/articles/gardening/hero_thumbnail/7303-fruit-fly.jpg?$staticlink$",
-                crops: ["Mango", "Citrus", "Guava", "Pomegranate", "Banana", "Chikoo"],
-                prevention: "Use methyl eugenol traps to monitor and control male fruit flies. Harvest fruits at the right maturity stage. Remove and destroy fallen fruits. Use fruit bags to protect developing fruits.",
-                remedies: "Prepare protein bait traps with a mixture of jaggery, vinegar, and a few drops of insecticide. Use pheromone traps. Apply neem oil spray to repel fruit flies."
-            },
-            {
-                name: "Red Pumpkin Beetle",
-                hindiName: "लाल कद्दू बीटल",
-                marathiName: "लाल भोपळा बीटल",
-                image: "https://plantwiseplusknowledgebank.org/cms/asset/dd940f85-4f1b-4926-9b49-82887b80154d/e43edfce-6525-4ea4-b5c5-b159034af2dc.png",
-                crops: ["Pumpkin", "Bottle Gourd", "Bitter Gourd", "Cucumber", "Watermelon"],
-                prevention: "Use floating row covers to protect young plants. Remove and destroy affected plant parts. Practice crop rotation. Use yellow sticky traps to monitor beetle populations.",
-                remedies: "Spray with neem oil solution. Apply a mixture of wood ash and lime. Use garlic and chili pepper spray. Handpick and destroy beetles in early morning when they are less active."
-            },
-            {
-                name: "Diamondback Moth",
-                hindiName: "डायमंडबैक मॉथ",
-                marathiName: "डायमंडबॅक मॉथ",
-                image: "https://agriculture.vic.gov.au/__data/assets/image/0003/1044912/varieties/Medium.jpg",
-                crops: ["Cabbage", "Cauliflower", "Broccoli", "Radish", "Mustard"],
-                prevention: "Use pheromone traps to monitor adult moths. Install netting to protect plants. Practice crop rotation with non-cruciferous crops. Remove and destroy crop residues after harvest.",
-                remedies: "Spray with Bacillus thuringiensis (Bt) solution. Apply neem oil spray. Use a mixture of garlic extract and neem oil. Release natural predators like parasitic wasps."
-            },
-            {
-                name: "Citrus Psylla",
-                hindiName: "साइट्रस सिला",
-                marathiName: "सायट्रस सिला",
-                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZBiIHBjB9wQ0I7rEUp3yoazIZAEriBcv5hQ&s",
-                crops: ["Citrus", "Curry Leaf", "Orange", "Lemon"],
-                prevention: "Remove and destroy affected plant parts. Use yellow sticky traps to monitor psyllid populations. Avoid excessive nitrogen fertilization which promotes tender growth attractive to psyllids.",
-                remedies: "Spray with neem oil solution. Apply a mixture of garlic extract and neem oil. Use insecticidal soap spray. Release natural predators like ladybugs and lacewings."
-            },
-            {
-                name: "Termite",
-                hindiName: "दीमक",
-                marathiName: "वाळवी",
-                image: "https://cdn.bugs.com/wp-content/uploads/iStock-1449860092-scaled.webp",
-                crops: ["Sugarcane", "Wheat", "Maize", "Vegetable seedlings"],
-                prevention: "Remove dead wood and plant debris from the garden. Use physical barriers like termite shields for raised beds. Practice proper drainage to avoid water accumulation.",
-                remedies: "Use termite bait stations with cellulose and slow-acting insecticide. Apply neem cake to soil. Use beneficial nematodes for biological control. Create barriers with diatomaceous earth."
-            },
-            {
-                name: "Jassids",
-                hindiName: "जैसिड",
-                marathiName: "जैसिड",
-                image: "https://farmonaut.com/wp-content/uploads/2019/04/cotton-leafhoppers-and-jassids-2-farmonaut.jpg",
-                crops: ["Cotton", "Okra", "Brinjal", "Potato", "Tomato"],
-                prevention: "Use yellow sticky traps to monitor jassid populations. Avoid excessive nitrogen fertilization. Maintain proper plant spacing for good air circulation. Remove weeds that may host jassids.",
-                remedies: "Spray with neem oil solution. Apply a mixture of garlic extract and neem oil. Use insecticidal soap spray. Release natural predators like spiders and predatory bugs."
-            },
-            {
-                name: "Hadda Beetle (Epilachna Beetle)",
-                hindiName: "हड्डा बीटल (एपिलाक्ना बीटल)",
-                marathiName: "हड्डा बीटल (एपिलाक्ना बीटल)",
-                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsYlnf9PTvnsloC_eLDADYTBYyPplw7E10XA&s",
-                crops: ["Brinjal", "Potato", "Tomato", "Cucumber", "Pumpkin"],
-                prevention: "Remove and destroy egg masses and grubs. Use yellow sticky traps to monitor adult beetles. Practice crop rotation with non-solanaceous crops. Install physical barriers like nets.",
-                remedies: "Spray with neem oil solution. Use a mixture of garlic and chili pepper spray. Apply wood ash to plants. Handpick and destroy adult beetles in early morning."
-            },
-            {
-                name: "Mango Hopper",
-                hindiName: "आम हॉपर",
-                marathiName: "आंबा हॉपर",
-                image: "https://static.agrostar.in/static/Feed_leaf-hopper-in-Mango.jpg",
-                crops: ["Mango", "Cashew", "Guava"],
-                prevention: "Prune mango trees to improve air circulation and sunlight penetration. Remove weeds around mango trees. Use yellow sticky traps to monitor hopper populations.",
-                remedies: "Spray with neem oil solution. Apply a mixture of garlic extract and neem oil. Use insecticidal soap spray. Release natural predators like spiders and predatory bugs."
-            },
-          
-            {
-                name: "Rice Leaf Folder",
-                hindiName: "चावल पत्ता फोल्डर",
-                marathiName: "तांदूळ पान फोल्डर",
-                image: "https://plantwiseplusknowledgebank.org/cms/10.1079/pwkb.20157800027/asset/46f2e5d9-93f8-4731-9a66-7f5f142f6ccd/assets/graphic/70946d01-f448-47e8-9809-1fd4d9681fe2.png",
-                crops: ["Rice", "Wheat", "Maize"],
-                prevention: "Use resistant rice varieties. Avoid excessive nitrogen fertilization. Maintain proper water management in rice fields. Use light traps to monitor adult moths.",
-                remedies: "Spray with neem oil solution. Apply Bacillus thuringiensis (Bt) spray. Use a mixture of garlic extract and neem oil. Release natural predators like spiders and dragonflies."
-            },
-            {
-                name: "Brinjal Fruit and Shoot Borer",
-                hindiName: "बैंगन फल और शूट बोरर",
-                marathiName: "वांगे फळ आणि शूट बोरर",
-                image: "https://databases.nbair.res.in/insectpests/images/Leucinodes-orbonalis6.jpg",
-                crops: ["Brinjal", "Potato", "Tomato"],
-                prevention: "Install pheromone traps to monitor adult moths. Use nylon netting to cover plants. Remove and destroy affected shoots and fruits. Practice crop rotation with non-solanaceous crops.",
-                remedies: "Spray with neem oil solution. Apply Bacillus thuringiensis (Bt) spray. Use a mixture of garlic extract and neem oil. Release natural predators like Trichogramma wasps."
-            },
-            {
-                name: "Mustard Aphid",
-                hindiName: "सरसों एफिड",
-                marathiName: "मोहरी अफिड",
-                image: "https://www.canr.msu.edu/dA/7302f71076/GarlicMustardAphids_6.jpg",
-                crops: ["Mustard", "Cabbage", "Cauliflower", "Radish"],
-                prevention: "Plant strong-scented herbs like garlic, onion, and chives around susceptible plants. Avoid over-fertilizing with nitrogen which attracts aphids. Use reflective mulches to deter aphids.",
-                remedies: "Spray with a solution of soapy water (2 tablespoons of mild liquid soap in 1L water). Apply neem oil spray. Introduce natural predators like ladybugs and lacewings."
-            },
-            {
-                name: "Pod Borer",
-                hindiName: "पॉड बोरर",
-                marathiName: "पॉड बोरर",
-                image: "https://plantwiseplusknowledgebank.org/cms/asset/ad966f3a-3009-46b3-b089-d94b02dc7650/b1015a28-cbbf-479f-bc22-c91d550eed32.jpg",
-                crops: ["Chickpea", "Pigeon Pea", "Lentil", "Soybean"],
-                prevention: "Install pheromone traps to monitor adult moths. Practice crop rotation with non-leguminous crops. Use light traps at night. Remove and destroy affected pods to prevent breeding.",
-                remedies: "Spray with neem oil or Bacillus thuringiensis (Bt) solution. Apply a mixture of garlic extract and neem oil. Use nuclear polyhedrosis virus (NPV) for biological control."
+                name: "Mealybugs",
+                hindiName: "मीलीबग",
+                marathiName: "मीलीबग",
+                image: "https://www.saferbrand.com/media/wysiwyg/sb/cms/learning-center/sb-lc-insect-header-mealybug.jpg",
+                crops: ["🥭 Mango", "🍊 Citrus", "🍎 Pomegranate", "🍈 Guava", "🌶️ Chilli"],
+                threatLevel: "medium",
+                severity: 60,
+                commonality: 65,
+                difficulty: 55,
+                prevention: "🔍 Inspect new plants before introducing them to your garden. 🚫 Avoid over-fertilizing and over-watering. ✂️ Prune affected parts and destroy them. 🐜 Use ant control methods as ants protect mealybugs.",
+                remedies: "🍷 Dab mealybugs with cotton swab dipped in rubbing alcohol. 🌿 Spray with neem oil solution. 🧼 Use mixture of 1 cup rubbing alcohol, 1 teaspoon mild liquid soap, and 1 quart water.",
+                symptoms: "☁️ White cottony masses on plants, 🍯 sticky honeydew, 🟡 yellowing leaves, 🐜 presence of ants",
+                lifecycle: "🥚 Egg → 🐛 3 nymph stages → 🦗 Adult (30-60 days depending on species)"
             }
         ];
 
@@ -740,55 +763,182 @@
         const searchButton = document.getElementById('search-button');
         const noResults = document.getElementById('no-results');
 
-        // Render pests
+        // Create particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Get threat level class
+        function getThreatLevelClass(level) {
+            switch(level) {
+                case 'high': return 'threat-high';
+                case 'medium': return 'threat-medium';
+                case 'low': return 'threat-low';
+                default: return 'threat-medium';
+            }
+        }
+
+        // Get threat level emoji
+        function getThreatLevelEmoji(level) {
+            switch(level) {
+                case 'high': return '🚨';
+                case 'medium': return '⚠️';
+                case 'low': return '✅';
+                default: return '⚠️';
+            }
+        }
+
+        // Initialize tabs
+        function initializeTabs(cardElement, pestId) {
+            const tabButtons = cardElement.querySelectorAll('.tab-button');
+            const tabContents = cardElement.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach((button, index) => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    button.classList.add('active');
+                    tabContents[index].classList.add('active');
+                });
+            });
+        }
+
+        // Render pests with enhanced creative design
         function renderPests(pestsToRender) {
             pestsGrid.innerHTML = '';
             
             if (pestsToRender.length === 0) {
-                noResults.style.display = 'block';
+                noResults.classList.remove('hidden');
                 return;
             }
             
-            noResults.style.display = 'none';
+            noResults.classList.add('hidden');
             
-            pestsToRender.forEach(pest => {
+            pestsToRender.forEach((pest, index) => {
                 const pestCard = document.createElement('div');
-                pestCard.className = 'pest-card';
+                pestCard.className = 'pest-card scroll-reveal';
+                pestCard.style.animationDelay = `${index * 0.1}s`;
                 
-                // Create crops list HTML
                 const cropsList = pest.crops.map(crop => `<span class="crop-tag">${crop}</span>`).join('');
                 
                 pestCard.innerHTML = `
-                    <div class="pest-image">
-                        <img src="${pest.image}" alt="${pest.name}">
-                    </div>
-                    <div class="pest-info">
-                        <h3 class="pest-name">
-                            ${pest.name}
-                            <i class="fas fa-bug"></i>
-                        </h3>
-                        <div class="local-names">
-                            ${pest.hindiName} | ${pest.marathiName}
+                    <div class="relative overflow-hidden">
+                        <img src="${pest.image}" alt="${pest.name}" class="w-full h-56 object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="threat-level ${getThreatLevelClass(pest.threatLevel)}">
+                            ${getThreatLevelEmoji(pest.threatLevel)} ${pest.threatLevel.toUpperCase()}
                         </div>
-                        <div class="pest-section">
-                            <h4><i class="fas fa-seedling"></i> Crops Affected</h4>
-                            <div class="crops-list">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                            <h3 class="text-2xl font-bold text-white mb-1">${pest.name}</h3>
+                            <p class="text-sm text-gray-200">${pest.hindiName} | ${pest.marathiName}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <!-- Pest Stats -->
+                        <div class="pest-stats">
+                            <div class="stat-item tooltip" data-tooltip="How severe the damage can be">
+                                <div class="stat-value">${pest.severity}%</div>
+                                <div class="stat-label">Severity</div>
+                            </div>
+                            <div class="stat-item tooltip" data-tooltip="How commonly found">
+                                <div class="stat-value">${pest.commonality}%</div>
+                                <div class="stat-label">Common</div>
+                            </div>
+                            <div class="stat-item tooltip" data-tooltip="Difficulty to control">
+                                <div class="stat-value">${pest.difficulty}%</div>
+                                <div class="stat-label">Control</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Severity Meter -->
+                        <div class="severity-meter">
+                            <div class="severity-fill" style="width: ${pest.severity}%"></div>
+                        </div>
+                        
+                        <!-- Crops Affected -->
+                        <div class="mb-4">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3 flex items-center">
+                                <i class="fas fa-seedling text-green-500 mr-2"></i>
+                                🌱 Target Crops
+                            </h4>
+                            <div class="flex flex-wrap gap-2">
                                 ${cropsList}
                             </div>
                         </div>
-                        <div class="pest-section">
-                            <h4><i class="fas fa-shield-alt"></i> Natural Prevention</h4>
-                            <p>${pest.prevention}</p>
+                        
+                        <!-- Information Tabs -->
+                        <div class="info-tabs">
+                            <button class="tab-button active">
+                                <i class="fas fa-eye"></i>
+                                Symptoms
+                            </button>
+                            <button class="tab-button">
+                                <i class="fas fa-shield-alt"></i>
+                                Prevention
+                            </button>
+                            <button class="tab-button">
+                                <i class="fas fa-first-aid"></i>
+                                Treatment
+                            </button>
+                            <button class="tab-button">
+                                <i class="fas fa-clock"></i>
+                                Lifecycle
+                            </button>
                         </div>
-                        <div class="pest-section">
-                            <h4><i class="fas fa-first-aid"></i> Natural Remedies</h4>
-                            <p>${pest.remedies}</p>
+                        
+                        <!-- Tab Contents -->
+                        <div class="tab-content active">
+                            <h5 class="font-semibold text-gray-900 mb-2">🔍 What to Look For:</h5>
+                            <p class="text-gray-700 text-sm leading-relaxed">${pest.symptoms}</p>
+                        </div>
+                        
+                        <div class="tab-content">
+                            <h5 class="font-semibold text-gray-900 mb-2">🛡️ Prevention Strategy:</h5>
+                            <p class="text-gray-700 text-sm leading-relaxed">${pest.prevention}</p>
+                        </div>
+                        
+                        <div class="tab-content">
+                            <h5 class="font-semibold text-gray-900 mb-2">🌿 Natural Treatment:</h5>
+                            <p class="text-gray-700 text-sm leading-relaxed">${pest.remedies}</p>
+                        </div>
+                        
+                        <div class="tab-content">
+                            <h5 class="font-semibold text-gray-900 mb-2">⏰ Life Cycle:</h5>
+                            <p class="text-gray-700 text-sm leading-relaxed">${pest.lifecycle}</p>
                         </div>
                     </div>
                 `;
                 
                 pestsGrid.appendChild(pestCard);
+                
+                // Initialize tabs for this card
+                initializeTabs(pestCard, index);
             });
+            
+            // Animate severity meters
+            setTimeout(() => {
+                const severityFills = document.querySelectorAll('.severity-fill');
+                severityFills.forEach(fill => {
+                    const width = fill.style.width;
+                    fill.style.width = '0%';
+                    setTimeout(() => {
+                        fill.style.width = width;
+                    }, 100);
+                });
+            }, 500);
         }
 
         // Filter pests based on search
@@ -801,31 +951,50 @@
             }
             
             const filteredPests = pests.filter(pest => {
-                // Check if pest name matches
-                if (pest.name.toLowerCase().includes(searchTerm)) {
-                    return true;
-                }
-                
-                // Check if Hindi name matches
-                if (pest.hindiName.toLowerCase().includes(searchTerm)) {
-                    return true;
-                }
-                
-                // Check if Marathi name matches
-                if (pest.marathiName.toLowerCase().includes(searchTerm)) {
-                    return true;
-                }
-                
-                // Check if any crop name matches
-                const cropMatch = pest.crops.some(crop => 
-                    crop.toLowerCase().includes(searchTerm)
-                );
-                
-                return cropMatch;
+                return pest.name.toLowerCase().includes(searchTerm) ||
+                       pest.hindiName.toLowerCase().includes(searchTerm) ||
+                       pest.marathiName.toLowerCase().includes(searchTerm) ||
+                       pest.crops.some(crop => crop.toLowerCase().includes(searchTerm));
             });
             
             renderPests(filteredPests);
         }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            renderPests(pests);
+            
+            // Add navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                    navbar.style.backdropFilter = 'blur(20px)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.1)';
+                    navbar.style.backdropFilter = 'blur(10px)';
+                }
+            });
+            
+            // Scroll reveal
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                observer.observe(el);
+            });
+        });
 
         // Event listeners
         searchButton.addEventListener('click', filterPests);
@@ -835,17 +1004,12 @@
             }
         });
         
-        // Real-time search as user types
         searchBar.addEventListener('input', () => {
-            // Debounce to improve performance
             clearTimeout(searchBar.debounce);
             searchBar.debounce = setTimeout(() => {
                 filterPests();
             }, 300);
         });
-
-        // Initial render
-        renderPests(pests);
     </script>
 </body>
 </html>

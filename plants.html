@@ -3,238 +3,550 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ghar Bageecha</title>
+    <title>GharBageecha - Plant Discovery</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e5e7eb;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        }
+        
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234CAF50' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Glassmorphism Effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(76, 175, 80, 0.1);
+        }
+        
+        .glass-white {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(76, 175, 80, 0.15);
+        }
+        
+        /* Custom Colors */
+        .text-green-500 { color: #4CAF50; }
+        .bg-green-500 { background-color: #4CAF50; }
+        .bg-green-600 { background-color: #388E3C; }
+        .text-lime-500 { color: #8BC34A; }
+        .bg-lime-500 { background-color: #8BC34A; }
+        .text-gray-600 { color: #6b7280; }
+        .text-gray-900 { color: #1f2937; }
+        .bg-gray-100 { background-color: #f3f4f6; }
+        .bg-gray-200 { background-color: #e5e7eb; }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% { transform: translateY(0); }
+            40%, 43% { transform: translateY(-30px); }
+            70% { transform: translateY(-15px); }
+            90% { transform: translateY(-4px); }
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Utility Classes */
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-fadeInLeft {
+            animation: fadeInLeft 0.8s ease-out forwards;
+        }
+        
+        .animate-fadeInRight {
+            animation: fadeInRight 0.8s ease-out forwards;
+        }
+        
+        .animate-pulse-custom {
+            animation: pulse 2s 2;
+            animation-fill-mode: forwards;
+        }
+        
+        .animate-bounce-custom {
+            animation: bounce 2s 2;
+            animation-fill-mode: forwards;
+        }
+        
+        .animate-gradient {
+            background: linear-gradient(-45deg, #4CAF50, #388E3C, #8BC34A, #4CAF50);
+            background-size: 400% 400%;
+            animation: gradient 3s ease infinite;
+        }
+        
+        /* Hover Effects */
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(76, 175, 80, 0.2);
+        }
+        
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+        }
+        
+        /* Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #4CAF50, #388E3C);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
+        }
+        
+        /* Navigation Enhancement */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Plant Card Styles */
+        .plant-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(76, 175, 80, 0.15);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .plant-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(76, 175, 80, 0.25);
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .star-rating {
+            color: #FFB800;
+        }
+        
+        .badge {
+            transition: all 0.3s ease;
+            background: rgba(76, 175, 80, 0.1);
+            color: #4CAF50;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+            border: 1px solid rgba(76, 175, 80, 0.2);
+        }
+        
+        .badge:hover {
+            transform: translateY(-2px);
+            background: #4CAF50;
+            color: white;
+            box-shadow: 0 8px 16px rgba(76, 175, 80, 0.3);
+        }
+        
+        .badge.active {
+            background: #4CAF50;
+            color: white;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #4CAF50, #388E3C);
+            color: #FFFFFF;
+            padding: 60px 20px;
+            border-radius: 24px;
+            margin: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #F5F5F5;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #4CAF50;
+            border-radius: 4px;
+        }
+        
+        /* Particle Effect */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(76, 175, 80, 0.3);
+            border-radius: 50%;
+            animation: particleFloat 3s infinite linear;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Search Input Enhancement */
+        .search-input {
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        
+        .search-input:focus {
+            border-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Modal Enhancement */
+        .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Responsive Enhancements */
+        @media (max-width: 768px) {
+            .animate-fadeInLeft,
+            .animate-fadeInRight {
+                animation: fadeInUp 0.8s ease-out forwards;
+            }
+        }
+        
+        /* Scroll Reveal */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-body {
-    font-family: 'Inter', sans-serif;
-}
-
-/* Styled card with first theme's shadow and white bg */
-.plant-card {
-    transition: all 0.3s ease;
-    background-color: #FFFFFF; /* changed from default to white */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08); /* from first CSS */
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.plant-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12); /* same hover shadow as first CSS */
-}
-
-.fade-in {
-    animation: fadeIn 0.5s ease-in;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.star-rating {
-    color: #FFB800; /* kept yellow star for contrast */
-}
-
-/* Updated badge color scheme */
-.badge {
-    transition: all 0.2s ease;
-    background-color: #E8F5E9; /* pale green from first CSS */
-    color: #4CAF50; /* primary green */
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-weight: 500;
-}
-
-.badge:hover {
-    transform: scale(1.05);
-    background-color: #81C784; /* light green hover */
-    color: white; /* added white text for contrast on hover */
-}
-
-/* Changed gradient from teal to green gradient */
-.hero-gradient {
-    background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%); /* green gradient */
-    color: #FFFFFF;
-    padding: 40px 20px;
-    border-radius: 16px;
-}
-
-/* Scrollbar updated to match green tones */
-.custom-scrollbar::-webkit-scrollbar {
-    width: 8px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-    background: #F5F5F5; /* light gray track from first CSS */
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #4CAF50; /* green thumb */
-    border-radius: 4px;
-}
-
+        .container
+        {
+            
+        }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-40">
-        <nav class="container mx-auto px-4 py-0">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-2" style="m">
-                    <!-- <i class="fas fa-leaf text-green-600 text-2xl"></i>
-                    <h1 class="text-2xl font-bold text-gray-800">Ghar Bageecha</h1> -->
-
-                    <!---->
-                      <div class="modal-header">
-                        <div class="flex items-center space-x-4">
-                        <!-- Logo SVG -->
-                        <svg width="50" height="50" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <!-- House (Lucide-style) -->
-                          <path d="M16 32L32 18L48 32V50C48 51.1 47.1 52 46 52H18C16.9 52 16 51.1 16 50V32Z" stroke="#4CAF50" stroke-width="3" fill="none"/>
-                          <path d="M28 52V38H36V52" stroke="#4CAF50" stroke-width="3"/>
-                          <!-- Leaf on the Roof -->
-                          <path d="M40 12C40 8 44 6 48 6V12C48 16 44 18 40 18H34C34 14 36 12 40 12Z" stroke="#4CAF50" stroke-width="2" fill="none"/>
-                        </svg>
-
-                        <!-- Text SVG -->
-                        <svg height="50" viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg">
-                          <text x="0" y="50" font-family="Verdana, sans-serif" font-size="36" fill="#4CAF50">
-                            Ghar
-                            <tspan fill="#8BC34A">Bageecha</tspan>
-                          </text>
-                        </svg>
-                      </div>
-
-                      </div>
-                    <!---->
-              </div>
-                <div class="hidden md:flex items-center space-x-6">
-                    <button onclick="showSection('explore')" class="nav-link text-gray-600 hover:text-green-600 font-medium transition">Explore Plants</button>
-                    <button onclick="showSection('my-garden')" class="nav-link text-gray-600 hover:text-green-600 font-medium transition">My Garden</button>
-                    <button onclick="showSection('contact')" class="nav-link text-gray-600 hover:text-green-600 font-medium transition">Contact</button>
-                    <button onclick="showSection('my-garden')" class="relative">
-                        <i class="fas fa-heart text-gray-600 hover:text-red-500 text-xl transition"></i>
-                        <span id="favorite-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
-                    </button>
+<body class="text-gray-900">
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Main Navigation -->
+    <nav class="glass fixed top-0 w-full z-50 p-4 transition-all duration-300" id="navbar">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2 hover-lift">
+                <div class="relative">
+                    <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-green-500 animate-pulse-custom">
+                        <path d="M16 32L32 18L48 32V50C48 51.1 47.1 52 46 52H18C16.9 52 16 51.1 16 50V32Z" stroke="currentColor" stroke-width="3" fill="none"/>
+                        <path d="M28 52V38H36V52" stroke="currentColor" stroke-width="3"/>
+                        <path d="M40 12C40 8 44 6 48 6V12C48 16 44 18 40 18H34C34 14 36 12 40 12Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
                 </div>
-                <button class="md:hidden" onclick="toggleMobileMenu()">
-                    <i class="fas fa-bars text-gray-600 text-xl"></i>
+                <span class="text-xl font-bold text-gray-900">Ghar<span class="text-lime-500">Bageecha</span></span>
+            </a>
+            <div class="hidden md:flex items-center space-x-6">
+                <button onclick="showSection('explore')" class="nav-link text-gray-600 hover:text-green-500 font-medium">Explore Plants</button>
+                <button onclick="showSection('my-garden')" class="nav-link text-gray-600 hover:text-green-500 font-medium">My Garden</button>
+                <button onclick="showSection('contact')" class="nav-link text-gray-600 hover:text-green-500 font-medium">Contact</button>
+                <button onclick="showSection('my-garden')" class="relative hover-lift">
+                    <i class="fas fa-heart text-gray-600 hover:text-red-500 text-xl transition"></i>
+                    <span id="favorite-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-pulse-custom">0</span>
                 </button>
             </div>
-        </nav>
+            <button class="md:hidden hover-lift" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-gray-600 text-xl"></i>
+            </button>
+        </div>
+        
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-            <div class="container mx-auto px-4 py-4 space-y-3">
-                <button onclick="showSection('explore')" class="block w-full text-left text-gray-600 hover:text-green-600 font-medium">Explore Plants</button>
-                <button onclick="showSection('my-garden')" class="block w-full text-left text-gray-600 hover:text-green-600 font-medium">My Garden</button>
-                <button onclick="showSection('contact')" class="block w-full text-left text-gray-600 hover:text-green-600 font-medium">Contact</button>
+        <div id="mobile-menu" class="hidden md:hidden glass-white mt-4 rounded-2xl p-4">
+            <div class="space-y-3">
+                <button onclick="showSection('explore')" class="block w-full text-left text-gray-600 hover:text-green-500 font-medium p-2 rounded-lg hover:bg-green-50 transition">Explore Plants</button>
+                <button onclick="showSection('my-garden')" class="block w-full text-left text-gray-600 hover:text-green-500 font-medium p-2 rounded-lg hover:bg-green-50 transition">My Garden</button>
+                <button onclick="showSection('contact')" class="block w-full text-left text-gray-600 hover:text-green-500 font-medium p-2 rounded-lg hover:bg-green-50 transition">Contact</button>
             </div>
         </div>
-    </header>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="hero-gradient text-white py-16">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4">Discover the Power of Plants</h2>
-            <p class="text-xl mb-8 opacity-90">Explore our curated collection of plants that enhance your health and environment</p>
-            <div class="max-w-2xl mx-auto">
-                <div class="relative">
-                    <input type="text" id="global-search" placeholder="Search plants..." 
-                           class="w-full px-6 py-4 rounded-full text-gray-800 shadow-lg focus:outline-none focus:ring-4 focus:ring-green-300"
-                           onkeyup="searchPlants()">
-                    <i class="fas fa-search absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+    <section class="hero-gradient text-white mt-20 relative">
+        <div class="relative z-10">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 animate-fadeInUp text-white">
+                    <i class="fas fa-seedling mr-4 animate-bounce-custom"></i>
+                    Discover the Power of Plants
+                </h2>
+                <p class="text-xl md:text-2xl mb-10 opacity-90 animate-fadeInUp text-white" style="animation-delay: 0.2s;">
+                    Explore our curated collection of plants that enhance your health and environment
+                </p>
+                <div class="max-w-2xl mx-auto animate-fadeInUp" style="animation-delay: 0.4s;">
+                    <div class="relative">
+                        <input type="text" id="global-search" placeholder="Search plants..." 
+                               class="search-input w-full px-8 py-6 rounded-full text-gray-800 shadow-2xl focus:outline-none text-lg"
+                               onkeyup="searchPlants()">
+                        <i class="fas fa-search absolute right-8 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
+    <main class="container mx-auto px-4 py-12">
         <!-- Explore Plants Section -->
         <section id="explore-section" class="fade-in">
             <!-- Filter Categories -->
-            <div class="mb-8">
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">Filter by Benefits</h3>
-                <div class="flex flex-wrap gap-3">
-                    <button onclick="filterPlants('all')" class="badge px-4 py-2 bg-green-600 text-white rounded-full text-sm font-medium">
-                        All Plants
+            <div class="mb-12 glass-white p-8 rounded-3xl shadow-2xl">
+                <h3 class="text-3xl font-bold text-gray-900 mb-8 text-center animate-fadeInUp">
+                    <i class="fas fa-filter text-green-500 mr-3"></i>Filter by Benefits
+                </h3>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <button onclick="filterPlants('all')" class="badge active animate-fadeInUp">
+                        <i class="fas fa-leaf mr-2"></i>All Plants
                     </button>
-                    <button onclick="filterPlants('air-purifying')" class="badge px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">
+                    <button onclick="filterPlants('air-purifying')" class="badge animate-fadeInUp" style="animation-delay: 0.1s;">
                         <i class="fas fa-wind mr-2"></i>Air Purifying
                     </button>
-                    <button onclick="filterPlants('medicinal')" class="badge px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">
+                    <button onclick="filterPlants('medicinal')" class="badge animate-fadeInUp" style="animation-delay: 0.2s;">
                         <i class="fas fa-pills mr-2"></i>Medicinal
                     </button>
-                    <button onclick="filterPlants('edible')" class="badge px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">
+                    <button onclick="filterPlants('edible')" class="badge animate-fadeInUp" style="animation-delay: 0.3s;">
                         <i class="fas fa-utensils mr-2"></i>Edible
                     </button>
-                    <button onclick="filterPlants('indoor-friendly')" class="badge px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">
+                    <button onclick="filterPlants('indoor-friendly')" class="badge animate-fadeInUp" style="animation-delay: 0.4s;">
                         <i class="fas fa-home mr-2"></i>Indoor Friendly
                     </button>
-                    <button onclick="filterPlants('stress-relief')" class="badge px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">
+                    <button onclick="filterPlants('stress-relief')" class="badge animate-fadeInUp" style="animation-delay: 0.5s;">
                         <i class="fas fa-spa mr-2"></i>Stress Relief
                     </button>
                 </div>
             </div>
 
             <!-- Plants Grid -->
-            <div id="plants-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div id="plants-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 <!-- Plant cards will be dynamically inserted here -->
             </div>
         </section>
 
         <!-- My Garden Section -->
         <section id="my-garden-section" class="hidden fade-in">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">My Garden</h2>
-            <div id="my-garden-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <div class="text-center py-12 col-span-full">
-                    <i class="fas fa-seedling text-6xl text-gray-300 mb-4"></i>
-                    <p class="text-gray-500">Your garden is empty. Start adding plants to your favorites!</p>
+            <div class="glass-white p-8 rounded-3xl shadow-2xl mb-8">
+                <h2 class="text-4xl font-bold text-gray-900 mb-6 text-center animate-fadeInUp">
+                    <i class="fas fa-heart text-red-500 mr-3 animate-pulse-custom"></i>My Garden
+                </h2>
+            </div>
+            <div id="my-garden-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <div class="text-center py-16 col-span-full glass-white rounded-3xl shadow-2xl">
+                    <i class="fas fa-seedling text-8xl text-green-300 mb-6 animate-bounce-custom"></i>
+                    <p class="text-xl text-gray-500">Your garden is empty. Start adding plants to your favorites!</p>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
         <section id="contact-section" class="hidden fade-in">
-            <div class="max-w-2xl mx-auto">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Contact & Suggest a Plant</h2>
-                <div class="bg-white rounded-lg shadow-lg p-8">
-                    <form onsubmit="handleSubmit(event)">
-                        <div class="mb-6">
-                            <label class="block text-gray-700 font-medium mb-2">Your Name</label>
-                            <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+            <div class="max-w-4xl mx-auto">
+                <div class="glass-white p-8 rounded-3xl shadow-2xl mb-8">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6 text-center animate-fadeInUp">
+                        <i class="fas fa-envelope text-green-500 mr-3"></i>Contact & Suggest a Plant
+                    </h2>
+                </div>
+                <div class="glass-white rounded-3xl shadow-2xl p-12">
+                    <form onsubmit="handleSubmit(event)" class="space-y-8">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="animate-fadeInLeft">
+                                <label class="block text-gray-700 font-semibold mb-3 text-lg">
+                                    <i class="fas fa-user text-green-500 mr-2"></i>Your Name
+                                </label>
+                                <input type="text" required class="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-100 transition text-lg">
+                            </div>
+                            <div class="animate-fadeInRight">
+                                <label class="block text-gray-700 font-semibold mb-3 text-lg">
+                                    <i class="fas fa-envelope text-green-500 mr-2"></i>Email
+                                </label>
+                                <input type="email" required class="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-100 transition text-lg">
+                            </div>
                         </div>
-                        <div class="mb-6">
-                            <label class="block text-gray-700 font-medium mb-2">Email</label>
-                            <input type="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-                        </div>
-                        <div class="mb-6">
-                            <label class="block text-gray-700 font-medium mb-2">Subject</label>
-                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <div class="animate-fadeInUp" style="animation-delay: 0.2s;">
+                            <label class="block text-gray-700 font-semibold mb-3 text-lg">
+                                <i class="fas fa-tag text-green-500 mr-2"></i>Subject
+                            </label>
+                            <select class="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-100 transition text-lg">
                                 <option>Suggest a Plant</option>
                                 <option>Ask for Help</option>
                                 <option>General Inquiry</option>
                                 <option>Report an Issue</option>
                             </select>
                         </div>
-                        <div class="mb-6">
-                            <label class="block text-gray-700 font-medium mb-2">Message</label>
-                            <textarea rows="5" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+                        <div class="animate-fadeInUp" style="animation-delay: 0.4s;">
+                            <label class="block text-gray-700 font-semibold mb-3 text-lg">
+                                <i class="fas fa-comment text-green-500 mr-2"></i>Message
+                            </label>
+                            <textarea rows="6" required class="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-100 transition text-lg resize-none"></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 transition">
-                            Send Message
-                        </button>
+                        <div class="text-center animate-fadeInUp" style="animation-delay: 0.6s;">
+                            <button type="submit" class="btn-primary text-white py-4 px-12 rounded-full font-semibold hover-glow text-lg shadow-2xl">
+                                <i class="fas fa-paper-plane mr-3"></i>Send Message
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -243,12 +555,12 @@ body {
 
     <!-- Plant Detail Modal -->
     <div id="plant-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar">
-            <div class="p-6">
-                <div class="flex justify-between items-start mb-4">
-                    <h2 id="modal-plant-name" class="text-3xl font-bold text-gray-800"></h2>
-                    <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
-                        <i class="fas fa-times text-2xl"></i>
+        <div class="modal-content rounded-3xl max-w-6xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar shadow-2xl">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <h2 id="modal-plant-name" class="text-4xl font-bold text-gray-900"></h2>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 hover-lift">
+                        <i class="fas fa-times text-3xl"></i>
                     </button>
                 </div>
                 <div id="modal-content">
@@ -259,131 +571,559 @@ body {
     </div>
 
     <!-- Success Message -->
-    <div id="success-message" class="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg transform translate-y-full transition-transform duration-300">
-        <i class="fas fa-check-circle mr-2"></i>
-        <span id="success-text">Success!</span>
+    <div id="success-message" class="fixed bottom-6 right-6 glass-white text-green-600 px-8 py-4 rounded-2xl shadow-2xl transform translate-y-full transition-transform duration-300 z-50">
+        <i class="fas fa-check-circle mr-3 text-xl"></i>
+        <span id="success-text" class="font-semibold text-lg">Success!</span>
     </div>
 
+    <!-- Footer -->
+    <footer class="glass text-gray-900 py-16 mt-20">
+        <div class="container mx-auto text-center">
+            <div class="mb-8">
+                <div class="flex items-center justify-center space-x-2 mb-6">
+                    <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-green-500">
+                        <path d="M16 32L32 18L48 32V50C48 51.1 47.1 52 46 52H18C16.9 52 16 51.1 16 50V32Z" stroke="currentColor" stroke-width="3" fill="none"/>
+                        <path d="M28 52V38H36V52" stroke="currentColor" stroke-width="3"/>
+                        <path d="M40 12C40 8 44 6 48 6V12C48 16 44 18 40 18H34C34 14 36 12 40 12Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                    <span class="text-2xl font-bold">Ghar<span class="text-lime-500">Bageecha</span></span>
+                </div>
+                <p class="text-lg">&copy; 2024 GharBageecha. All rights reserved.</p>
+            </div>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="text-2xl hover:text-green-500 transition-colors hover-lift">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-2xl hover:text-green-500 transition-colors hover-lift">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="text-2xl hover:text-green-500 transition-colors hover-lift">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-2xl hover:text-green-500 transition-colors hover-lift">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // Plant data
-        const plants = [
+        // Plant data - Comprehensive collection with plants for each filter category
+const plants = [
+    // Air Purifying Plants
     {
         id: 1,
+        commonName: "Snake Plant",
+        scientificName: "Sansevieria trifasciata",
+        image: "https://images.unsplash.com/photo-1593691509543-c55fb32d8de5?q=80&w=774&auto=format&fit=crop",
+        benefits: ["air-purifying", "indoor-friendly"],
+        keyBenefits: "Removes toxins, Low maintenance",
+        description: "Snake Plant is one of the most effective air-purifying plants, known for converting CO2 to oxygen at night and removing harmful toxins from indoor air.",
+        care: {
+            light: "Low to bright indirect light",
+            water: "Water every 2-3 weeks, allow soil to dry",
+            soil: "Well-draining potting mix"
+        },
+        benefitsDetail: "Snake plants remove formaldehyde, xylene, benzene, and toluene from the air. They're perfect for bedrooms as they release oxygen at night.",
+        funFact: "NASA's Clean Air Study ranked Snake Plant as one of the top 10 air-purifying plants!",
+        rating: 4.8,
+        reviews: 1247
+    },
+    {
+        id: 2,
+        commonName: "Spider Plant",
+        scientificName: "Chlorophytum comosum",
+        image: "https://images.unsplash.com/photo-1586093248292-4e6636b4e3b8?q=80&w=774&auto=format&fit=crop",
+        benefits: ["air-purifying", "indoor-friendly"],
+        keyBenefits: "Easy propagation, Pet-safe",
+        description: "Spider Plant is a resilient houseplant that produces baby plantlets, making it perfect for beginners and excellent at purifying indoor air.",
+        care: {
+            light: "Bright, indirect light",
+            water: "Water when top inch of soil is dry",
+            soil: "Well-draining potting soil"
+        },
+        benefitsDetail: "Removes formaldehyde and xylene from the air. Safe for pets and produces oxygen continuously during the day.",
+        funFact: "One spider plant can produce dozens of baby plants (spiderettes) that can be propagated easily!",
+        rating: 4.6,
+        reviews: 892
+    },
+    {
+        id: 3,
+        commonName: "Peace Lily",
+        scientificName: "Spathiphyllum wallisii",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=774&auto=format&fit=crop",
+        benefits: ["air-purifying", "indoor-friendly"],
+        keyBenefits: "Beautiful white flowers, Humidity booster",
+        description: "Peace Lily is an elegant flowering houseplant that not only purifies air but also adds natural beauty with its white blooms.",
+        care: {
+            light: "Low to medium indirect light",
+            water: "Keep soil consistently moist",
+            soil: "Well-draining, peat-based potting mix"
+        },
+        benefitsDetail: "Removes ammonia, benzene, formaldehyde, and trichloroethylene. Also increases humidity levels naturally.",
+        funFact: "Peace lilies will droop dramatically when they need water, making them great communicators!",
+        rating: 4.7,
+        reviews: 654
+    },
+    {
+        id: 4,
+        commonName: "Rubber Plant",
+        scientificName: "Ficus elastica",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=774&auto=format&fit=crop",
+        benefits: ["air-purifying", "indoor-friendly"],
+        keyBenefits: "Large glossy leaves, Fast growing",
+        description: "Rubber Plant is a popular houseplant with large, glossy leaves that effectively removes toxins from indoor air while adding tropical appeal.",
+        care: {
+            light: "Bright, indirect light",
+            water: "Water when top 2 inches of soil dry",
+            soil: "Well-draining potting mix"
+        },
+        benefitsDetail: "Excellent at removing formaldehyde from the air. The large leaves provide maximum surface area for air purification.",
+        funFact: "Rubber plants can grow up to 8 feet tall indoors and were once used to make rubber before synthetic alternatives!",
+        rating: 4.5,
+        reviews: 743
+    },
+    {
+        id: 5,
+        commonName: "Boston Fern",
+        scientificName: "Nephrolepis exaltata",
+        image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=774&auto=format&fit=crop",
+        benefits: ["air-purifying", "indoor-friendly"],
+        keyBenefits: "Natural humidifier, Lush foliage",
+        description: "Boston Fern is a classic houseplant with feathery fronds that naturally humidifies the air while removing harmful pollutants.",
+        care: {
+            light: "Indirect light, avoid direct sun",
+            water: "Keep soil consistently moist",
+            soil: "Rich, well-draining potting mix"
+        },
+        benefitsDetail: "Removes formaldehyde and xylene while adding moisture to dry indoor air. Perfect for bathrooms and kitchens.",
+        funFact: "Boston ferns can live for decades and were extremely popular during the Victorian era!",
+        rating: 4.4,
+        reviews: 521
+    },
+
+    // Medicinal Plants
+    {
+        id: 6,
+        commonName: "Aloe Vera",
+        scientificName: "Aloe barbadensis miller",
+        image: "https://images.unsplash.com/photo-1509587584298-0f3b3a3a1797?q=80&w=774&auto=format&fit=crop",
+        benefits: ["medicinal", "indoor-friendly"],
+        keyBenefits: "Healing gel, Burn treatment",
+        description: "Aloe Vera is a succulent plant renowned for its healing properties, particularly the gel inside its leaves which treats burns and skin conditions.",
+        care: {
+            light: "Bright, indirect sunlight",
+            water: "Water deeply but infrequently",
+            soil: "Cactus or succulent potting mix"
+        },
+        benefitsDetail: "The gel contains vitamins, minerals, and amino acids that heal burns, cuts, and skin irritations. Also has anti-inflammatory properties.",
+        funFact: "Aloe vera gel is 96% water and has been used medicinally for over 4,000 years!",
+        rating: 4.9,
+        reviews: 1856
+    },
+    {
+        id: 7,
+        commonName: "Lavender",
+        scientificName: "Lavandula angustifolia",
+        image: "https://images.unsplash.com/photo-1611909023032-2d6b3134ecba?q=80&w=774&auto=format&fit=crop",
+        benefits: ["medicinal", "stress-relief"],
+        keyBenefits: "Aromatherapy, Sleep aid",
+        description: "Lavender is a fragrant herb known for its calming properties and beautiful purple flowers, widely used in aromatherapy and natural medicine.",
+        care: {
+            light: "Full sun (6+ hours daily)",
+            water: "Water when soil is dry",
+            soil: "Well-draining, slightly alkaline soil"
+        },
+        benefitsDetail: "Essential oils have calming effects, reduce anxiety, improve sleep quality, and have antiseptic properties.",
+        funFact: "Lavender's name comes from the Latin 'lavare' meaning 'to wash' - Romans used it in their baths!",
+        rating: 4.7,
+        reviews: 1203
+    },
+    {
+        id: 8,
+        commonName: "Peppermint",
+        scientificName: "Mentha × piperita",
+        image: "https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?q=80&w=774&auto=format&fit=crop",
+        benefits: ["medicinal", "edible"],
+        keyBenefits: "Digestive aid, Natural decongestant",
+        description: "Peppermint is an aromatic herb with cooling properties, widely used for digestive issues, respiratory problems, and as a natural flavoring.",
+        care: {
+            light: "Partial shade to full sun",
+            water: "Keep soil consistently moist",
+            soil: "Rich, moist, well-draining soil"
+        },
+        benefitsDetail: "Contains menthol which aids digestion, relieves nausea, clears sinuses, and has antimicrobial properties.",
+        funFact: "Peppermint is actually a hybrid of watermint and spearmint, and it spreads so aggressively it's best grown in containers!",
+        rating: 4.6,
+        reviews: 967
+    },
+    {
+        id: 9,
+        commonName: "Turmeric",
+        scientificName: "Curcuma longa",
+        image: "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?q=80&w=774&auto=format&fit=crop",
+        benefits: ["medicinal", "edible"],
+        keyBenefits: "Anti-inflammatory, Antioxidant",
+        description: "Turmeric is a golden-colored rhizome with powerful anti-inflammatory and antioxidant properties, essential in traditional medicine and cooking.",
+        care: {
+            light: "Partial shade, filtered sunlight",
+            water: "Regular watering, keep soil moist",
+            soil: "Rich, well-draining, organic soil"
+        },
+        benefitsDetail: "Contains curcumin, a powerful anti-inflammatory compound that may help with arthritis, heart health, and brain function.",
+        funFact: "Turmeric has been used in Ayurvedic medicine for over 4,000 years and gives curry its distinctive yellow color!",
+        rating: 4.8,
+        reviews: 1432
+    },
+    {
+        id: 10,
+        commonName: "Ginger",
+        scientificName: "Zingiber officinale",
+        image: "https://images.unsplash.com/photo-1599639832862-bd92c6222f4d?q=80&w=774&auto=format&fit=crop",
+        benefits: ["medicinal", "edible"],
+        keyBenefits: "Nausea relief, Immune booster",
+        description: "Ginger is a flowering plant whose rhizome is widely used as a spice and medicine, particularly effective for digestive issues and nausea.",
+        care: {
+            light: "Partial shade, filtered light",
+            water: "Keep soil consistently moist",
+            soil: "Rich, well-draining, loose soil"
+        },
+        benefitsDetail: "Contains gingerol, which has anti-nausea, anti-inflammatory, and antioxidant effects. Boosts immune system and aids digestion.",
+        funFact: "Ginger has been traded for over 3,000 years and was so valuable it was used as currency in some ancient civilizations!",
+        rating: 4.7,
+        reviews: 1156
+    },
+
+    // Edible Plants
+    {
+        id: 11,
         commonName: "Tomato",
         scientificName: "Solanum lycopersicum",
         image: "https://images.pexels.com/photos/533280/pexels-photo-533280.jpeg",
         benefits: ["edible", "nutritious"],
-        keyBenefits: "Rich in vitamins, Heart healthy",
+        keyBenefits: "Rich in lycopene, Heart healthy",
         description: "Tomato is a warm-season fruit-bearing plant known for its vibrant red, juicy fruits that are widely used in cooking around the world.",
         care: {
             light: "Full sun (6-8 hours)",
             water: "Regular watering, keep soil moist",
             soil: "Well-draining, fertile soil"
         },
-        benefitsDetail: "Tomatoes are rich in lycopene, vitamin C, potassium, and folate. They support heart health and may reduce risk of certain cancers.",
-        funFact: "Although botanically a fruit, tomatoes were declared a vegetable by the U.S. Supreme Court in 1893 for tariff purposes.",
+        benefitsDetail: "Rich in lycopene, vitamin C, potassium, and folate. Supports heart health and may reduce risk of certain cancers.",
+        funFact: "Although botanically a fruit, tomatoes were declared a vegetable by the U.S. Supreme Court in 1893 for tariff purposes!",
         rating: 4.7,
-        reviews: 312
+        reviews: 2341
     },
     {
-        id: 2,
-        commonName: "Brinjal",
-        scientificName: "Solanum melongena",
-        image: "https://images.unsplash.com/photo-1598030413471-23097f7a81be?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        benefits: ["edible", "nutritious"],
-        keyBenefits: "High in fiber, Low in calories",
-        description: "Brinjal, also known as eggplant, is a warm-season vegetable with a distinctive purple skin and spongy texture.",
+        id: 12,
+        commonName: "Basil",
+        scientificName: "Ocimum basilicum",
+        image: "https://images.unsplash.com/photo-1618164435735-413d3b066c9a?q=80&w=774&auto=format&fit=crop",
+        benefits: ["edible", "medicinal"],
+        keyBenefits: "Culinary herb, Antioxidant rich",
+        description: "Basil is an aromatic herb in the mint family, prized for its distinctive flavor in cooking and its medicinal properties.",
         care: {
-            light: "Full sun (6-8 hours)",
-            water: "Regular watering, keep soil consistently moist",
-            soil: "Well-draining, fertile soil rich in organic matter"
+            light: "Full sun (6+ hours)",
+            water: "Regular watering, avoid waterlogging",
+            soil: "Well-draining, fertile soil"
         },
-        benefitsDetail: "Brinjal is high in fiber and low in calories. It contains antioxidants that may protect cells from damage and improve heart health.",
-        funFact: "Brinjal belongs to the nightshade family, which also includes potatoes, tomatoes, and bell peppers.",
-        rating: 4.5,
-        reviews: 187
-    },
-    {
-        id: 3,
-        commonName: "Carrot",
-        scientificName: "Daucus carota",
-        image: "https://images.unsplash.com/photo-1633380110125-f6e685676160?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        benefits: ["edible", "nutritious"],
-        keyBenefits: "High in beta-carotene, Good for vision",
-        description: "Carrot is a root vegetable known for its orange color, crisp texture, and sweet taste.",
-        care: {
-            light: "Full sun to partial shade",
-            water: "Regular watering, keep soil moist but not waterlogged",
-            soil: "Deep, loose, well-draining soil free of stones"
-        },
-        benefitsDetail: "Carrots are an excellent source of beta-carotene, which converts to vitamin A in the body and is essential for good vision.",
-        funFact: "Carrots were originally purple and yellow. The orange variety was developed by Dutch growers in the 16th century.",
+        benefitsDetail: "Rich in antioxidants, has anti-inflammatory properties, and contains essential oils that may have antimicrobial effects.",
+        funFact: "There are over 60 varieties of basil, and in some cultures, it's considered sacred and used in religious ceremonies!",
         rating: 4.8,
-        reviews: 256
+        reviews: 1876
     },
     {
-        id: 4,
-        commonName: "Onion",
-        scientificName: "Allium cepa",
-        image: "https://images.unsplash.com/photo-1518977956812-cd3dbadaaf31?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        benefits: ["edible", "medicinal"],
-        keyBenefits: "Antibacterial, Flavor enhancer",
-        description: "Onion is a bulbous vegetable used worldwide as a base for many dishes due to its distinctive flavor.",
-        care: {
-            light: "Full sun",
-            water: "Moderate watering, allow soil to dry between watering",
-            soil: "Well-draining, loose soil rich in organic matter"
-        },
-        benefitsDetail: "Onions contain quercetin and sulfur compounds that have antibacterial properties and may support heart health and reduce inflammation.",
-        funFact: "Onions can make you cry because they release sulfur compounds that irritate your tear glands when cut.",
-        rating: 4.6,
-        reviews: 298
-    },
-    {
-        id: 5,
-        commonName: "Fenugreek",
-        scientificName: "Trigonella foenum-graecum",
-        image: "https://images.unsplash.com/photo-1707065879790-256dec8f3760?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        benefits: ["edible", "medicinal"],
-        keyBenefits: "Blood sugar control, Digestive aid",
-        description: "Fenugreek is an annual plant with leaves and seeds used as both herb and spice in various cuisines.",
+        id: 13,
+        commonName: "Spinach",
+        scientificName: "Spinacia oleracea",
+        image: "https://images.unsplash.com/photo-1576045057995-568f588f82fb?q=80&w=774&auto=format&fit=crop",
+        benefits: ["edible", "nutritious"],
+        keyBenefits: "Iron rich, Vitamin packed",
+        description: "Spinach is a leafy green flowering plant native to Persia, now cultivated worldwide for its edible leaves which are rich in nutrients.",
         care: {
             light: "Full sun to partial shade",
-            water: "Moderate watering, allow soil to dry slightly between watering",
-            soil: "Well-draining soil with moderate fertility"
+            water: "Regular watering, keep soil moist",
+            soil: "Rich, well-draining soil"
         },
-        benefitsDetail: "Fenugreek seeds may help control blood sugar levels, improve milk production in breastfeeding women, and aid digestion.",
-        funFact: "Fenugreek seeds smell like maple syrup when cooked and are used as a flavoring in artificial maple syrup products.",
-        rating: 4.4,
-        reviews: 142
+        benefitsDetail: "Excellent source of iron, vitamins A, C, and K, folate, and antioxidants. Supports eye health and bone strength.",
+        funFact: "Popeye's love for spinach increased U.S. spinach consumption by 33% in the 1930s!",
+        rating: 4.5,
+        reviews: 1234
     },
     {
-        id: 6,
-        commonName: "Radish",
-        scientificName: "Raphanus sativus",
-        image: "https://images.unsplash.com/photo-1585369496178-144fd937f249?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        id: 14,
+        commonName: "Lettuce",
+        scientificName: "Lactuca sativa",
+        image: "https://images.unsplash.com/photo-1622206151226-18ca2c9ab4a1?q=80&w=774&auto=format&fit=crop",
         benefits: ["edible", "nutritious"],
-        keyBenefits: "High in vitamin C, Digestive aid",
-        description: "Radish is a root vegetable with a crisp texture and peppery flavor, often eaten raw in salads.",
+        keyBenefits: "Low calorie, Hydrating",
+        description: "Lettuce is an annual plant of the daisy family, most often grown as a leaf vegetable and commonly used in salads and sandwiches.",
         care: {
             light: "Full sun to partial shade",
             water: "Regular watering, keep soil consistently moist",
-            soil: "Well-draining, loose soil rich in organic matter"
+            soil: "Rich, well-draining soil"
         },
-        benefitsDetail: "Radishes are high in vitamin C and other antioxidants. They also contain compounds that may support digestive health.",
-        funFact: "Radishes can grow from seed to harvest in as little as 3-4 weeks, making them one of the fastest-growing vegetables.",
+        benefitsDetail: "Low in calories but high in water content, vitamins A and K, and folate. Great for hydration and weight management.",
+        funFact: "Lettuce was first cultivated by the ancient Egyptians who turned it from a weed into a food plant!",
+        rating: 4.3,
+        reviews: 876
+    },
+    {
+        id: 15,
+        commonName: "Cilantro",
+        scientificName: "Coriandrum sativum",
+        image: "https://images.unsplash.com/photo-1583119022894-0b0c2d7e5e8a?q=80&w=774&auto=format&fit=crop",
+        benefits: ["edible", "medicinal"],
+        keyBenefits: "Flavor enhancer, Detoxifying",
+        description: "Cilantro is an annual herb in the family Apiaceae, with fresh leaves commonly used as a garnish and flavoring in many cuisines worldwide.",
+        care: {
+            light: "Full sun to partial shade",
+            water: "Regular watering, avoid overwatering",
+            soil: "Well-draining, fertile soil"
+        },
+        benefitsDetail: "Rich in antioxidants, may help remove heavy metals from the body, and has antimicrobial properties.",
+        funFact: "Cilantro and coriander come from the same plant - cilantro refers to the leaves while coriander refers to the seeds!",
+        rating: 4.4,
+        reviews: 1098
+    },
+
+    // Indoor Friendly Plants
+    {
+        id: 16,
+        commonName: "Pothos",
+        scientificName: "Epipremnum aureum",
+        image: "https://images.unsplash.com/photo-1586093248292-4e6636b4e3b8?q=80&w=774&auto=format&fit=crop",
+        benefits: ["indoor-friendly", "air-purifying"],
+        keyBenefits: "Low light tolerant, Easy care",
+        description: "Pothos is a popular trailing houseplant known for its heart-shaped leaves and incredible adaptability to various indoor conditions.",
+        care: {
+            light: "Low to bright indirect light",
+            water: "Water when top inch of soil is dry",
+            soil: "Well-draining potting mix"
+        },
+        benefitsDetail: "Removes formaldehyde, benzene, and xylene from indoor air. Extremely forgiving and perfect for beginners.",
+        funFact: "Pothos can survive in water alone for months and is sometimes called 'Devil's Ivy' because it's nearly impossible to kill!",
+        rating: 4.9,
+        reviews: 2156
+    },
+    {
+        id: 17,
+        commonName: "ZZ Plant",
+        scientificName: "Zamioculcas zamiifolia",
+        image: "https://images.unsplash.com/photo-1586093248292-4e6636b4e3b8?q=80&w=774&auto=format&fit=crop",
+        benefits: ["indoor-friendly", "air-purifying"],
+        keyBenefits: "Drought tolerant, Glossy leaves",
+        description: "ZZ Plant is an extremely low-maintenance houseplant with glossy, dark green leaves that can tolerate neglect and low light conditions.",
+        care: {
+            light: "Low to bright indirect light",
+            water: "Water every 2-3 weeks",
+            soil: "Well-draining potting mix"
+        },
+        benefitsDetail: "Removes toxins from air and stores water in its rhizomes, making it incredibly drought-tolerant.",
+        funFact: "ZZ plants can go months without water and are so tough they're often mistaken for artificial plants!",
+        rating: 4.8,
+        reviews: 1543
+    },
+    {
+        id: 18,
+        commonName: "Monstera",
+        scientificName: "Monstera deliciosa",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=774&auto=format&fit=crop",
+        benefits: ["indoor-friendly", "air-purifying"],
+        keyBenefits: "Split leaves, Instagram famous",
+        description: "Monstera is a tropical plant famous for its large, split leaves that develop unique holes and splits as the plant matures.",
+        care: {
+            light: "Bright, indirect light",
+            water: "Water when top 2 inches of soil dry",
+            soil: "Well-draining, chunky potting mix"
+        },
+        benefitsDetail: "Purifies indoor air and creates a tropical atmosphere. The fenestrations (holes) help the plant withstand strong winds in nature.",
+        funFact: "Young monstera leaves are solid, and the iconic splits only develop as the plant matures and receives adequate light!",
+        rating: 4.7,
+        reviews: 1876
+    },
+    {
+        id: 19,
+        commonName: "Philodendron",
+        scientificName: "Philodendron hederaceum",
+        image: "https://images.unsplash.com/photo-1586093248292-4e6636b4e3b8?q=80&w=774&auto=format&fit=crop",
+        benefits: ["indoor-friendly", "air-purifying"],
+        keyBenefits: "Heart-shaped leaves, Fast growing",
+        description: "Philodendron is a popular houseplant with heart-shaped leaves that trails beautifully and adapts well to indoor environments.",
+        care: {
+            light: "Medium to bright indirect light",
+            water: "Water when top inch of soil is dry",
+            soil: "Well-draining potting soil"
+        },
+        benefitsDetail: "Removes formaldehyde from air and grows quickly, making it perfect for filling empty spaces in your home.",
+        funFact: "The name 'Philodendron' means 'love tree' in Greek, referring to their heart-shaped leaves!",
+        rating: 4.6,
+        reviews: 1432
+    },
+    {
+        id: 20,
+        commonName: "Dracaena",
+        scientificName: "Dracaena marginata",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=774&auto=format&fit=crop",
+        benefits: ["indoor-friendly", "air-purifying"],
+        keyBenefits: "Tree-like structure, Low maintenance",
+        description: "Dracaena is an attractive houseplant with long, narrow leaves that grows in a tree-like structure, perfect for adding height to indoor spaces.",
+        care: {
+            light: "Medium to bright indirect light",
+            water: "Water when top 2 inches of soil dry",
+            soil: "Well-draining potting mix"
+        },
+        benefitsDetail: "NASA studies show it removes benzene, formaldehyde, trichloroethylene, and xylene from indoor air.",
+        funFact: "Dracaena plants can live for decades and some varieties can grow up to 10 feet tall indoors!",
         rating: 4.5,
-        reviews: 176
+        reviews: 987
+    },
+
+    // Stress Relief Plants
+    {
+        id: 21,
+        commonName: "Chamomile",
+        scientificName: "Matricaria chamomilla",
+        image: "https://images.unsplash.com/photo-1611909023032-2d6b3134ecba?q=80&w=774&auto=format&fit=crop",
+        benefits: ["stress-relief", "medicinal"],
+        keyBenefits: "Calming tea, Sleep aid",
+        description: "Chamomile is a gentle herb with daisy-like flowers, renowned for its calming properties and commonly used to make soothing herbal tea.",
+        care: {
+            light: "Full sun to partial shade",
+            water: "Regular watering, allow soil to dry between waterings",
+            soil: "Well-draining, sandy soil"
+        },
+        benefitsDetail: "Contains apigenin, an antioxidant that binds to brain receptors to promote sleepiness and reduce anxiety.",
+        funFact: "Chamomile has been used for over 5,000 years and was considered sacred by ancient Egyptians!",
+        rating: 4.8,
+        reviews: 1654
+    },
+    {
+        id: 22,
+        commonName: "Jasmine",
+        scientificName: "Jasminum officinale",
+        image: "https://images.unsplash.com/photo-1611909023032-2d6b3134ecba?q=80&w=774&auto=format&fit=crop",
+        benefits: ["stress-relief", "indoor-friendly"],
+        keyBenefits: "Fragrant flowers, Mood booster",
+        description: "Jasmine is a fragrant flowering plant whose sweet scent has been shown to reduce stress levels and improve mood and sleep quality.",
+        care: {
+            light: "Bright light, some direct sun",
+            water: "Keep soil consistently moist",
+            soil: "Well-draining, fertile potting mix"
+        },
+        benefitsDetail: "The scent of jasmine has been scientifically proven to reduce stress hormones and promote relaxation.",
+        funFact: "Jasmine flowers are most fragrant at night, which is why they're often called 'Queen of the Night'!",
+        rating: 4.7,
+        reviews: 1321
+    },
+    {
+        id: 23,
+        commonName: "Rosemary",
+        scientificName: "Rosmarinus officinalis",
+        image: "https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?q=80&w=774&auto=format&fit=crop",
+        benefits: ["stress-relief", "edible", "medicinal"],
+        keyBenefits: "Memory enhancer, Aromatic",
+        description: "Rosemary is an aromatic evergreen herb with needle-like leaves, known for its ability to improve memory and reduce stress through aromatherapy.",
+        care: {
+            light: "Full sun (6+ hours)",
+            water: "Water when soil is dry",
+            soil: "Well-draining, sandy soil"
+        },
+        benefitsDetail: "Contains compounds that may improve memory and concentration while reducing cortisol (stress hormone) levels.",
+        funFact: "Ancient Greeks wore rosemary garlands while studying because they believed it improved memory!",
+        rating: 4.6,
+        reviews: 1198
+    },
+    {
+        id: 24,
+        commonName: "Lemon Balm",
+        scientificName: "Melissa officinalis",
+        image: "https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?q=80&w=774&auto=format&fit=crop",
+        benefits: ["stress-relief", "medicinal", "edible"],
+        keyBenefits: "Anxiety reducer, Lemony scent",
+        description: "Lemon Balm is a perennial herb in the mint family with a delightful lemony scent that naturally reduces anxiety and promotes relaxation.",
+        care: {
+            light: "Partial shade to full sun",
+            water: "Regular watering, keep soil moist",
+            soil: "Well-draining, fertile soil"
+        },
+        benefitsDetail: "Contains rosmarinic acid which has calming effects and may help reduce anxiety and improve sleep quality.",
+        funFact: "Lemon balm can live for over 30 years and was used in medieval times to attract bees to hives!",
+        rating: 4.5,
+        reviews: 876
+    },
+    {
+        id: 25,
+        commonName: "Eucalyptus",
+        scientificName: "Eucalyptus globulus",
+        image: "https://images.unsplash.com/photo-1611909023032-2d6b3134ecba?q=80&w=774&auto=format&fit=crop",
+        benefits: ["stress-relief", "medicinal", "air-purifying"],
+        keyBenefits: "Respiratory aid, Spa-like aroma",
+        description: "Eucalyptus is an aromatic tree whose leaves release a refreshing scent that clears the mind, reduces stress, and supports respiratory health.",
+        care: {
+            light: "Full sun to partial shade",
+            water: "Regular watering, allow soil to dry slightly",
+            soil: "Well-draining, slightly acidic soil"
+        },
+        benefitsDetail: "Essential oils have decongestant properties and the aroma can reduce stress and mental fatigue while improving focus.",
+        funFact: "Koalas eat eucalyptus leaves almost exclusively, and there are over 600 species of eucalyptus trees!",
+        rating: 4.7,
+        reviews: 1432
     }
 ];
 
         let favorites = JSON.parse(localStorage.getItem('greenwell-favorites')) || [];
         let currentFilter = 'all';
 
+        // Create particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Scroll reveal animation
+        function handleScrollReveal() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            reveals.forEach(reveal => {
+                observer.observe(reveal);
+            });
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            handleScrollReveal();
             renderPlants();
             updateFavoriteCount();
+            
+            // Add navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                    navbar.style.backdropFilter = 'blur(20px)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.1)';
+                    navbar.style.backdropFilter = 'blur(10px)';
+                }
+            });
         });
 
         // Render plants
@@ -392,12 +1132,14 @@ body {
             grid.innerHTML = '';
 
             if (plantsToRender.length === 0) {
-                grid.innerHTML = '<div class="col-span-full text-center py-12"><p class="text-gray-500">No plants found matching your criteria.</p></div>';
+                grid.innerHTML = '<div class="col-span-full text-center py-16 glass-white rounded-3xl shadow-2xl"><i class="fas fa-search text-6xl text-gray-300 mb-4"></i><p class="text-xl text-gray-500">No plants found matching your criteria.</p></div>';
                 return;
             }
 
-            plantsToRender.forEach(plant => {
+            plantsToRender.forEach((plant, index) => {
                 const card = createPlantCard(plant);
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.classList.add('animate-fadeInUp');
                 grid.appendChild(card);
             });
         }
@@ -405,28 +1147,33 @@ body {
         // Create plant card
         function createPlantCard(plant) {
             const card = document.createElement('div');
-            card.className = 'plant-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer';
+            card.className = 'plant-card cursor-pointer';
             card.innerHTML = `
-                <div class="relative">
-                    <img src="${plant.image}" alt="${plant.commonName}" class="w-full h-48 object-cover">
-                    <button onclick="toggleFavorite(event, ${plant.id})" class="absolute top-3 right-3 bg-white rounded-full p-2 shadow-md hover:shadow-lg transition">
-                        <i class="fas fa-heart ${favorites.includes(plant.id) ? 'text-red-500' : 'text-gray-400'}"></i>
+                <div class="relative overflow-hidden">
+                    <img src="${plant.image}" alt="${plant.commonName}" class="w-full h-56 object-cover transition-transform duration-300 hover:scale-110">
+                    <button onclick="toggleFavorite(event, ${plant.id})" class="absolute top-4 right-4 glass-white rounded-full p-3 shadow-lg hover:shadow-xl transition hover-lift">
+                        <i class="fas fa-heart ${favorites.includes(plant.id) ? 'text-red-500' : 'text-gray-400'} text-lg"></i>
                     </button>
-                </div>
-                <div class="p-4" onclick="showPlantDetail(${plant.id})">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-1">${plant.commonName}</h3>
-                    <p class="text-sm text-gray-600 italic mb-3">${plant.scientificName}</p>
-                    <p class="text-sm text-gray-700 mb-3">${plant.keyBenefits}</p>
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-1">
-                            <div class="star-rating">
-                                ${generateStars(plant.rating)}
-                            </div>
-                            <span class="text-sm text-gray-600">(${plant.reviews})</span>
-                        </div>
-                        <div class="flex space-x-1">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-4">
+                        <div class="flex space-x-2">
                             ${plant.benefits.slice(0, 2).map(benefit => getBenefitIcon(benefit)).join('')}
                         </div>
+                    </div>
+                </div>
+                <div class="p-6" onclick="showPlantDetail(${plant.id})">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">${plant.commonName}</h3>
+                    <p class="text-sm text-gray-600 italic mb-4">${plant.scientificName}</p>
+                    <p class="text-gray-700 mb-4 font-medium">${plant.keyBenefits}</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <div class="star-rating text-lg">
+                                ${generateStars(plant.rating)}
+                            </div>
+                            <span class="text-sm text-gray-600 font-medium">(${plant.reviews})</span>
+                        </div>
+                        <button class="btn-primary text-white px-4 py-2 rounded-full text-sm font-medium hover-glow">
+                            View Details
+                        </button>
                     </div>
                 </div>
             `;
@@ -456,11 +1203,12 @@ body {
         // Get benefit icon
         function getBenefitIcon(benefit) {
             const icons = {
-                'air-purifying': '<i class="fas fa-wind text-blue-500" title="Air Purifying"></i>',
-                'medicinal': '<i class="fas fa-pills text-purple-500" title="Medicinal"></i>',
-                'edible': '<i class="fas fa-utensils text-orange-500" title="Edible"></i>',
-                'indoor-friendly': '<i class="fas fa-home text-green-500" title="Indoor Friendly"></i>',
-                'stress-relief': '<i class="fas fa-spa text-pink-500" title="Stress Relief"></i>'
+                'air-purifying': '<span class="glass-white px-3 py-1 rounded-full text-xs font-medium text-blue-600"><i class="fas fa-wind mr-1"></i>Air Purifying</span>',
+                'medicinal': '<span class="glass-white px-3 py-1 rounded-full text-xs font-medium text-purple-600"><i class="fas fa-pills mr-1"></i>Medicinal</span>',
+                'edible': '<span class="glass-white px-3 py-1 rounded-full text-xs font-medium text-orange-600"><i class="fas fa-utensils mr-1"></i>Edible</span>',
+                'indoor-friendly': '<span class="glass-white px-3 py-1 rounded-full text-xs font-medium text-green-600"><i class="fas fa-home mr-1"></i>Indoor</span>',
+                'stress-relief': '<span class="glass-white px-3 py-1 rounded-full text-xs font-medium text-pink-600"><i class="fas fa-spa mr-1"></i>Stress Relief</span>',
+                'nutritious': '<span class="glass-white px-3 py-1 rounded-full text-xs font-medium text-green-600"><i class="fas fa-leaf mr-1"></i>Nutritious</span>'
             };
             return icons[benefit] || '';
         }
@@ -472,52 +1220,56 @@ body {
 
             document.getElementById('modal-plant-name').textContent = plant.commonName;
             document.getElementById('modal-content').innerHTML = `
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <img src="${plant.image}" alt="${plant.commonName}" class="w-full rounded-lg shadow-md">
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div class="animate-fadeInLeft">
+                        <img src="${plant.image}" alt="${plant.commonName}" class="w-full rounded-2xl shadow-2xl">
                     </div>
-                    <div>
-                        <p class="text-gray-600 italic mb-4">${plant.scientificName}</p>
-                        <p class="text-gray-700 mb-6">${plant.description}</p>
+                    <div class="animate-fadeInRight">
+                        <p class="text-gray-600 italic mb-6 text-lg">${plant.scientificName}</p>
+                        <p class="text-gray-700 mb-8 text-lg leading-relaxed">${plant.description}</p>
                         
-                        <div class="mb-6">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-3">Care Instructions</h3>
-                            <div class="space-y-2">
-                                <div class="flex items-center">
-                                    <i class="fas fa-sun text-yellow-500 w-6"></i>
-                                    <span class="ml-2 text-gray-700">${plant.care.light}</span>
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                                <i class="fas fa-tools text-green-500 mr-2"></i>Care Instructions
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center glass p-4 rounded-xl">
+                                    <i class="fas fa-sun text-yellow-500 text-xl w-8"></i>
+                                    <span class="ml-4 text-gray-700 font-medium">${plant.care.light}</span>
                                 </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-tint text-blue-500 w-6"></i>
-                                    <span class="ml-2 text-gray-700">${plant.care.water}</span>
+                                <div class="flex items-center glass p-4 rounded-xl">
+                                    <i class="fas fa-tint text-blue-500 text-xl w-8"></i>
+                                    <span class="ml-4 text-gray-700 font-medium">${plant.care.water}</span>
                                 </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-mountain text-brown-500 w-6"></i>
-                                    <span class="ml-2 text-gray-700">${plant.care.soil}</span>
+                                <div class="flex items-center glass p-4 rounded-xl">
+                                    <i class="fas fa-mountain text-amber-600 text-xl w-8"></i>
+                                    <span class="ml-4 text-gray-700 font-medium">${plant.care.soil}</span>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="mb-6">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-3">Benefits</h3>
-                            <p class="text-gray-700">${plant.benefitsDetail}</p>
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                                <i class="fas fa-heart text-red-500 mr-2"></i>Benefits
+                            </h3>
+                            <p class="text-gray-700 leading-relaxed text-lg glass p-6 rounded-xl">${plant.benefitsDetail}</p>
                         </div>
                         
-                        <div class="bg-green-50 p-4 rounded-lg">
-                            <h4 class="font-semibold text-gray-800 mb-2">
+                        <div class="glass-white p-6 rounded-2xl mb-8 border-l-4 border-green-500">
+                            <h4 class="font-bold text-gray-900 mb-3 text-lg">
                                 <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Fun Fact
                             </h4>
-                            <p class="text-gray-700">${plant.funFact}</p>
+                            <p class="text-gray-700 leading-relaxed">${plant.funFact}</p>
                         </div>
                         
-                        <div class="mt-6 flex items-center justify-between">
-                            <div class="flex items-center space-x-2">
-                                <div class="star-rating">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="star-rating text-xl">
                                     ${generateStars(plant.rating)}
                                 </div>
-                                <span class="text-gray-600">${plant.rating} (${plant.reviews} reviews)</span>
+                                <span class="text-gray-600 font-medium">${plant.rating} (${plant.reviews} reviews)</span>
                             </div>
-                            <button onclick="toggleFavorite(event, ${plant.id})" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+                            <button onclick="toggleFavorite(event, ${plant.id})" class="btn-primary text-white px-6 py-3 rounded-full hover-glow font-semibold">
                                 <i class="fas fa-heart mr-2"></i>
                                 ${favorites.includes(plant.id) ? 'Remove from Garden' : 'Add to Garden'}
                             </button>
@@ -570,11 +1322,9 @@ body {
             
             // Update button styles
             document.querySelectorAll('.badge').forEach(btn => {
-                btn.classList.remove('bg-green-600', 'text-white');
-                btn.classList.add('bg-gray-200', 'text-gray-700');
+                btn.classList.remove('active');
             });
-            event.target.classList.remove('bg-gray-200', 'text-gray-700');
-            event.target.classList.add('bg-green-600', 'text-white');
+            event.target.classList.add('active');
             
             // Filter plants
             if (category === 'all') {
@@ -615,11 +1365,13 @@ body {
             
             // Update nav links
             document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('text-green-600');
+                link.classList.remove('text-green-500');
                 link.classList.add('text-gray-600');
             });
-            event.target.classList.remove('text-gray-600');
-            event.target.classList.add('text-green-600');
+            if (event && event.target) {
+                event.target.classList.remove('text-gray-600');
+                event.target.classList.add('text-green-500');
+            }
             
             // Close mobile menu
             document.getElementById('mobile-menu').classList.add('hidden');
@@ -628,6 +1380,9 @@ body {
             if (section === 'my-garden') {
                 renderMyGarden();
             }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // Render my garden
@@ -637,17 +1392,19 @@ body {
             
             if (favoritePlants.length === 0) {
                 grid.innerHTML = `
-                    <div class="text-center py-12 col-span-full">
-                        <i class="fas fa-seedling text-6xl text-gray-300 mb-4"></i>
-                        <p class="text-gray-500">Your garden is empty. Start adding plants to your favorites!</p>
+                    <div class="text-center py-16 col-span-full glass-white rounded-3xl shadow-2xl">
+                        <i class="fas fa-seedling text-8xl text-green-300 mb-6 animate-bounce-custom"></i>
+                        <p class="text-xl text-gray-500">Your garden is empty. Start adding plants to your favorites!</p>
                     </div>
                 `;
                 return;
             }
             
             grid.innerHTML = '';
-            favoritePlants.forEach(plant => {
+            favoritePlants.forEach((plant, index) => {
                 const card = createPlantCard(plant);
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.classList.add('animate-fadeInUp');
                 grid.appendChild(card);
             });
         }
