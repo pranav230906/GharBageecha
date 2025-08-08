@@ -682,7 +682,17 @@ nav ul li a:hover {
             width: 40px;
             border-radius: 50px;
             }
+
         
+        .profile-btn:hover
+        {
+            cursor: pointer;
+        }
+        .profile-btn button
+        {
+            color: #e7b390;
+            font-size: medium;
+        }
     </style>
 </head>
 <body class="text-gray-900">
@@ -714,10 +724,8 @@ nav ul li a:hover {
                 </ul>
             </nav>
             <div class="flex items-center profile-btn">
-                    
-                        <a href="profilepage.html" class= "cursor-pointer "  alt="User Profile"></a>
-
-                </div>
+                    <button href="profilepage.html" >.</button>
+            </div>
         </div>
     </header>
 
@@ -1166,6 +1174,20 @@ nav ul li a:hover {
         import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
+        // profile page
+   document.addEventListener('DOMContentLoaded', () => {
+    // Other event listeners and initialization code...
+
+    const profileButton = document.querySelector('.profile-btn button');
+    if (profileButton) {
+        profileButton.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent the default link behavior
+            window.location.href = 'profilepage.html'; // Navigate to the profile page
+        });
+    }
+
+    // Rest of your event listeners...
+});
         // Global variables provided by the Canvas environment
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
         const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
