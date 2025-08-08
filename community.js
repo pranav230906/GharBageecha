@@ -38,6 +38,20 @@ let currentImageIndex = 0;
 let currentImageSet = [];
 const API_KEY = ""; // Use an empty string for the API key, as it will be provided at runtime.
 
+  // profile page
+   document.addEventListener('DOMContentLoaded', () => {
+    // Other event listeners and initialization code...
+
+    const profileButton = document.querySelector('.profile-btn button');
+    if (profileButton) {
+        profileButton.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent the default link behavior
+            window.location.href = 'profilepage.html'; // Navigate to the profile page
+        });
+    }
+
+});
+
 // Emoji collections
 const emojiCategories = {
     plants: ['🌱', '🌿', '🌳', '🌲', '🌴', '🌵', '🌾', '🍀', '🌸', '🌺', '🌻', '🌹', '🌷', '🌼'],
