@@ -113,7 +113,7 @@ function closeSignupModal() {
     modalOverlay.style.animation = 'fadeOut 0.3s ease forwards';
     setTimeout(() => {
         modalOverlay.style.display = 'none';
-        window.location.href = 'homepage1.html';
+        window.location.href = 'index.html';
     }, 300);
 }
 
@@ -123,7 +123,7 @@ function closeButton() {
     modalOverlay.style.animation = 'fadeOut 0.3s ease forwards';
     setTimeout(() => {
         modalOverlay.style.display = 'none';
-        window.location.href = 'homepage1.html';
+        window.location.href = 'index.html';
     }, 300);
 }
 
