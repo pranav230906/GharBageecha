@@ -80,7 +80,7 @@
                     <div class="space-y-2">
                         <button class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md">Edit Profile</button>
                         <button class="w-full bg-white border border-gray-300 hover:bg-gray-100 text-gray-700 font-medium py-2 px-4 rounded-md">Settings</button>
-                        <button class="w-full bg-white border border-red-200 hover:bg-red-50 text-red-600 font-medium py-2 px-4 rounded-md">Log Out</button>
+                        <button class="w-full bg-white border border-red-200 hover:bg-red-50 text-red-600 font-medium py-2 px-4 rounded-md" onclick="openIndex()">Log Out</button>
                     </div>
                 </div>
             </div>
@@ -210,5 +210,12 @@
             </div>
         </div>
     </div>
+    <script>
+        // Logout
+        function openIndex()
+        {
+            window.location.href = 'index.html';
+        }
+    </script>
 </body>
 </html>
