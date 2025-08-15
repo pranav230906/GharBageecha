@@ -39,19 +39,26 @@ let currentImageSet = [];
 const API_KEY = ""; // Use an empty string for the API key, as it will be provided at runtime.
 
    // Profile Button
-        document.addEventListener('DOMContentLoaded', () => {
-    // Other event listeners and initialization code...
+//         document.addEventListener('DOMContentLoaded', () => {
+//     // Other event listeners and initialization code...
 
-    const profileButton = document.querySelector('.profile-btn button');
-    if (profileButton) {
-        profileButton.addEventListener('click', (e) => {
-            e.preventDefault(); // Prevent the default link behavior
-            window.location.href = 'profilepage.html'; // Navigate to the profile page
-        });
-    }
+//     const profileButton = document.querySelector('.profile-btn button');
+//     if (profileButton) {
+//         profileButton.addEventListener('click', (e) => {
+//             e.preventDefault(); // Prevent the default link behavior
+//             window.location.href = 'profilepage.html'; // Navigate to the profile page
+//         });
+//     }
 
-    // Rest of your event listeners...
-});
+//     // Rest of your event listeners...
+// });
+
+function openProfilePage()
+{
+    profileButton.addEventListener('click' , (e) => {
+        window.location.href = 'profilepage.html';
+    })
+}
 
 // Emoji collections
 const emojiCategories = {
