@@ -38,8 +38,8 @@ let currentImageIndex = 0;
 let currentImageSet = [];
 const API_KEY = ""; // Use an empty string for the API key, as it will be provided at runtime.
 
-  // profile page
-   document.addEventListener('DOMContentLoaded', () => {
+   // Profile Button
+        document.addEventListener('DOMContentLoaded', () => {
     // Other event listeners and initialization code...
 
     const profileButton = document.querySelector('.profile-btn button');
@@ -50,6 +50,7 @@ const API_KEY = ""; // Use an empty string for the API key, as it will be provid
         });
     }
 
+    // Rest of your event listeners...
 });
 
 // Emoji collections
